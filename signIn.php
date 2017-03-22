@@ -58,6 +58,8 @@
       $('#alert').hide();/*initially to hide alert*/
       
       $('#toggleLogin').click(function(){
+        
+        $('#alert').hide();
            
             if($('#loginActive').val() === "1"){
                 $('#loginActive').val("0");
@@ -73,6 +75,9 @@
         });
 
       $('#loginOrSignup').click(function(){
+        
+        $('#alert').hide();
+        
             $.ajax({
                 type: "POST",
                 url: "actions.php?actions=loginSignup",
