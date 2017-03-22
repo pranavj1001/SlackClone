@@ -20,6 +20,8 @@
 
     <div class="container">
 
+      <div class="alert alert-danger" id="alert"></div>
+
       <form class="form-signin">
         <h2 class="form-signin-heading">Please Sign In</h2>
         <input type="hidden" id="loginActive" name="loginActive" value="1">
@@ -65,6 +67,21 @@
                 $('#loginOrSignup').html("Sign In");
                 $('#toggleLogin').html("Sign Up");     
             }        
+        });
+
+      $('#loginOrSignup').click(function(){
+            $.ajax({
+                type: "POST",
+                url: "actions.php?actions=loginSignup",
+                data:"email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
+                success: function(result){
+                    if(result == "1"){
+                        window.location.assign("http://localhost/SlackClone/dashboard.php");
+                    }else{
+                        $('#alert').html(result).show();
+                    }
+                }
+            });
         });
 
     </script>
