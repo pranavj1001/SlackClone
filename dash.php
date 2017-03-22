@@ -1,4 +1,7 @@
-<?php include("controller.php"); ?>
+<?php 
+  include("controller.php"); 
+  include("services/loadProfile.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
