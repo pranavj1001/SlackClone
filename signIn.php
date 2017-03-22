@@ -55,6 +55,8 @@
 
     <script type="text/javascript">
       
+      $('#alert').hide();/*initially to hide alert*/
+      
       $('#toggleLogin').click(function(){
            
             if($('#loginActive').val() === "1"){
