@@ -27,4 +27,4 @@ Repo is under constant development.
 
 * Pranav Jain (Supreme Leader)
 * Kedae Kale
-* GM
+* GM(Ganesh)
