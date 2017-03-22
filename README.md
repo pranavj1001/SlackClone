@@ -5,7 +5,7 @@ Repo is under constant development.
 
 ## To-Do List
 
-- [ ] Set up User SignIn and SignUp Process
+- [X] Set up User SignIn and SignUp Process
 - [ ] Set up Team LogIn and Creation Process
 - [ ] Set up basic Chat UI
 - [ ] Set up basic Bot
