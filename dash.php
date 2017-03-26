@@ -1,5 +1,5 @@
 <?php 
-  include("controller.php"); 
+  include("actions.php"); 
   include("services/loadProfile.php");
 ?>
 
@@ -255,9 +255,9 @@
         </main>
       </div>
     </div>
-    <?php }else{ ?>
-     <p> Please Log In</p>
-    <?php }?>
+    <?php }else{
+      header('Location: http:localhost/SlackClone/signIn.php');
+      }?>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
