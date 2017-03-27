@@ -3,6 +3,7 @@
     include("connectToDB.php");
 
     //loginSignup action
+    if(isset($_GET['actions']))
     if($_GET['actions'] == "loginSignup"){
         
         $error = "";
