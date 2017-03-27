@@ -1,7 +1,7 @@
 <?php
 
-    include("controller.php");
-
+    include("connectToDB.php");
+    
     //loginSignup action
     if($_GET['actions'] == "loginSignup"){
         

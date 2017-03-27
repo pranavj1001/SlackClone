@@ -256,7 +256,7 @@
       </div>
     </div>
     <?php }else{
-      header('Location: http:localhost/SlackClone/signIn.php');
+      header('Location: signIn.php');
       }?>
     <!-- Bootstrap core JavaScript
     ================================================== -->

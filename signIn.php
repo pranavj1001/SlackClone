@@ -78,20 +78,20 @@
         
         $('#alert').hide();
         
-            $.ajax({
-                type: "POST",
-                url: "actions.php?actions=loginSignup",
-                data:"email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
-                success: function(result){
-                    if(result == "1"){
-                      console.log("Success");
-                      window.location.assign("http://localhost/SlackClone/dash.php");
-                    }else{
-                      console.log("Failure");
-                      $('#alert').html(result).show();
-                    }
-                }
-            });
+          $.ajax({
+            type: "POST",
+            url: "actions.php?actions=loginSignup",
+            data:"email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
+            success: function(result){
+              if(result == "1"){
+                console.log("Success");
+                window.location.assign("http://localhost/SlackClone/dash.php");
+              }else{
+                console.log("Failure");
+                $('#alert').html(result).show();
+              }
+            }
+          });
         });
 
     </script>
