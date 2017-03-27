@@ -68,6 +68,7 @@
         
     }
 
+
     //if user presses 'logout' button then unset the session
     if (isset($_GET['function'])) {
         if($_GET['function'] == "logout"){
@@ -77,3 +78,4 @@
     }
 
 ?>
+
