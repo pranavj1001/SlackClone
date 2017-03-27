@@ -1,7 +1,11 @@
 <?php
 
     include("connectToDB.php");
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/master
     //loginSignup action
     if($_GET['actions'] == "loginSignup"){
         
