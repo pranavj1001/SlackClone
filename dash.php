@@ -101,34 +101,34 @@
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" id="logOut" href="?function=logout">Log Out</a>
+              <a class="nav-link" id="logOut" href="?function=logout" style="color: red;">Log Out</a>
             </li>
           </ul>
         </nav>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h1>Dashboard</h1>
+          <h1><?php echo $username; ?>'s Dashboard</h1>
 
           <section class="row text-center placeholders">
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
-              <div class="text-muted">Something else</div>
+              <div class="text-muted">Will be used in Future</div>
             </div>
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <span class="text-muted">Will be used in Future</span>
             </div>
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <span class="text-muted">Will be used in Future</span>
             </div>
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <span class="text-muted">Will be used in Future</span>
             </div>
           </section>
 
