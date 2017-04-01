@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2017 at 08:06 PM
+-- Generation Time: Apr 01, 2017 at 09:03 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -29,7 +29,7 @@ USE `slackclone`;
 --
 
 CREATE TABLE `teamdetails` (
-  `teamid` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `teamadmin` text NOT NULL,
   `teamname` text NOT NULL,
   `teampassword` text NOT NULL
@@ -39,8 +39,12 @@ CREATE TABLE `teamdetails` (
 -- Dumping data for table `teamdetails`
 --
 
-INSERT INTO `teamdetails` (`teamid`, `teamadmin`, `teamname`, `teampassword`) VALUES
-(2, 'user5', 'team1', 'tea,1');
+INSERT INTO `teamdetails` (`id`, `teamadmin`, `teamname`, `teampassword`) VALUES
+(5, 'user5', 'team1', 'bb251e9c6cd730254fd9247c425f29bc'),
+(6, 'user5', 'team2', '803dcddd054c6ea7dcaff9131fedad00'),
+(7, 'user5', 'team3', '294b319c79e3069a92434871571c9ae8'),
+(8, 'user5', 'team5', '7a548f160996fafe2f51969211f2e0c7'),
+(9, 'user2', 'team4', '1de9a70660fb54b17535e830c8614358');
 
 -- --------------------------------------------------------
 
@@ -75,7 +79,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 -- Indexes for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
-  ADD PRIMARY KEY (`teamid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -91,7 +95,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
-  MODIFY `teamid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users`
 --
