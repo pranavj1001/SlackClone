@@ -2,11 +2,19 @@
 
     include("connectToDB.php");
 
+    $allSetToGo = true;
+
     //loginSignup action
     if(isset($_GET['actions']))
     if($_GET['actions'] == "loginSignup"){
-        
+
         $error = "";
+
+        if($_POST['loginActive'] == "0"){
+            if(!$_POST['username']){
+                $error = "An username is required";
+            }
+        }
         
         //if email field is empty
         if(!$_POST['email']){
@@ -37,9 +45,19 @@
             $query = "SELECT * FROM users WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
             $result = mysqli_query($link, $query);
             if(mysqli_num_rows($result) > 0){
+                $allSetToGo = false;
                 $error = "That email address is already taken";
-            }else{
-                $query = "INSERT INTO users (`email`, `password`) VALUES('".mysqli_real_escape_string($link, $_POST['email'])."','".mysqli_real_escape_string($link, $_POST['password'])."')";
+                echo $error;
+            }
+            $query = "SELECT * FROM users WHERE username = '".mysqli_real_escape_string($link, $_POST['username'])."' LIMIT 1";
+            $result = mysqli_query($link, $query);
+            if(mysqli_num_rows($result) > 0){
+                $allSetToGo = false;
+                $error = "That username address is already taken";
+                echo $error;
+            }
+            if($allSetToGo){
+                $query = "INSERT INTO users (`username`, `email`, `password`) VALUES('".mysqli_real_escape_string($link, $_POST['username'])."','".mysqli_real_escape_string($link, $_POST['email'])."','".mysqli_real_escape_string($link, $_POST['password'])."')";
                 if(mysqli_query($link, $query)){
                     $_SESSION['id'] = mysqli_insert_id($link);
                     $query = "UPDATE users SET password = '".md5(md5($_SESSION['id']).$_POST['password'])."' WHERE id = '".$_SESSION['id']."' LIMIT 1";

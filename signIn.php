@@ -83,11 +83,16 @@
       $('#loginOrSignup').click(function(){
         
         $('#alert').hide();
+
+        if($('#loginActive').val() === "1"){
+          $('#username').val("1001");
+          console.log($('#username').val());
+        }
         
           $.ajax({
             type: "POST",
             url: "actions.php?actions=loginSignup",
-            data:"email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
+            data:"email=" + $("#email").val() + "&username=" + $("#username").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
             success: function(result){
               if(result == "1"){
                 console.log("Success");
