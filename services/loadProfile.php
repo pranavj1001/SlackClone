@@ -9,6 +9,6 @@
 	$result = mysqli_query($link, $query);
     $row = mysqli_fetch_assoc($result);
 
-    $username = $row['email'];
+    $username = $row['username'];
 
 ?>
