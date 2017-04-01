@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2017 at 12:33 PM
+-- Generation Time: Apr 01, 2017 at 08:06 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -25,6 +25,26 @@ USE `slackclone`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teamdetails`
+--
+
+CREATE TABLE `teamdetails` (
+  `teamid` int(11) NOT NULL,
+  `teamadmin` text NOT NULL,
+  `teamname` text NOT NULL,
+  `teampassword` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teamdetails`
+--
+
+INSERT INTO `teamdetails` (`teamid`, `teamadmin`, `teamname`, `teampassword`) VALUES
+(2, 'user5', 'team1', 'tea,1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -42,11 +62,20 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (1, 'pranav', 'pranav@pranav.com', '28150b466b7cf0ca24f483023f16a41d'),
 (2, 'user1', 'user1@user1.com', '703d464fe2c3221745b87785d4a8ac5a'),
-(3, 'user2', 'user2@user2.com', '02cb28e5772c57b073c6ed531072b544');
+(3, 'user2', 'user2@user2.com', '02cb28e5772c57b073c6ed531072b544'),
+(4, 'user3', 'user3@user3.com', '131537b807ca3664ddc5e6b0fae2d5f9'),
+(5, 'user4', 'user4@user4.com', '7edb860a8c4181757a1e2db4fbc52a3f'),
+(6, 'user5', 'user5@user5.com', '0c1009e92128844c97a43f69f3be12d6');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `teamdetails`
+--
+ALTER TABLE `teamdetails`
+  ADD PRIMARY KEY (`teamid`);
 
 --
 -- Indexes for table `users`
@@ -59,10 +88,15 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `teamdetails`
+--
+ALTER TABLE `teamdetails`
+  MODIFY `teamid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
