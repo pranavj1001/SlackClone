@@ -74,7 +74,7 @@
               <a class="nav-link" href="#">Dissolve one of your teams</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Join an existing team</a>
+              <a class="nav-link" href="teamSignIn.php">Join an existing team</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Team Members</a>

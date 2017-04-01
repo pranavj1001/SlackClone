@@ -90,6 +90,8 @@
 
         if($_GET['actions'] == "createTeam"){
 
+            $error = "";
+
             $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."' LIMIT 1";
                 $result = mysqli_query($link, $query);
                 if(mysqli_num_rows($result) > 0){
@@ -99,8 +101,8 @@
                 }else{
                     $query = "INSERT INTO teamdetails (`teamadmin`, `teamname`, `teampassword`) VALUES('".mysqli_real_escape_string($link, $_POST['teamadmin'])."','".mysqli_real_escape_string($link, $_POST['teamname'])."','".mysqli_real_escape_string($link, $_POST['teampassword'])."')";
                     if(mysqli_query($link, $query)){
-                        $_TEAMSESSION['id'] = mysqli_insert_id($link);
-                        $query = "UPDATE teamdetails SET teampassword = '".md5(md5($_TEAMSESSION['id']).$_POST['teampassword'])."' WHERE id = '".$_TEAMSESSION['id']."' LIMIT 1";
+                        $_SESSION['teamid'] = mysqli_insert_id($link);
+                        $query = "UPDATE teamdetails SET teampassword = '".md5(md5($_SESSION['teamid']).$_POST['teampassword'])."' WHERE id = '".$_SESSION['teamid']."' LIMIT 1";
                         mysqli_query($link, $query);
                         echo 1;
                     }else{
@@ -108,6 +110,38 @@
                     }
                 }
 
+                if($error != ""){
+                    echo $error;
+                    exit();
+                }
+
+        }
+
+        if($_GET['actions'] == "joinTeam"){
+
+            $error = "";
+
+            $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."' LIMIT 1";
+                $result = mysqli_query($link, $query);
+                $row = mysqli_fetch_assoc($result);
+                if($row['teampassword'] == md5(md5($row['id']).$_POST['teampassword'])){
+                    echo 1;
+                    $_SESSION['teamid'] = $row['id'];
+                    //echo $_SESSION['teamid'];
+                }else{
+                    $error = "Sorry, could not find this team. Did you enter the correct login credentials?";
+                }
+
+                if($error != ""){
+                    echo $error;
+                    exit();
+                }            
+
+        }
+
+        if($error != ""){
+            echo $error;
+            exit();
         }
 
     }
@@ -116,14 +150,12 @@
     if (isset($_GET['function'])) {
         if($_GET['function'] == "logout"){
             session_unset();
-            if(isset($_TEAMSESSION))
-                unset($_TEAMSESSION);
             header('Location: http://localhost/SlackClone'); 
         }
 
         if($_GET['function'] == "teamLogout"){
-            if(isset($_TEAMSESSION))
-                unset($_TEAMSESSION);
+            if(isset($_SESSION))
+                unset($_SESSION['teamid']);
             header('Location: http://localhost/SlackClone/dash.php'); 
         }
     }

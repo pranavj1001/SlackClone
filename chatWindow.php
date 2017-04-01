@@ -9,12 +9,12 @@
 	<title>Chat Window</title>
 </head>
 <body>
-<?php if (isset($_TEAMSESSION)) { ?>
-<a href="?function=teamLogout"">Logout</a>
-<?php 
-	}else{
-		header('Location: http://localhost/SlackClone/dash.php');
-	}
-?>
+	<?php if (isset($_SESSION['teamid'])) { ?>
+	<a href="?function=teamLogout"">Logout</a>
+	<?php 
+		}else{
+			header('Location: http://localhost/SlackClone/dash.php');
+		}
+	?>
 </body>
 </html>

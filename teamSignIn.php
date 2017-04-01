@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Create a new team</title>
+    <title>Join a team</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         <div class="alert alert-danger" id="alert"></div>
 
         <div class="form-signin">
-          <h2 class="form-signin-heading">Enter Team Details</h2>
+          <h2 class="form-signin-heading">Enter Team Credentials</h2>
           <input type="hidden" id="loginActive" name="loginActive" value="1">
           <label class="sr-only">Team Name</label>
           <input type="text" id="teamname" class="form-control" placeholder="Team Name">
@@ -41,7 +41,7 @@
               <input type="checkbox" value="remember-me"> Remember me
             </label> -->
           </div>
-          <button class="btn btn-lg btn-primary btn-block" id="createTeam">Create Team</button>
+          <button class="btn btn-lg btn-primary btn-block" id="joinTeam">Join Team</button>
         </div>
 
       </div> <!-- /container -->
@@ -65,7 +65,7 @@
       
       $('#alert').hide();/*initially to hide alert*/
       
-      $('#createTeam').click(function(){
+      $('#joinTeam').click(function(){
         
         var teamadmin = "<?php echo $currentUsername?>";
 
@@ -75,8 +75,8 @@
         
           $.ajax({
             type: "POST",
-            url: "actions.php?actions=createTeam",
-            data:"teamname=" + $("#teamname").val() + "&teampassword=" + $("#teampassword").val() + "&teamadmin=" + teamadmin,
+            url: "actions.php?actions=joinTeam",
+            data:"teamname=" + $("#teamname").val() + "&teampassword=" + $("#teampassword").val(),
             success: function(result){
               if(result == "1"){
                 console.log("Success");
@@ -85,6 +85,7 @@
                 console.log("Failure");
                 $('#alert').html(result).show();
               }
+              //console.log(result);
             }
           });
         });
