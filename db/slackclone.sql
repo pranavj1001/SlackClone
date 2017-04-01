@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2017 at 06:13 PM
+-- Generation Time: Apr 01, 2017 at 12:33 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -30,6 +30,7 @@ USE `slackclone`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `username` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -38,9 +39,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(1, 'pranav@pranav.com', '28150b466b7cf0ca24f483023f16a41d'),
-(2, 'user1@user1.com', '703d464fe2c3221745b87785d4a8ac5a');
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'pranav', 'pranav@pranav.com', '28150b466b7cf0ca24f483023f16a41d'),
+(2, 'user1', 'user1@user1.com', '703d464fe2c3221745b87785d4a8ac5a'),
+(3, 'user2', 'user2@user2.com', '02cb28e5772c57b073c6ed531072b544');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +62,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
