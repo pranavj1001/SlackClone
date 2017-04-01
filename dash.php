@@ -47,7 +47,6 @@
         <div class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          <a class="btn btn-outline-success my-2 my-sm-0" id="logOut" href="?function=logout">Log Out</a>
         </div>
       </div>
     </nav>
@@ -60,40 +59,49 @@
               <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
+              <a class="nav-link" href="#">Chat Graph</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Analytics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
+              <a class="nav-link" href="#">Recent Activities</a>
             </li>
           </ul>
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#">Nav item</a>
+              <a class="nav-link" href="#">Create a new team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
+              <a class="nav-link" href="#">Dissolve one of your teams</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
+              <a class="nav-link" href="#">Join an existing team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
+              <a class="nav-link" href="#">Team Members</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Save Chat Data</a>
             </li>
           </ul>
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#">Nav item again</a>
+              <a class="nav-link" href="#">Chat to a friend</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">One more nav</a>
+              <a class="nav-link" href="#">Send Invite link to a friend</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Another nav item</a>
+              <a class="nav-link" href="#">Find Friends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Block Users</a>
+            </li>
+          </ul>
+
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link" id="logOut" href="?function=logout">Log Out</a>
             </li>
           </ul>
         </nav>
@@ -124,7 +132,7 @@
             </div>
           </section>
 
-          <h2>Section title</h2>
+          <!-- <h2>Section title</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -251,7 +259,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> -->
         </main>
       </div>
     </div>
