@@ -68,7 +68,7 @@
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="services/teamSignUp.php">Create a new team</a>
+              <a class="nav-link" href="teamSignUp.php">Create a new team</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Dissolve one of your teams</a>
@@ -107,7 +107,7 @@
         </nav>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h1><?php echo $username; ?>'s Dashboard</h1>
+          <h1><?php echo $currentUsername; ?>'s Dashboard</h1>
 
           <section class="row text-center placeholders">
             <div class="col-6 col-sm-3 placeholder">
