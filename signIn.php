@@ -27,6 +27,8 @@
         <input type="hidden" id="loginActive" name="loginActive" value="1">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="email" class="form-control" placeholder="Email address">
+        <label for="input" class="sr-only">Username</label>
+        <input type="text" id="username" class="form-control" placeholder="Username">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password">
         <div class="checkbox">

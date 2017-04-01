@@ -68,7 +68,7 @@
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#">Create a new team</a>
+              <a class="nav-link" href="services/teamSignUp.php">Create a new team</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Dissolve one of your teams</a>
