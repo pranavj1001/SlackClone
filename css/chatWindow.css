@@ -28,3 +28,7 @@ body, html{
 #sendMessageButton{
 	width: 10%;
 }
+
+#alert{
+	margin-top: 50px;
+}

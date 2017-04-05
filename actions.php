@@ -143,7 +143,7 @@
 
             $error = "";
 
-            if($_POST['newMessage'] != ""){
+            if($_POST['message'] != ""){
 
                 $query = "INSERT INTO ".$_POST['teamname']." (`sender`, `message`) VALUES('".mysqli_real_escape_string($link, $_POST['sender'])."', '".mysqli_real_escape_string($link, $_POST['message'])."')";
 

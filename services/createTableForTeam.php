@@ -1,10 +1,11 @@
 <?php
 	
 	include("connectToDB.php");
+	include("getTeamName.php");
 
-	$query = "CREATE TABLE IF NOT EXISTS '".$TeamName."' ( id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), message TEXT NOT NULL, sender TEXT NOT NULL)";
+	$query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$TeamName."` ( `id` INT NOT NULL AUTO_INCREMENT , `sender` TEXT NOT NULL , `message` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
 
 	//To run the above query
-	//mysqli_query($link, $query);
+	mysqli_query($link, $query);
 
 ?>

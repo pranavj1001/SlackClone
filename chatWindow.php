@@ -65,7 +65,7 @@
 			<button class="btn btn-primary" id="sendMessageButton">Send</button>
 		</div>
 
-		<div class="alert alert-danger" id="alert"></div>	
+		<div class="container alert alert-danger" id="alert"></div>	
 
 	<?php 
 		}else{
@@ -104,6 +104,7 @@
 	            success: function(result){
 	              if(result == "1"){
 	                console.log("Success");
+					$('#newMessage').val("");	                
 	              }else{
 	                console.log("Failure");
 	                $('#alert').html(result).show();
@@ -116,6 +117,9 @@
     		}
 
     	});
+
+
+
     </script>
 
 </body>
