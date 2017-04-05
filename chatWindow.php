@@ -31,15 +31,43 @@
 
 </head>
 <body>
-	<?php if (isset($_SESSION['teamid'])) { ?>
-	<a href="?function=teamLogout"">Logout</a>
 
-        <br>
-		<textarea rows="20" id="message_box" readonly="">
-		</textarea>
-		<br>
-		<input type="text" id="message" name="Message">
-		<button id="send_message">Send</button>
+	<?php if (isset($_SESSION['teamid'])) { ?>
+
+	<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#"><?php echo $TeamName; ?>'s ChatWindow</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Chats <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+        <div class="form-inline mt-2 mt-md-0">
+          <a class="btn btn-outline-danger my-2 my-sm-0" href="?function=teamLogout">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+        <div class="container chatsContainer">
+        	<textarea class="form-control" id="messageBox" readonly=""></textarea>
+        </div>
+        <div class="container newMessageContainer">
+        	<input class="form-control" type="text" id="newMessage" name="newMessage">
+			<button class="btn btn-primary" id="sendMessageButton">Send</button>
+		</div>	
 
 	<?php 
 		}else{
