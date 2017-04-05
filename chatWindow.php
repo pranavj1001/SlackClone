@@ -1,15 +1,7 @@
 <?php
 	include("actions.php"); 
   	include("services/loadProfile.php");
-
-  	$queryToGetTeamName="SELECT `teamname` From `teamdetails` WHERE `id`='".$_SESSION['teamid']."'";
-
-  	$result=mysqli_query($link,$queryToGetTeamName);
-  	$row=mysqli_fetch_assoc($result);
-  	$TeamName=$row['teamname'];
-  	//echo $TeamName;
-
-
+  	include("services/getTeamName.php");
 
   	$query = mysqli_query($link,"CREATE TABLE IF NOT EXISTS '".$TeamName."' (
         id INT NOT NULL AUTO_INCREMENT,
@@ -17,10 +9,6 @@
         message    TEXT NOT NULL,
         sender   TEXT NOT NULL
     )");
- 
-
-
-
 
 ?>
 
