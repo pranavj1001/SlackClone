@@ -2,17 +2,22 @@
 	include("actions.php"); 
   	include("services/loadProfile.php");
 
-  	$dbname="slackclone";
+  	$queryToGetTeamName="SELECT `teamname` From `teamdetails` WHERE `id`='".$_SESSION['teamid']."'";
 
-  	 $sql = "SHOW TABLES FROM $dbname";
-	 $result = mysql_query($sql);
-	 $arrayCount = 0
-	 while ($row = mysql_fetch_row($result)) {
-	  $tableNames[$arrayCount] = $row[0];
-	  echo $tableNames[$arrayCount];
-	  $arrayCount++; //only do this to make sure it starts at index 0
-	 }
+  	$result=mysqli_query($link,$queryToGetTeamName);
+  	$row=mysqli_fetch_assoc($result);
+  	$TeamName=$row['teamname'];
+  	//echo $TeamName;
 
+
+
+  	$query = mysqli_query($link,"CREATE TABLE IF NOT EXISTS '".$TeamName."' (
+        id INT NOT NULL AUTO_INCREMENT,
+        PRIMARY KEY(id),
+        message    TEXT NOT NULL,
+        sender   TEXT NOT NULL
+    )");
+ 
 
 
 
