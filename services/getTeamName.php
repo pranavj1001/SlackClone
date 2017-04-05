@@ -1,4 +1,6 @@
 <?php
+	
+	include("connectToDB.php");
 
 	$queryToGetTeamName = "SELECT `teamname` From `teamdetails` WHERE `id`='".$_SESSION['teamid']."'";
 
