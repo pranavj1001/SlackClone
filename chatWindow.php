@@ -1,14 +1,10 @@
 <?php
+
 	include("actions.php"); 
   	include("services/loadProfile.php");
   	include("services/getTeamName.php");
-
-  	$query = mysqli_query($link,"CREATE TABLE IF NOT EXISTS '".$TeamName."' (
-        id INT NOT NULL AUTO_INCREMENT,
-        PRIMARY KEY(id),
-        message    TEXT NOT NULL,
-        sender   TEXT NOT NULL
-    )");
+  	include("services/createTableForTeam.php");
+  	include("services/loadPreviousMessagesForTeam.php");
 
 ?>
 
@@ -62,12 +58,14 @@
     </nav>
 
         <div class="container chatsContainer">
-        	<textarea class="form-control" id="messageBox" readonly=""></textarea>
+        	<textarea class="form-control" id="messageBox" readonly="on"></textarea>
         </div>
         <div class="container newMessageContainer">
         	<input class="form-control" type="text" id="newMessage" name="newMessage">
 			<button class="btn btn-primary" id="sendMessageButton">Send</button>
-		</div>	
+		</div>
+
+		<div class="alert alert-danger" id="alert"></div>	
 
 	<?php 
 		}else{
@@ -85,6 +83,40 @@
     <script type="text/javascript" src="js/jQuery320.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+
+    <script type="text/javascript">
+
+    	$('#alert').hide();
+
+    	$('#sendMessageButton').click(function(){
+
+    		$('#alert').hide();
+
+    		var currentUsername = "<?php echo $currentUsername; ?>";
+    		var teamName = "<?php echo $TeamName; ?>" 
+
+    		if($('#newMessage').val() != ""){
+
+	    		$.ajax({
+	            type: "POST",
+	            url: "actions.php?actions=saveMessage",
+	            data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + $('#newMessage').val(),
+	            success: function(result){
+	              if(result == "1"){
+	                console.log("Success");
+	              }else{
+	                console.log("Failure");
+	                $('#alert').html(result).show();
+	              }
+	            }
+	          	});
+
+    		}else{
+    			$('#alert').html("Please Enter some text to send the message").show();
+    		}
+
+    	});
+    </script>
 
 </body>
 </html>

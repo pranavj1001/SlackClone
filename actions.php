@@ -139,6 +139,31 @@
 
         }
 
+        if($_GET['actions'] == "saveMessage"){
+
+            $error = "";
+
+            if($_POST['newMessage'] != ""){
+
+                $query = "INSERT INTO ".$_POST['teamname']." (`sender`, `message`) VALUES('".mysqli_real_escape_string($link, $_POST['sender'])."', '".mysqli_real_escape_string($link, $_POST['message'])."')";
+
+                if(mysqli_query($link, $query)){
+                    echo 1;
+                }else{
+                    $error = "Sorry, our server might be down, couldn't send your message";
+                }
+
+            }else{
+                $error = "Please Enter some text to send the message";
+            }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }        
+
+        }
+
         if($error != ""){
             echo $error;
             exit();
