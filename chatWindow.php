@@ -104,7 +104,7 @@
 	            success: function(result){
 	              if(result == "1"){
 	                console.log("Success");
-					$('#newMessage').val("");	                
+					        $('#newMessage').val("");	                
 	              }else{
 	                console.log("Failure");
 	                $('#alert').html(result).show();
@@ -115,8 +115,46 @@
     		}else{
     			$('#alert').html("Please Enter some text to send the message").show();
     		}
+        
 
-    	});
+    	}); 
+
+      
+
+      function updateMessage(){
+
+        var teamName = "<?php echo $TeamName; ?>";
+       
+
+
+        $.ajax({
+          type : "POST",
+          url : "actions.php?actions=updateMessage",
+          data : "teamname="+teamName,
+          dataType : "json",
+          success : function(response,status,http){
+             $("#messageBox").val("");
+             $.each(response,function(index,item){
+
+
+               $("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
+               //lastMessageId=$item.id;
+
+             });
+
+          },
+          error : function (http,status,error) {
+              alert ("Some Error Ocurred : "+error);
+          }
+
+        });
+      }
+
+      updateMessage();
+
+      setInterval(updateMessage,200);
+
+
 
 
 

@@ -164,6 +164,25 @@
 
         }
 
+        if($_GET['actions'] == 'updateMessage'){
+
+            $error = "";
+
+            $query="SELECT * FROM ".$_POST['teamname'];
+            $result = mysqli_query($link,$query);
+            $arr=array();
+            $row_count=mysqli_num_rows($result);
+            
+            if($row_count>0){
+                while ($row=mysqli_fetch_array($result)) {
+                    array_push($arr, $row);
+                }
+            }
+            echo json_encode($arr);
+
+
+        }
+
         if($error != ""){
             echo $error;
             exit();
