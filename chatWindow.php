@@ -115,50 +115,39 @@
     		}else{
     			$('#alert').html("Please Enter some text to send the message").show();
     		}
-        
 
     	}); 
 
-      
+	    function updateMessage(){
 
-      function updateMessage(){
+	        var teamName = "<?php echo $TeamName; ?>";
+	       
+	        $.ajax({
+	        	type : "POST",
+	          	url : "actions.php?actions=updateMessage",
+	          	data : "teamname="+teamName,
+	          	dataType : "json",
+	          	success : function(response,status,http){
+	            	$("#messageBox").val("");
+	            	$.each(response,function(index,item){
 
-        var teamName = "<?php echo $TeamName; ?>";
-       
+	            		$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
+	               		//lastMessageId=$item.id;
 
+	            	});
+				},
+	          	error : function (http,status,error) {
+	              	alert ("Some Error Ocurred : "+error);
+	          	}
 
-        $.ajax({
-          type : "POST",
-          url : "actions.php?actions=updateMessage",
-          data : "teamname="+teamName,
-          dataType : "json",
-          success : function(response,status,http){
-             $("#messageBox").val("");
-             $.each(response,function(index,item){
+	        });
+	    };
 
+	    updateMessage();
 
-               $("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
-               //lastMessageId=$item.id;
+	    setInterval(updateMessage,200);
 
-             });
-
-          },
-          error : function (http,status,error) {
-              alert ("Some Error Ocurred : "+error);
-          }
-
-        });
-      }
-
-      updateMessage();
-
-      setInterval(updateMessage,200);
-
-
-
-
-
-    </script>
+   	</script>
 
 </body>
 </html>
