@@ -102,6 +102,7 @@
 
           if (~message.indexOf("Hey Bot")){
             messageCallsBot = true;
+            findTheServiceRequired($('#newMessage').val());
             console.log(messageCallsBot);
           }
 
