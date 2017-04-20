@@ -93,14 +93,21 @@
     		$('#alert').hide();
 
     		var currentUsername = "<?php echo $currentUsername; ?>";
-    		var teamName = "<?php echo $TeamName; ?>" 
+    		var teamName = "<?php echo $TeamName; ?>";
+        var message = $('#newMessage').val(); 
+        var messageCallsBot = false;
 
-    		if($('#newMessage').val() != ""){
+    		if(message != ""){
 
+          if (~message.indexOf("Hey Bot")){
+            messageCallsBot = true;
+            console.log(messageCallsBot);
+          }
+          
 	    		$.ajax({
 	            type: "POST",
 	            url: "actions.php?actions=saveMessage",
-	            data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + $('#newMessage').val(),
+	            data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
 	            success: function(result){
 	              if(result == "1"){
 	                console.log("Success");
@@ -124,21 +131,21 @@
 	       
 	        $.ajax({
 	        	type : "POST",
-	          	url : "actions.php?actions=updateMessage",
-	          	data : "teamname="+teamName,
-	          	dataType : "json",
-	          	success : function(response,status,http){
-	            	$("#messageBox").val("");
-	            	$.each(response,function(index,item){
+	          url : "actions.php?actions=updateMessage",
+	          data : "teamname="+teamName,
+	          dataType : "json",
+	          success : function(response,status,http){
+	            $("#messageBox").val("");
+	            $.each(response,function(index,item){
 
-	            		$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
-	               		//lastMessageId=$item.id;
+	            	$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
+	             //lastMessageId=$item.id;
 
-	            	});
-				},
-	          	error : function (http,status,error) {
-	              	alert ("Some Error Ocurred : "+error);
-	          	}
+	            });
+				    },
+	          error : function (http,status,error) {
+	              alert ("Some Error Ocurred : "+error);
+	          }
 
 	        });
 	    };
