@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2017 at 09:03 PM
+-- Generation Time: Apr 20, 2017 at 07:52 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -21,6 +21,85 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `slackclone` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `slackclone`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team1`
+--
+
+CREATE TABLE `team1` (
+  `id` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team1`
+--
+
+INSERT INTO `team1` (`id`, `sender`, `message`) VALUES
+(1, 'user1', 'hey'),
+(2, 'user1', 'heyo'),
+(3, 'user1', 'hey, Pranav'),
+(4, 'user1', 'hey, Pranav wassup?'),
+(5, 'user1', 'just another trial'),
+(6, 'user4', 'message from another user'),
+(7, 'user1', 'bot building is under progress now'),
+(8, 'user1', 'Hey Bot what''s the time'),
+(9, 'user4', 'now our bot can reply'),
+(10, 'user4', 'Hey Bot, Whatsup?'),
+(11, 'bot', 'Hey there, I''m a bot.'),
+(12, 'user4', 'nice to see you reply '),
+(13, 'user4', 'Hey Bot'),
+(14, 'bot', 'Hey there, I''m a bot.'),
+(15, 'user4', 'jdnfsjkdfjdskfb Hey Bot'),
+(16, 'bot', 'Hey there, I''m a bot.'),
+(17, 'user4', 'the bot now replies to Hey Bot'),
+(18, 'bot', 'Hey there, I''m a bot.'),
+(19, 'user4', 'i think the we should delay the ajax calls as it puts load on the app'),
+(20, 'user4', 'cancel the*');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team2`
+--
+
+CREATE TABLE `team2` (
+  `id` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team2`
+--
+
+INSERT INTO `team2` (`id`, `sender`, `message`) VALUES
+(1, 'user4', 'a new table for team2'),
+(2, 'user4', 'hey a new message from user2'),
+(3, 'user4', 'Hey Bot welcome to Team 2'),
+(4, 'bot', 'Hey there, I''m a bot.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team3`
+--
+
+CREATE TABLE `team3` (
+  `id` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team3`
+--
+
+INSERT INTO `team3` (`id`, `sender`, `message`) VALUES
+(1, 'user4', 'a new table for team3');
 
 -- --------------------------------------------------------
 
@@ -76,6 +155,24 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 --
 
 --
+-- Indexes for table `team1`
+--
+ALTER TABLE `team1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `team2`
+--
+ALTER TABLE `team2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `team3`
+--
+ALTER TABLE `team3`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
@@ -91,6 +188,21 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `team1`
+--
+ALTER TABLE `team1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `team2`
+--
+ALTER TABLE `team2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `team3`
+--
+ALTER TABLE `team3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `teamdetails`
 --
