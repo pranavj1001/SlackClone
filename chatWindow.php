@@ -184,7 +184,7 @@
 
 	    updateMessage();
 
-	    setInterval(updateMessage,200);
+	    setInterval(updateMessage,1000);
 
    	</script>
 
