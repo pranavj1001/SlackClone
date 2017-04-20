@@ -96,6 +96,7 @@
     		var teamName = "<?php echo $TeamName; ?>";
         var message = $('#newMessage').val(); 
         var messageCallsBot = false;
+        var botMessage = "Hey there, I'm a bot.";
 
     		if(message != ""){
 
@@ -103,21 +104,52 @@
             messageCallsBot = true;
             console.log(messageCallsBot);
           }
-          
-	    		$.ajax({
-	            type: "POST",
-	            url: "actions.php?actions=saveMessage",
-	            data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
-	            success: function(result){
-	              if(result == "1"){
-	                console.log("Success");
-					        $('#newMessage').val("");	                
-	              }else{
-	                console.log("Failure");
-	                $('#alert').html(result).show();
-	              }
-	            }
-	          	});
+
+          if(messageCallsBot){
+            $.ajax({
+              type: "POST",
+              url: "actions.php?actions=saveMessage",
+              data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
+              success: function(result){
+                if(result == "1"){
+                  console.log("Success");
+                  $('#newMessage').val("");                 
+                }else{
+                  console.log("Failure");
+                  $('#alert').html(result).show();
+                }
+              }
+            });
+            $.ajax({
+              type: "POST",
+              url: "actions.php?actions=saveMessage",
+              data:"teamname=" + teamName + "&sender=bot&message=" + botMessage,
+              success: function(result){
+                if(result == "1"){
+                  console.log("Success");
+                  $('#newMessage').val("");                 
+                }else{
+                  console.log("Failure");
+                  $('#alert').html(result).show();
+                }
+              }
+            });
+          }else if(!messageCallsBot){
+            $.ajax({
+              type: "POST",
+              url: "actions.php?actions=saveMessage",
+              data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
+              success: function(result){
+                if(result == "1"){
+                  console.log("Success");
+                  $('#newMessage').val("");                 
+                }else{
+                  console.log("Failure");
+                  $('#alert').html(result).show();
+                }
+              }
+            });
+          }
 
     		}else{
     			$('#alert').html("Please Enter some text to send the message").show();
