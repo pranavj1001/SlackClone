@@ -1,0 +1,1 @@
+var botMessage = "Hey there, I'm a bot.";
