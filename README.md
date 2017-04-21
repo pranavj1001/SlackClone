@@ -7,8 +7,8 @@ Repo is under constant development.
 
 - [X] Set up User SignIn and SignUp Process
 - [X] Set up Team LogIn and Creation Process
-- [ ] Set up basic Chat UI
-- [ ] Set up basic Bot
+- [X] Set up basic Chat UI
+- [X] Set up basic Bot
 - [ ] Set up the features of Bot
 - [ ] Beautify the web app and add content wherever necessary
 - [ ] Publish Research Papers
