@@ -190,8 +190,15 @@
         if($_GET['actions'] == 'createANewProject'){
 
             $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
 
-            echo 1;
+            $query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$tableName."` ( `id` INT NOT NULL AUTO_INCREMENT , `issuedescription` TEXT NOT NULL , `createdby` TEXT NOT NULL , `datetime` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+
+            if(mysqli_query($link, $query)){
+                echo 1;
+            }else{
+                $error = "Sorry, our server might be down, couldn't create a new project";
+            }
 
             if($error != ""){
                 echo $error;

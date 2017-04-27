@@ -41,7 +41,7 @@ var botAction = {
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=createANewProject",
-            data: "teamname=" + teamName + "&projectName=" + projectName,
+            data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
