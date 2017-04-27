@@ -9,15 +9,18 @@ function findTheServiceRequired(message){
 		//console.log(" Reached here" + message);
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
-	}else if((message.toLowerCase().indexOf("define a new project") >= 0)){
+	}else if(message.toLowerCase().indexOf("define a new project") >= 0){
 		console.log("Create a new Project");
 		botMessage = "Alright, what's the name of the project?";
 		projectDefineSteps = 1;
+	}else if((message.toLowerCase().indexOf("revert project definition") >= 0) && projectDefineSteps){
+		botMessage = "Alright, project definition reverted";
 	}else if(projectDefineSteps){
 		botAction.defineANewProject();
 		projectDefineSteps = 0;
 	}else{
 		botMessage = "Hey there, I'm a bot.";
+		projectDefineSteps = 0;
 	}
 
 };
