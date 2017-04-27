@@ -46,38 +46,36 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
                		console.log(returnMessage);
-               		$.ajax({
-		              type: "POST",
-		              url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
-		              data:"teamname=" + teamName + "&sender=bot&message=" + returnMessage,
-		              success: function(result){
-		                if(result == "1"){
-		                  //console.log("Success");
-		                }else{
-		                  console.log("Failure");
-		                }
-		              }
-		            });
+               		botAction.botMessage(teamName, returnMessage);
                		return returnMessage;                 
+                }else if(result == "2"){
+                	returnMessage = "This Project already exists.";
+                	console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                	return returnMessage;
                 }else{
                 	returnMessage = "Failure: Not able to define the Project " + projectName; 
                 	console.log(returnMessage);
-                	$.ajax({
-		              type: "POST",
-		              url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
-		              data:"teamname=" + teamName + "&sender=bot&message=" + returnMessage,
-		              success: function(result){
-		                if(result == "1"){
-		                  //console.log("Success");
-		                }else{
-		                  console.log("Failure");
-		                }
-		              }
-		            });
+                	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
               	}
             }
         });
+	},
+
+	botMessage: function(teamName, returnMessage){
+		$.ajax({
+		    type: "POST",
+		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
+		    data:"teamname=" + teamName + "&sender=bot&message=" + returnMessage,
+		    success: function(result){
+			    if(result == "1"){
+			    	//console.log("Success");
+			    }else{
+			        console.log("Failure");
+			    }
+		    }
+		});		
 	}
 
 };
