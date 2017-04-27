@@ -2,7 +2,7 @@ var botMessage = "Hey there, I'm a bot.";
 var projectDefineSteps = 0;
 var returnMessage = "";
 
-function findTheServiceRequired(message, teamName){
+function findTheServiceRequired(message, teamName, currrentUsername){
 
 	//console.log("Reached here " + message);
 
@@ -22,7 +22,7 @@ function findTheServiceRequired(message, teamName){
 		botAction.defineANewProject(message, teamName);
 		projectDefineSteps = 0;
 	}else{
-		botMessage = "Hey there, I'm a bot.";
+		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
 		projectDefineSteps = 0;
 	}
 

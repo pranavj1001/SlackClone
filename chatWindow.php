@@ -102,7 +102,7 @@
 
           if ((~message.indexOf("OK Bot")) || projectDefineSteps){
             messageCallsBot = true;
-            findTheServiceRequired(message, teamName);
+            findTheServiceRequired(message, teamName, currentUsername);
             console.log(messageCallsBot);
           }
 
