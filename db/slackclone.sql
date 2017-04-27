@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2017 at 07:52 AM
+-- Generation Time: Apr 27, 2017 at 05:14 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -58,7 +58,66 @@ INSERT INTO `team1` (`id`, `sender`, `message`) VALUES
 (17, 'user4', 'the bot now replies to Hey Bot'),
 (18, 'bot', 'Hey there, I''m a bot.'),
 (19, 'user4', 'i think the we should delay the ajax calls as it puts load on the app'),
-(20, 'user4', 'cancel the*');
+(20, 'user4', 'cancel the*'),
+(21, 'user2', 'Hey Bot'),
+(22, 'bot', 'Hey there, I''m a bot.'),
+(23, 'user2', 'Hey Bot'),
+(24, 'bot', 'Hey there, I''m a bot.'),
+(25, 'user4', 'Hey Bot'),
+(26, 'user4', 'OK Bot'),
+(27, 'bot', 'Hey there, I''m a bot.'),
+(28, 'user4', 'OK Bot define project'),
+(29, 'bot', 'Hey there, I''m a bot.'),
+(30, 'user4', 'OK Bot define a project'),
+(31, 'bot', 'Alright, what''s the name of the project?'),
+(32, 'user4', 'project1'),
+(33, 'bot', 'Ohok, working on it....'),
+(34, 'bot', 'Success: New Project project1 is now online!'),
+(35, 'user4', 'OK Bot define a new project'),
+(36, 'bot', 'Alright, what''s the name of the project?'),
+(37, 'user4', 'trial'),
+(38, 'bot', 'Ohok, working on it....'),
+(39, 'bot', 'Failure: Not able to define the Project trial'),
+(40, 'user4', 'OK Bot define a new project'),
+(41, 'bot', 'Alright, what''s the name of the project?'),
+(42, 'user4', 'Project1'),
+(43, 'bot', 'Ohok, working on it....'),
+(44, 'bot', 'Success: New Project Project1 is now online!'),
+(45, 'bot', 'Alright, what''s the name of the project?'),
+(46, 'user4', 'OK Bot define a new project'),
+(47, 'user4', 'hello'),
+(48, 'bot', 'Ohok, working on it....'),
+(49, 'bot', 'Success: New Project hello is now online!'),
+(50, 'user4', 'OK Bot define a project'),
+(51, 'bot', 'Alright, what''s the name of the project?'),
+(52, 'user4', 'project2'),
+(53, 'bot', 'Ohok, working on it....'),
+(54, 'bot', 'Success: New Project project2 is now online!'),
+(55, 'user4', 'OK Bot define project a'),
+(56, 'bot', 'Hey there, I''m a bot.'),
+(57, 'user4', 'OK Bot'),
+(58, 'bot', 'Hey there, I''m a bot.'),
+(59, 'user4', 'OK Bot'),
+(60, 'bot', 'Hey there, user4 How can I help you?'),
+(61, 'user4', 'This Bot is awesome'),
+(62, 'user4', 'OK Bot define a new project'),
+(63, 'bot', 'Alright, what''s the name of the project?'),
+(64, 'user4', 'project2'),
+(65, 'bot', 'Ohok, working on it....'),
+(66, 'bot', 'Success: New Project project2 is now online!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team1project2`
+--
+
+CREATE TABLE `team1project2` (
+  `id` int(11) NOT NULL,
+  `issuedescription` text NOT NULL,
+  `createdby` text NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -99,7 +158,116 @@ CREATE TABLE `team3` (
 --
 
 INSERT INTO `team3` (`id`, `sender`, `message`) VALUES
-(1, 'user4', 'a new table for team3');
+(1, 'user4', 'a new table for team3'),
+(2, 'user4', 'Hey Bot'),
+(3, 'user4', 'Hey Bot'),
+(4, 'bot', 'Hey there, I''m a bot.'),
+(5, 'user4', 'Hey Bot whats the time'),
+(6, 'bot', 'Current Time is 12:12:38 PM'),
+(7, 'user4', 'Hey Bot What''s the time?'),
+(8, 'bot', 'Current Time is 12:13:27 PM'),
+(9, 'user4', 'yeah Hey Bot'),
+(10, 'bot', 'Current Time is 12:13:27 PM'),
+(11, 'user4', 'Hey Bot'),
+(12, 'bot', 'Hey there, I''m a bot.'),
+(13, 'bot', 'Current Time is 12:15:39 PM'),
+(14, 'user4', 'Hey Bot what''s the time?'),
+(15, 'user4', 'Hey Bot what''s the time?'),
+(16, 'bot', 'Current Time is 12:15:55 PM'),
+(17, 'user4', 'Hey Bot'),
+(18, 'bot', 'Current Time is 12:15:55 PM'),
+(19, 'user4', 'Hey Bot what''s the time'),
+(20, 'bot', 'Current Time is 12:17:02 PM'),
+(21, 'user4', 'Hey Bot'),
+(22, 'bot', 'Hey there, I''m a bot.'),
+(23, 'user2', 'Hey There'),
+(24, 'user2', 'Hey Bot'),
+(25, 'bot', 'Hey there, I''m a bot.'),
+(26, 'user2', 'Hey Bot'),
+(27, 'bot', 'Hey there, I''m a bot.'),
+(28, 'user2', 'Hey Bot'),
+(29, 'bot', 'Hey there, I''m a bot.'),
+(30, 'user2', 'Hey Bot this is another trial'),
+(31, 'bot', 'Hey there, I''m a bot.'),
+(32, 'user2', 'Hey Bot create a new project'),
+(33, 'bot', 'Alright, what''s the name of the project?'),
+(34, 'user2', 'project1'),
+(35, 'user2', 'Hey Bot project1'),
+(36, 'bot', 'undefined'),
+(37, 'user2', 'Hey Bot revert project definition'),
+(38, 'bot', 'Hey there, I''m a bot.'),
+(39, 'user2', 'Hey Bot create a new project'),
+(40, 'bot', 'Alright, what''s the name of the project?'),
+(41, 'user2', 'Hey Bot project1'),
+(42, 'bot', 'undefined'),
+(43, 'user2', 'Hey Bot project1'),
+(44, 'bot', 'Hey there, I''m a bot.'),
+(45, 'user2', 'Hey Bot define a new project'),
+(46, 'bot', 'Alright, what''s the name of the project?'),
+(47, 'user2', 'Hey Bot define a new project'),
+(48, 'bot', 'Alright, what''s the name of the project?'),
+(49, 'user2', 'project1'),
+(50, 'bot', 'undefined'),
+(51, 'user2', 'okay'),
+(52, 'user2', 'Hey Bot define a new project'),
+(53, 'bot', 'Alright, what''s the name of the project?'),
+(54, 'user2', 'project3'),
+(55, 'bot', 'undefined'),
+(56, 'user2', 'Hey Bot define a new project'),
+(57, 'bot', 'Alright, what''s the name of the project?'),
+(58, 'user2', 'project3'),
+(59, 'bot', 'undefined'),
+(60, 'user2', 'Hey Bot'),
+(61, 'bot', 'Hey there, I''m a bot.'),
+(62, 'user2', 'Hey Bot define a new project'),
+(63, 'bot', 'Alright, what''s the name of the project?'),
+(64, 'user2', 'project1'),
+(65, 'bot', 'undefined'),
+(66, 'user2', 'Hey Bot define a new project'),
+(67, 'bot', 'Alright, what''s the name of the project?'),
+(68, 'user2', 'project1'),
+(69, 'bot', 'undefined'),
+(70, 'user2', 'Hey Bot define a new project'),
+(71, 'bot', 'Alright, what''s the name of the project?'),
+(72, 'user2', 'project 6'),
+(73, 'bot', 'undefined'),
+(74, 'user2', 'Hey Bot define a new project'),
+(75, 'bot', 'Alright, what''s the name of the project?'),
+(76, 'user2', 'project 6'),
+(77, 'bot', 'Ohok, working on it....'),
+(78, 'user2', 'Hey Bot define a new project'),
+(79, 'bot', 'Alright, what''s the name of the project?'),
+(80, 'user2', 'project 7'),
+(81, 'bot', 'Ohok, working on it....'),
+(82, 'user2', 'Hey Bot define a new project'),
+(83, 'bot', 'Alright, what''s the name of the project?'),
+(84, 'user2', 'project9'),
+(85, 'bot', 'Ohok, working on it....'),
+(86, 'user2', 'Hey Bot, define a new project'),
+(87, 'bot', 'Alright, what''s the name of the project?'),
+(88, 'user2', 'Hey Bot, define a new project'),
+(89, 'bot', 'Alright, what''s the name of the project?'),
+(90, 'user2', 'project7'),
+(91, 'bot', 'Ohok, working on it....'),
+(92, 'user2', 'Hey Bot define a new project'),
+(93, 'bot', 'Alright, what''s the name of the project?'),
+(94, 'user2', 'project 8'),
+(95, 'bot', 'Ohok, working on it....'),
+(96, 'user2', 'Hey Bot define a new project'),
+(97, 'bot', 'Alright, what''s the name of the project?'),
+(98, 'user2', 'pri'),
+(99, 'bot', 'Ohok, working on it....'),
+(100, 'user2', 'Hey Bot define a new project'),
+(101, 'bot', 'Alright, what''s the name of the project?'),
+(102, 'user2', 'prj'),
+(103, 'bot', 'Ohok, working on it....\nundefined'),
+(104, 'user2', 'Hey Bot define a new project'),
+(105, 'bot', 'Alright, what''s the name of the project?'),
+(106, 'user2', 'project67'),
+(107, 'bot', 'Ohok, working on it....'),
+(108, 'bot', 'Success: New Projectproject67 is now online!'),
+(109, 'user2', 'Hey Bot'),
+(110, 'bot', 'Hey there, I''m a bot.');
 
 -- --------------------------------------------------------
 
@@ -161,6 +329,12 @@ ALTER TABLE `team1`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `team1project2`
+--
+ALTER TABLE `team1project2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `team2`
 --
 ALTER TABLE `team2`
@@ -192,7 +366,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `team1`
 --
 ALTER TABLE `team1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+--
+-- AUTO_INCREMENT for table `team1project2`
+--
+ALTER TABLE `team1project2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `team2`
 --
@@ -202,7 +381,7 @@ ALTER TABLE `team2`
 -- AUTO_INCREMENT for table `team3`
 --
 ALTER TABLE `team3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 --
 -- AUTO_INCREMENT for table `teamdetails`
 --
