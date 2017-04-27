@@ -10,17 +10,17 @@ function findTheServiceRequired(message, teamName){
 		//console.log(" Reached here" + message);
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
-	}else if((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0)){
+	}else if((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)){
 		console.log("Create a new Project");
 		botMessage = "Alright, what's the name of the project?";
 		projectDefineSteps = 1;
-	}else if((message.toLowerCase().indexOf("revert project definition") >= 0) && (projectDefineSteps === 1)){
+	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 		botMessage = "Alright, project definition reverted";
 		projectDefineSteps = 0;
 	}else if(projectDefineSteps === 1){
 		botMessage = "Ohok, working on it....";
 		botAction.defineANewProject(message, teamName);
-		projectDefineSteps = 2;
+		projectDefineSteps = 0;
 	}else{
 		botMessage = "Hey there, I'm a bot.";
 		projectDefineSteps = 0;
