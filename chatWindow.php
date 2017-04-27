@@ -100,9 +100,9 @@
 
     		if(message != ""){
 
-          if (~message.indexOf("Hey Bot")){
+          if ((~message.indexOf("Hey Bot")) || projectDefineSteps){
             messageCallsBot = true;
-            findTheServiceRequired($('#newMessage').val());
+            findTheServiceRequired(message, teamName);
             console.log(messageCallsBot);
           }
 
@@ -113,7 +113,7 @@
               data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
               success: function(result){
                 if(result == "1"){
-                  console.log("Success");
+                  //console.log("Success");
                   $('#newMessage').val("");                 
                 }else{
                   console.log("Failure");
@@ -127,8 +127,8 @@
               data:"teamname=" + teamName + "&sender=bot&message=" + botMessage,
               success: function(result){
                 if(result == "1"){
-                  console.log("Success");
-                  $('#newMessage').val("");                 
+                  //console.log("Success");
+                  $('#newMessage').val("");
                 }else{
                   console.log("Failure");
                   $('#alert').html(result).show();
@@ -142,7 +142,7 @@
               data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
               success: function(result){
                 if(result == "1"){
-                  console.log("Success");
+                  //console.log("Success");
                   $('#newMessage').val("");                 
                 }else{
                   console.log("Failure");
@@ -156,7 +156,7 @@
     			$('#alert').html("Please Enter some text to send the message").show();
     		}
 
-    	}); 
+    	});
 
 	    function updateMessage(){
 

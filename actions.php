@@ -180,6 +180,23 @@
             }
             echo json_encode($arr);
 
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
+        if($_GET['actions'] == 'createANewProject'){
+
+            $error = "";
+
+            echo 1;
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
 
         }
 
