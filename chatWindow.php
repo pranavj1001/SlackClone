@@ -100,10 +100,10 @@
 
     		if(message != ""){
 
-          if ((~message.indexOf("OK Bot")) || projectDefineSteps){
+          if ((~message.indexOf("OK Bot")) || (projectDefineSteps) || (issueDefineSteps == 1) || (issueDefineSteps == 2) ){
             messageCallsBot = true;
             findTheServiceRequired(message, teamName, currentUsername);
-            console.log(messageCallsBot);
+            //console.log(messageCallsBot);
           }
 
           if(messageCallsBot){
