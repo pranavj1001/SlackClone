@@ -37,6 +37,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeProjectStepsVariable();
 	}else if(issueDefineSteps === 2){
 		botMessage = "Alright, type down the text for the Issue.";
+		botAction.commitAnIssue(message, teamName, currrentUsername);
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueStepsVariable();
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && (issueDefineSteps === 1)){
@@ -110,11 +111,11 @@ var botAction = {
         });
 	},
 
-	commitAnIssue: function(projectName, teamName){
+	commitAnIssue: function(projectName, teamName, currrentUsername){
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=commitAnIssue",
-            data: "teamname=" + teamName + "&projectname=" + projectName,
+            data: "teamname=" + teamName + "&projectname=" + projectName + "&username=" + currrentUsername,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
