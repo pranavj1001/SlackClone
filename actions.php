@@ -251,9 +251,13 @@
             $result = mysqli_query($link, $query);
             if(mysqli_num_rows($result) > 0){
 
-                
-                
-                echo 1;
+                $query = "INSERT INTO ".$tableName." (`issuedescription`, `createdby`, `datetime`) VALUES('".mysqli_real_escape_string($link, $_POST['issueData'])."', '".mysqli_real_escape_string($link, $_POST['username'])."','".mysqli_real_escape_string($link, $_POST['datetime'])."')";
+
+                if(mysqli_query($link, $query)){
+                    echo 1;
+                }else{
+                    $error = "Sorry, our server might be down, couldn't commit an issue";
+                }
                 
             }else{
 
