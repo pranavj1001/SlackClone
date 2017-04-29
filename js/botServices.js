@@ -25,9 +25,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
 		botMessage = "... To which project?";
 		issueDefineSteps = 2;
+	}else if(issueDefineSteps === 2){
+		botAction.commitAnIssue(message, teamName);
+		issueDefineSteps = 0;
 	}else{
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
 		projectDefineSteps = 0;
+		issueDefineSteps = 0;
 	}
 
 	return;
@@ -49,16 +53,42 @@ var botAction = {
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
-               		console.log(returnMessage);
+               		//console.log(returnMessage);
                		botAction.botMessage(teamName, returnMessage);
                		return returnMessage;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project already exists.";
-                	console.log(returnMessage);
+                	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
                 }else{
                 	returnMessage = "Failure: Not able to define the Project " + projectName; 
+                	//console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                	return returnMessage;
+              	}
+            }
+        });
+	},
+
+	commitAnIssue: function(projectName, teamName){
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=commitAnIssue",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+            		returnMessage = "Success: Issue commited to " + projectName;
+               		console.log(returnMessage);
+               		botAction.botMessage(teamName, returnMessage);
+               		return returnMessage;                 
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exists.";
+                	console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                	return returnMessage;
+                }else{
+                	returnMessage = "Failure: Not able to commit the issue to " + projectName; 
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
