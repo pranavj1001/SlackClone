@@ -9,45 +9,94 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	//console.log("Reached here " + message);
 
 	if((message.toLowerCase().indexOf("what's the time") >= 0) || (message.toLowerCase().indexOf("whats the time") >= 0) || (message.toLowerCase().indexOf("what is the time") >= 0) || (message.toLowerCase().indexOf("what's the time?") >= 0) || (message.toLowerCase().indexOf("whats the time?") >= 0) || (message.toLowerCase().indexOf("what is the time?") >= 0)){
-		//console.log(" Reached here" + message);
+
+		//console.log("Get Time");
+
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
+
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueStepsVariable();
+
 	}else if((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)){
+
 		//console.log("Create a new Project");
+
 		botMessage = "Alright, what's the name of the project?";
+
 		projectDefineSteps = 1;
+
 		botAction.initializeIssueStepsVariable();
+
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
+
+		//console.log("Rollback Project Declaration");
+
 		botMessage = "No Problem, project definition reverted";
+
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+
 	}else if(projectDefineSteps === 1){
+
+		//console.log("Actual, Project Creation started.");
+
 		botMessage = "Ohok, working on it....";
+
 		botAction.defineANewProject(message, teamName);
-		botAction.initializeProjectStepsVariable = 0;
-	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
-		botMessage = "... To which project?";
-		issueDefineSteps = 1;
-		botAction.initializeProjectStepsVariable();
-	}else if(issueDefineSteps === 1){
-		botAction.preCommitAnIssue(message, teamName);
-		issueDefineSteps = 2;
-		botAction.initializeProjectStepsVariable();
-	}else if(issueDefineSteps === 2){
-		botMessage = "Alright, type down the text for the Issue.";
-		botAction.commitAnIssue(message, teamName, currrentUsername);
+		
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueStepsVariable();
+
+	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
+
+		console.log("Commit an issue");
+
+		botMessage = "... To which project?";
+
+		issueDefineSteps = 1;
+		
+		botAction.initializeProjectStepsVariable();
+
+	}else if(issueDefineSteps === 1){
+
+		console.log("Checking whether that project exits or not.");
+
+		botAction.preCommitAnIssue(message, teamName);
+
+		issueDefineSteps = 2;
+
+		botAction.initializeProjectStepsVariable();
+
+	}else if(issueDefineSteps === 2){
+
+		console.log("Final Stage: Commit the issue")
+
+		botMessage = "Alright, type down the text for the Issue.";
+
+		botAction.commitAnIssue(message, teamName, currrentUsername);
+
+		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueStepsVariable();
+
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && (issueDefineSteps === 1)){
+
+		console.log("Rollback Issue Creation");
+
 		botMessage = "No Problem, issue definition reverted";
+
 		botAction.initializeProjectStepsVariable();		
 		botAction.initializeIssueStepsVariable();
+
 	}else{
+
+		//console.log("User just wants to see the bot");
+
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
+
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+		
 	}
 
 };
