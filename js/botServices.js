@@ -1,5 +1,6 @@
 var botMessage = "Hey there, I'm a bot.";
 var projectDefineSteps = 0;
+var issueDefineSteps = 0;
 var returnMessage = "";
 
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -11,16 +12,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
 	}else if((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)){
-		console.log("Create a new Project");
+		//console.log("Create a new Project");
 		botMessage = "Alright, what's the name of the project?";
 		projectDefineSteps = 1;
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
-		botMessage = "Alright, project definition reverted";
+		botMessage = "No Problem, project definition reverted";
 		projectDefineSteps = 0;
 	}else if(projectDefineSteps === 1){
 		botMessage = "Ohok, working on it....";
 		botAction.defineANewProject(message, teamName);
 		projectDefineSteps = 0;
+	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
+		botMessage = "... To which project?";
+		issueDefineSteps = 2;
 	}else{
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
 		projectDefineSteps = 0;
