@@ -12,28 +12,41 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		//console.log(" Reached here" + message);
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
+		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueStepsVariable();
 	}else if((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)){
 		//console.log("Create a new Project");
 		botMessage = "Alright, what's the name of the project?";
 		projectDefineSteps = 1;
+		botAction.initializeIssueStepsVariable();
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 		botMessage = "No Problem, project definition reverted";
-		projectDefineSteps = 0;
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
 	}else if(projectDefineSteps === 1){
 		botMessage = "Ohok, working on it....";
 		botAction.defineANewProject(message, teamName);
-		projectDefineSteps = 0;
+		botAction.initializeProjectStepsVariable = 0;
 	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
 		botMessage = "... To which project?";
 		issueDefineSteps = 1;
+		botAction.initializeProjectStepsVariable();
 	}else if(issueDefineSteps === 1){
-		botMessage = "Okay, Now type down the text for new Issue";
 		botAction.preCommitAnIssue(message, teamName);
 		issueDefineSteps = 2;
+		botAction.initializeProjectStepsVariable();
+	}else if(issueDefineSteps === 2){
+		botMessage = "Alright, type down the text for the Issue.";
+		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueStepsVariable();
+	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && (issueDefineSteps === 1)){
+		botMessage = "No Problem, issue definition reverted";
+		botAction.initializeProjectStepsVariable();		
+		botAction.initializeIssueStepsVariable();
 	}else{
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
-		projectDefineSteps = 0;
-		issueDefineSteps = 0;
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
 	}
 
 };
@@ -83,7 +96,7 @@ var botAction = {
                		botAction.botMessage(teamName, returnMessage);
                		return returnMessage;                 
                 }else if(result == "2"){
-                	returnMessage = "This Project doesn't exists.";
+                	returnMessage = "This Project doesn't exist.";
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
@@ -109,7 +122,7 @@ var botAction = {
                		botAction.botMessage(teamName, returnMessage);
                		return returnMessage;                 
                 }else if(result == "2"){
-                	returnMessage = "This Project doesn't exists.";
+                	returnMessage = "This Project doesn't exist.";
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
@@ -121,6 +134,14 @@ var botAction = {
               	}
             }
         });
+	},
+
+	initializeIssueStepsVariable: function(){
+		issueDefineSteps = 0;
+	},
+
+	initializeProjectStepsVariable: function(){
+		projectDefineSteps = 0;
 	},
 
 	botMessage: function(teamName, returnMessage){
