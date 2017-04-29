@@ -217,6 +217,66 @@
 
         }
 
+        if($_GET['actions'] == 'preCommitAnIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+
+            $query = "SHOW TABLES LIKE '".$tableName."'";
+
+            $result = mysqli_query($link, $query);
+            if(mysqli_num_rows($result) > 0){
+
+                echo 2;
+                
+            }else{
+
+                $query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$tableName."` ( `id` INT NOT NULL AUTO_INCREMENT , `issuedescription` TEXT NOT NULL , `createdby` TEXT NOT NULL , `datetime` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+
+                if(mysqli_query($link, $query)){
+                    echo 1;
+                }else{
+                    $error = "Sorry, our server might be down, couldn't create a new project";
+                }
+            }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
+        if($_GET['actions'] == 'commitAnIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+
+            $query = "SHOW TABLES LIKE '".$tableName."'";
+
+            $result = mysqli_query($link, $query);
+            if(mysqli_num_rows($result) > 0){
+
+                echo 2;
+                
+            }else{
+
+                $query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$tableName."` ( `id` INT NOT NULL AUTO_INCREMENT , `issuedescription` TEXT NOT NULL , `createdby` TEXT NOT NULL , `datetime` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+
+                if(mysqli_query($link, $query)){
+                    echo 1;
+                }else{
+                    $error = "Sorry, our server might be down, couldn't create a new project";
+                }
+            }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
         if($error != ""){
             echo $error;
             exit();
