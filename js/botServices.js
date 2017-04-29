@@ -1,6 +1,7 @@
 var botMessage = "Hey there, I'm a bot.";
 var projectDefineSteps = 0;
 var issueDefineSteps = 0;
+var projectNameForIssue = "";
 var returnMessage = "";
 
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -24,17 +25,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		projectDefineSteps = 0;
 	}else if((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)){
 		botMessage = "... To which project?";
+		issueDefineSteps = 1;
+	}else if(issueDefineSteps === 1){
+		botMessage = "Okay, Now type down the text for new Issue";
+		botAction.preCommitAnIssue(message, teamName);
 		issueDefineSteps = 2;
-	}else if(issueDefineSteps === 2){
-		botAction.commitAnIssue(message, teamName);
-		issueDefineSteps = 0;
 	}else{
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
 		projectDefineSteps = 0;
 		issueDefineSteps = 0;
 	}
-
-	return;
 
 };
 
@@ -64,6 +64,32 @@ var botAction = {
                 }else{
                 	returnMessage = "Failure: Not able to define the Project " + projectName; 
                 	//console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                	return returnMessage;
+              	}
+            }
+        });
+	},
+
+	preCommitAnIssue: function(projectName, teamName){
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=preCommitAnIssue",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+            		returnMessage = "Okay, Now type down the text for new Issue.";
+               		console.log(returnMessage);
+               		botAction.botMessage(teamName, returnMessage);
+               		return returnMessage;                 
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exists.";
+                	console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                	return returnMessage;
+                }else{
+                	returnMessage = "Failure: There's some problem with our servers please try again later."; 
+                	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	return returnMessage;
               	}
