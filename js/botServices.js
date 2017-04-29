@@ -96,7 +96,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
-		
+
 	}
 
 };
@@ -160,11 +160,14 @@ var botAction = {
         });
 	},
 
-	commitAnIssue: function(projectName, teamName, currrentUsername){
+	commitAnIssue: function(issueData, teamName, currrentUsername){
+
+		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=commitAnIssue",
-            data: "teamname=" + teamName + "&projectname=" + projectName + "&username=" + currrentUsername,
+            data: "teamname=" + teamName + "&issueData=" + issueData + "&username=" + currrentUsername + "&dateTime=" + currentDateTimeInISOFormat,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;

@@ -251,17 +251,13 @@
             $result = mysqli_query($link, $query);
             if(mysqli_num_rows($result) > 0){
 
-                echo 2;
+                
+                
+                echo 1;
                 
             }else{
 
-                $query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$tableName."` ( `id` INT NOT NULL AUTO_INCREMENT , `issuedescription` TEXT NOT NULL , `createdby` TEXT NOT NULL , `datetime` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
-
-                if(mysqli_query($link, $query)){
-                    echo 1;
-                }else{
-                    $error = "Sorry, our server might be down, couldn't create a new project";
-                }
+                echo 2;
             }
 
             if($error != ""){
