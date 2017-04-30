@@ -56,6 +56,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "... To which project?";
 
 		issueDefineSteps = 1;
+		console.log(issueDefineSteps);
 		
 		botAction.initializeProjectStepsVariable();
 
@@ -63,15 +64,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		console.log("Checking whether that project exits or not.");
 
-		botAction.preCommitAnIssue(message, teamName);
-		console.log(checkForIssues);
+		botAction.preCommitAnIssue(message, teamName, message);
+		console.log(checkForIssues + "\n-- " + issueDefineSteps);
 
-		if(checkForIssues == 1){
-			issueDefineSteps = 2;
-			projectNameForIssue = message;
-		}else{
-			botAction.initializeIssueStepsVariable();
-		}
+		// if(checkForIssues == 1){
+		// 	issueDefineSteps = 2;
+		// 	projectNameForIssue = message;
+		// }else{
+		// 	botAction.initializeIssueStepsVariable();
+		// }
+
+		console.log(issueDefineSteps);
 
 		botAction.initializeProjectStepsVariable();
 
@@ -136,10 +139,9 @@ var botAction = {
         });
 	},
 
-	preCommitAnIssue: function(projectName, teamName){
+	preCommitAnIssue: function(projectName, teamName, message){
 		$.ajax({
             type: "POST",
-            async: false,
             url: "http://localhost/SlackClone/actions.php?actions=preCommitAnIssue",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
@@ -148,12 +150,15 @@ var botAction = {
                		//console.log(returnMessage);
                		botAction.botMessage(teamName, returnMessage);
                		checkForIssues = 1;
-               		console.log(checkForIssues);                 
+               		console.log(checkForIssues);
+               		issueDefineSteps = 2;
+					projectNameForIssue = message;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist.";
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	checkForIssues = 2;
+                	botAction.initializeIssueStepsVariable();
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
@@ -171,7 +176,7 @@ var botAction = {
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=commitAnIssue",
-            data: "teamname=" + teamName + "&projectname" + projectName + "&issueData=" + issueData + "&username=" + currrentUsername + "&dateTime=" + currentDateTimeInISOFormat,
+            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueData=" + issueData + "&username=" + currrentUsername + "&datetime=" + currentDateTimeInISOFormat,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
@@ -182,6 +187,7 @@ var botAction = {
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 }else{
+                	console.log(result);
                 	returnMessage = "Failure: Not able to commit the issue to " + projectName; 
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
