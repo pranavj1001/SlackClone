@@ -4,6 +4,7 @@ var issueDefineSteps = 0;
 var projectNameForIssue = "";
 var returnMessage = "";
 var checkForIssues = 0;
+var dontAllowBotToSendMessage = 0;
 
 function findTheServiceRequired(message, teamName, currrentUsername){
 
@@ -64,23 +65,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		console.log("Checking whether that project exits or not.");
 
+		botMessage = "Ohok, working on it....";
+
 		botAction.preCommitAnIssue(message, teamName, message);
-		console.log(checkForIssues + "\n-- " + issueDefineSteps);
-
-		// if(checkForIssues == 1){
-		// 	issueDefineSteps = 2;
-		// 	projectNameForIssue = message;
-		// }else{
-		// 	botAction.initializeIssueStepsVariable();
-		// }
-
-		console.log(issueDefineSteps);
 
 		botAction.initializeProjectStepsVariable();
 
 	}else if(issueDefineSteps == 2){
 
 		console.log("Final Stage: Commit the issue");
+
+		dontAllowBotToSendMessage = 1;
 
 		botAction.commitAnIssue(message, teamName, currrentUsername, projectNameForIssue);
 
@@ -181,16 +176,19 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
                		console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage);                 
+               		botAction.botMessage(teamName, returnMessage);
+               		dontAllowBotToSendMessage = 0;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist.";
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
+                	dontAllowBotToSendMessage = 0;
                 }else{
                 	console.log(result);
                 	returnMessage = "Failure: Not able to commit the issue to " + projectName; 
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
+                	dontAllowBotToSendMessage = 0;
               	}
             }
         });

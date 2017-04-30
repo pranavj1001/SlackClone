@@ -121,20 +121,22 @@
                 }
               }
             });
-            $.ajax({
-              type: "POST",
-              url: "actions.php?actions=saveMessage",
-              data:"teamname=" + teamName + "&sender=bot&message=" + botMessage,
-              success: function(result){
-                if(result == "1"){
-                  //console.log("Success");
-                  $('#newMessage').val("");
-                }else{
-                  console.log("Failure");
-                  $('#alert').html(result).show();
+            if(!dontAllowBotToSendMessage){
+              $.ajax({
+                type: "POST",
+                url: "actions.php?actions=saveMessage",
+                data:"teamname=" + teamName + "&sender=bot&message=" + botMessage,
+                success: function(result){
+                  if(result == "1"){
+                    //console.log("Success");
+                    $('#newMessage').val("");
+                  }else{
+                    console.log("Failure");
+                    $('#alert').html(result).show();
+                  }
                 }
-              }
-            });
+              });
+            }
           }else if(!messageCallsBot){
             $.ajax({
               type: "POST",
