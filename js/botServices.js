@@ -50,14 +50,14 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueStepsVariable();
 
-	}else if(((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)) && (issueDefineSteps == 0)){
+	}else if(((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0) || (message.toLowerCase().indexOf("add an issue") >= 0)) && (issueDefineSteps == 0)){
 
 		//console.log("Commit an issue");
 
 		botMessage = "... To which project?";
 
 		issueDefineSteps = 1;
-		console.log(issueDefineSteps);
+		//console.log(issueDefineSteps);
 		
 		botAction.initializeProjectStepsVariable();
 
@@ -150,7 +150,7 @@ var botAction = {
                		issueDefineSteps = 2;
 					projectNameForIssue = message;                 
                 }else if(result == "2"){
-                	returnMessage = "This Project doesn't exist.";
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	checkForIssues = 2;
@@ -180,7 +180,7 @@ var botAction = {
                		botAction.botMessage(teamName, returnMessage);
                		dontAllowBotToSendMessage = 0;                 
                 }else if(result == "2"){
-                	returnMessage = "This Project doesn't exist.";
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	dontAllowBotToSendMessage = 0;
