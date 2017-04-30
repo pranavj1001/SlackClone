@@ -52,7 +52,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if(((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0)) && (issueDefineSteps == 0)){
 
-		console.log("Commit an issue");
+		//console.log("Commit an issue");
 
 		botMessage = "... To which project?";
 
@@ -61,9 +61,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeProjectStepsVariable();
 
+	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
+
+		//console.log("Rollback Issue Creation");
+		dontAllowBotToSendMessage = 0;
+
+		botMessage = "No Problem, issue definition reverted";
+		
+		botAction.initializeProjectStepsVariable();		
+		botAction.initializeIssueStepsVariable();
+
 	}else if(issueDefineSteps == 1){
 
-		console.log("Checking whether that project exits or not.");
+		//console.log("Checking whether that project exits or not.");
 
 		botMessage = "Ohok, working on it....";
 
@@ -73,22 +83,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if(issueDefineSteps == 2){
 
-		console.log("Final Stage: Commit the issue");
+		//console.log("Final Stage: Commit the issue");
 
 		dontAllowBotToSendMessage = 1;
 
 		botAction.commitAnIssue(message, teamName, currrentUsername, projectNameForIssue);
 
 		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueStepsVariable();
-
-	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && (issueDefineSteps === 1)){
-
-		console.log("Rollback Issue Creation");
-
-		botMessage = "No Problem, issue definition reverted";
-
-		botAction.initializeProjectStepsVariable();		
 		botAction.initializeIssueStepsVariable();
 
 	}else{
@@ -145,12 +146,12 @@ var botAction = {
                		//console.log(returnMessage);
                		botAction.botMessage(teamName, returnMessage);
                		checkForIssues = 1;
-               		console.log(checkForIssues);
+               		//console.log(checkForIssues);
                		issueDefineSteps = 2;
 					projectNameForIssue = message;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist.";
-                	console.log(returnMessage);
+                	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	checkForIssues = 2;
                 	botAction.initializeIssueStepsVariable();
@@ -175,12 +176,12 @@ var botAction = {
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
-               		console.log(returnMessage);
+               		//console.log(returnMessage);
                		botAction.botMessage(teamName, returnMessage);
                		dontAllowBotToSendMessage = 0;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist.";
-                	console.log(returnMessage);
+                	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	dontAllowBotToSendMessage = 0;
                 }else{
