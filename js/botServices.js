@@ -5,7 +5,6 @@ var issueShowLatestSteps = 0;
 var issueShowSteps = 0;
 var projectNameForIssue = "";
 var returnMessage = "";
-var checkForIssues = 0;
 var dontAllowBotToSendMessage = 0;
 
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -66,6 +65,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
 
 		//console.log("Rollback Issue Creation");
+
 		dontAllowBotToSendMessage = 0;
 
 		botMessage = "No Problem, issue definition reverted";
@@ -98,9 +98,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		console.log("Display the latest issue (ProjectName Entered)");
 		projectNameForIssue = message.substr(35);
-		console.log(projectNameForIssue);
+		//console.log(projectNameForIssue);
 
 		botMessage = "Ohok, working on it....";
+
+		botAction.showLatestIssue(teamName, projectNameForIssue);
 
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
@@ -110,6 +112,8 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		console.log("Display the latest issue (ProjectName Not Entered)");
 
 		botMessage = "... of which project?";
+
+		botAction.showLatestIssue(teamName, message);
 		
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
@@ -160,28 +164,24 @@ var botAction = {
 	preCommitAnIssue: function(projectName, teamName, message){
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=preCommitAnIssue",
+            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Okay, Now type down the text for new Issue.";
                		//console.log(returnMessage);
                		botAction.botMessage(teamName, returnMessage);
-               		checkForIssues = 1;
-               		//console.log(checkForIssues);
                		issueDefineSteps = 2;
 					projectNameForIssue = message;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
-                	checkForIssues = 2;
                 	botAction.initializeIssueStepsVariable();
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
-                	checkForIssues = 2;
               	}
             }
         });
@@ -212,6 +212,28 @@ var botAction = {
                 	console.log(returnMessage);
                 	botAction.botMessage(teamName, returnMessage);
                 	dontAllowBotToSendMessage = 0;
+              	}
+            }
+        });
+	},
+
+	showLatestIssue: function(teamName, projectName){
+		console.log(projectName);
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+               		console.log("Moving Ahead");                 
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
+                	//console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                }else{
+                	returnMessage = "Failure: There's some problem with our servers please try again later."; 
+                	console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
               	}
             }
         });

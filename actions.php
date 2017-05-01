@@ -217,7 +217,7 @@
 
         }
 
-        if($_GET['actions'] == 'preCommitAnIssue'){
+        if($_GET['actions'] == 'checkForThisTable'){
 
             $error = "";
             $tableName = $_POST['teamname'].$_POST['projectname'];
