@@ -11,7 +11,15 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	//console.log("Reached here " + message);
 
-	if((message.toLowerCase().indexOf("what's the time") >= 0) || (message.toLowerCase().indexOf("whats the time") >= 0) || (message.toLowerCase().indexOf("what is the time") >= 0) || (message.toLowerCase().indexOf("what's the time?") >= 0) || (message.toLowerCase().indexOf("whats the time?") >= 0) || (message.toLowerCase().indexOf("what is the time?") >= 0)){
+	if(message.toLowerCase().indexOf("revert last command") >= 0){
+
+		dontAllowBotToSendMessage = 0;
+
+		botMessage = "No Problem, reverting the last command";
+
+		botAction.initializeAllVariables();
+
+	}else if((message.toLowerCase().indexOf("what's the time") >= 0) || (message.toLowerCase().indexOf("whats the time") >= 0) || (message.toLowerCase().indexOf("what is the time") >= 0) || (message.toLowerCase().indexOf("what's the time?") >= 0) || (message.toLowerCase().indexOf("whats the time?") >= 0) || (message.toLowerCase().indexOf("what is the time?") >= 0)){
 
 		//console.log("Get Time");
 
