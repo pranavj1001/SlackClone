@@ -112,7 +112,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display the latest issue") >= 0){
+	}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
+
+		console.log("Display the latest issue (ProjectName Entered)");
+		projectNameForIssue = message.substr(36);
+		//console.log(projectNameForIssue);
+
+		botMessage = "Ohok, working on it....";
+
+		botAction.showLatestIssue(teamName, projectNameForIssue);
+
+		botAction.initializeAllVariables();
+
+	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || ((message.toLowerCase().indexOf("display the latest commit") >= 0)) ) && (issueDefineSteps == 0)){
 
 		console.log("Display the latest issue (ProjectName Not Entered)");
 
