@@ -1,6 +1,8 @@
 var botMessage = "Hey there, I'm a bot.";
 var projectDefineSteps = 0;
 var issueDefineSteps = 0;
+var issueShowLatestSteps = 0;
+var issueShowSteps = 0;
 var projectNameForIssue = "";
 var returnMessage = "";
 var checkForIssues = 0;
@@ -92,6 +94,26 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueStepsVariable();
 
+	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
+
+		console.log("Display the latest issue (ProjectName Entered)");
+		projectNameForIssue = message.substr(35);
+		console.log(projectNameForIssue);
+
+		botMessage = "Ohok, working on it....";
+
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
+
+	}else if(message.toLowerCase().indexOf("display the latest issue") >= 0){
+
+		console.log("Display the latest issue (ProjectName Not Entered)");
+
+		botMessage = "... of which project?";
+		
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
+
 	}else{
 
 		//console.log("User just wants to see the bot");
@@ -112,7 +134,7 @@ var botAction = {
 	},
 	
 	defineANewProject: function(projectName, teamName){
-		console.log(teamName + " " + projectName);
+		//console.log(teamName + " " + projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=createANewProject",
