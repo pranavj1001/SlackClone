@@ -18,8 +18,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "Current Time is ";
 		botMessage += botAction.getTime();
 
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueStepsVariable();
+		botAction.initializeAllVariables();
 
 	}else if(((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)) && (projectDefineSteps == 0)){
 
@@ -30,6 +29,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		projectDefineSteps = 1;
 
 		botAction.initializeIssueStepsVariable();
+		botAction.initializeIssueShowLatestStepsVariable();
 
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 
@@ -37,8 +37,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "No Problem, project definition reverted";
 
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
+		botAction.initializeAllVariables();
 
 	}else if(projectDefineSteps === 1){
 
@@ -48,8 +47,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.defineANewProject(message, teamName);
 		
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueStepsVariable();
+		botAction.initializeAllVariables();
 
 	}else if(((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0) || (message.toLowerCase().indexOf("add an issue") >= 0)) && (issueDefineSteps == 0)){
 
@@ -61,6 +59,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		//console.log(issueDefineSteps);
 		
 		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueShowLatestStepsVariable();
 
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
 
@@ -70,8 +69,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "No Problem, issue definition reverted";
 		
-		botAction.initializeProjectStepsVariable();		
-		botAction.initializeIssueStepsVariable();
+		botAction.initializeAllVariables();
 
 	}else if(issueDefineSteps == 1){
 
@@ -82,6 +80,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.preCommitAnIssue(message, teamName, message);
 
 		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueShowLatestStepsVariable();
 
 	}else if(issueDefineSteps == 2){
 
@@ -91,8 +90,15 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.commitAnIssue(message, teamName, currrentUsername, projectNameForIssue);
 
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueStepsVariable();
+		botAction.initializeAllVariables();
+
+	}else if(message.toLowerCase().indexOf("revert issue revealing") >= 0){
+
+		dontAllowBotToSendMessage = 0;
+
+		botMessage = "No Problem, not revealing the issue";
+
+		botAction.initializeAllVariables();
 
 	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
 
@@ -104,8 +110,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.showLatestIssue(teamName, projectNameForIssue);
 
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
+		botAction.initializeAllVariables();
 
 	}else if(message.toLowerCase().indexOf("display the latest issue") >= 0){
 
@@ -113,10 +118,18 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "... of which project?";
 
-		botAction.showLatestIssue(teamName, message);
+		issueShowLatestSteps = 1;
 		
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+
+	}else if(issueShowLatestSteps == 1){
+
+		dontAllowBotToSendMessage = 1;
+
+		botAction.showLatestIssue(teamName, message);
+
+		botAction.initializeAllVariables();
 
 	}else{
 
@@ -124,8 +137,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
 
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
+		botAction.initializeAllVariables();
 
 	}
 
@@ -259,6 +271,16 @@ var botAction = {
 
 	initializeProjectStepsVariable: function(){
 		projectDefineSteps = 0;
+	},
+
+	initializeIssueShowLatestStepsVariable: function(){
+		issueShowLatestSteps = 0;
+	},
+
+	initializeAllVariables: function(){
+		issueDefineSteps = 0;
+		projectDefineSteps = 0;
+		issueShowLatestSteps = 0;
 	},
 
 	botMessage: function(teamName, returnMessage){
