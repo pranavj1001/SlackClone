@@ -168,12 +168,12 @@
 
             $error = "";
 
-            $query="SELECT * FROM ".$_POST['teamname'];
+            $query = "SELECT * FROM ".$_POST['teamname'];
             $result = mysqli_query($link,$query);
-            $arr=array();
-            $row_count=mysqli_num_rows($result);
+            $arr = array();
+            $row_count = mysqli_num_rows($result);
             
-            if($row_count>0){
+            if($row_count > 0){
                 while ($row=mysqli_fetch_array($result)) {
                     array_push($arr, $row);
                 }
@@ -268,6 +268,28 @@
                 echo $error;
                 exit();
             }
+
+        }
+
+        //SELECT * FROM table WHERE id=(SELECT MAX(id) FROM TABLE)
+
+        if($_GET['actions'] == 'showLatestIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+
+            $query = "SELECT * FROM ".$tableName." WHERE id=(SELECT MAX(id) FROM ".$tableName.") LIMIT 1";
+
+            $result = mysqli_query($link, $query);
+            $arr = array();
+            $row_count = mysqli_num_rows($result);
+            
+            if($row_count > 0){
+                while ($row=mysqli_fetch_array($result)) {
+                    array_push($arr, $row);
+                }
+            }
+            echo json_encode($arr);
 
         }
 

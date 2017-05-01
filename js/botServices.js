@@ -225,7 +225,21 @@ var botAction = {
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
-               		console.log("Moving Ahead");                 
+               		//console.log("Moving Ahead");
+               		$.ajax({
+			            type: "POST",
+			            url: "http://localhost/SlackClone/actions.php?actions=showLatestIssue",
+			            data: "teamname=" + teamName + "&projectname=" + projectName,
+			            dataType: "json",
+			            success: function(result){
+			 				//console.log(result);
+			 				$.each(result,function(index,item){
+				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
+				            });
+				            //console.log(returnMessage);
+				            botAction.botMessage(teamName, returnMessage);
+			            }
+			        });               
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
@@ -256,7 +270,7 @@ var botAction = {
 			    if(result == "1"){
 			    	//console.log("Success");
 			    }else{
-			        console.log("Failure");
+			        console.log("Failure: " + result);
 			    }
 		    }
 		});		
