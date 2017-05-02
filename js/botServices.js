@@ -28,6 +28,15 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	}else if((message.toLowerCase().indexOf("what's the date") >= 0) || (message.toLowerCase().indexOf("whats the date") >= 0) || (message.toLowerCase().indexOf("what is the date") >= 0) || (message.toLowerCase().indexOf("what's the date?") >= 0) || (message.toLowerCase().indexOf("whats the date?") >= 0) || (message.toLowerCase().indexOf("what is the date?") >= 0)){
+
+		//console.log("Get Time");
+
+		botMessage = "Current Date is ";
+		botMessage += botAction.getDate();
+
+		botAction.initializeAllVariables();
+
 	}else if(((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)) && (projectDefineSteps == 0)){
 
 		//console.log("Create a new Project");
@@ -167,6 +176,10 @@ var botAction = {
 
 	getTime: function(){ 
 		return new Date().toLocaleTimeString();
+	},
+
+	getDate: function(){ 
+		return new Date().toLocaleDateString();
 	},
 	
 	defineANewProject: function(projectName, teamName){
