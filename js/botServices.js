@@ -31,8 +31,8 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		dontAllowBotToSendMessage = 1;
 		dontSaveThisUserMessage = 1;
 
-		botAction.botMessage(teamName, message, currrentUsername);
-		botAction.botMessage(teamName, "Picking a good one for ya", bot);
+		botAction.saveMessage(teamName, message, currrentUsername);
+		botAction.saveMessage(teamName, "Picking a good one for ya", bot);
 
 		botAction.getJokes(teamName);
 
@@ -313,7 +313,7 @@ var botAction = {
 
 		var randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
 
-		botAction.botMessage(teamName, randomJoke, bot);
+		botAction.saveMessage(teamName, randomJoke, bot);
 
 	},
 	
@@ -327,15 +327,15 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage, bot);                 
+               		botAction.saveMessage(teamName, returnMessage, bot);                 
                 }else if(result == "2"){
                 	returnMessage = "This Project already exists.";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: Not able to define the Project " + projectName; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -350,18 +350,18 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Okay, Now type down the text for new Issue.";
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage, bot);
+               		botAction.saveMessage(teamName, returnMessage, bot);
                		issueDefineSteps = 2;
 					projectNameForIssue = message;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 	botAction.initializeIssueStepsVariable();
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -379,18 +379,18 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage, bot);
+               		botAction.saveMessage(teamName, returnMessage, bot);
                		dontAllowBotToSendMessage = 0;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 	dontAllowBotToSendMessage = 0;
                 }else{
                 	console.log(result);
                 	returnMessage = "Failure: Not able to commit the issue to " + projectName; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 	dontAllowBotToSendMessage = 0;
               	}
             }
@@ -417,17 +417,17 @@ var botAction = {
 				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
 				            });
 				            //console.log(returnMessage);
-				            botAction.botMessage(teamName, returnMessage, bot);
+				            botAction.saveMessage(teamName, returnMessage, bot);
 			            }
 			        });               
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -453,17 +453,17 @@ var botAction = {
 				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
 				            });
 				            //console.log(returnMessage);
-				            botAction.botMessage(teamName, returnMessage, bot);
+				            botAction.saveMessage(teamName, returnMessage, bot);
 			            }
 			        });               
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage, bot);
+                	botAction.saveMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -492,7 +492,7 @@ var botAction = {
 		issueShowLatestSteps = 0;
 	},
 
-	botMessage: function(teamName, returnMessage, username){
+	saveMessage: function(teamName, returnMessage, username){
 		$.ajax({
 		    type: "POST",
 		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
