@@ -3,6 +3,7 @@ var projectDefineSteps = 0;
 var issueDefineSteps = 0;
 var issueShowLatestSteps = 0;
 var issueShowSteps = 0;
+var issueId = 0;
 var projectNameForIssue = "";
 var returnMessage = "";
 var dontAllowBotToSendMessage = 0;
@@ -160,11 +161,60 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) || (message.toLowerCase().indexOf("display the commit whose id = ") >= 0) || (message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) || (message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) ) && (issueShowSteps == 0)){
+	}else if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
 
 		console.log("Display the issue (ID Entered)");
 
 		botMessage = "... of which project?";
+
+		issueId = message.substr(36);
+		issueId.trim();
+		console.log(issueId);
+
+		issueShowSteps = 1;
+		
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
+
+	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
+
+		console.log("Display the issue (ID Entered)");
+
+		botMessage = "... of which project?";
+
+		issueId = message.substr(37);
+		issueId.trim();
+		console.log(issueId);
+
+		issueShowSteps = 1;
+		
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
+
+	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+		console.log("Display the issue (ID Entered)");
+
+		botMessage = "... of which project?";
+
+		issueId = message.substr(43);
+		issueId.trim();
+		console.log(issueId);
+
+		issueShowSteps = 1;
+		
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
+
+	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+		console.log("Display the issue (ID Entered)");
+
+		botMessage = "... of which project?";
+
+		issueId = message.substr(42);
+		issueId.trim();
+		console.log(issueId);
 
 		issueShowSteps = 1;
 		
