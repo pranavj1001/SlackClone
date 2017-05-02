@@ -119,7 +119,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
 
-		console.log("Display the latest issue (ProjectName Entered)");
+		//console.log("Display the latest issue (ProjectName Entered)");
 		projectNameForIssue = message.substr(35);
 		//console.log(projectNameForIssue);
 
@@ -131,7 +131,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
 
-		console.log("Display the latest issue (ProjectName Entered)");
+		//console.log("Display the latest issue (ProjectName Entered)");
 		projectNameForIssue = message.substr(36);
 		//console.log(projectNameForIssue);
 
@@ -141,9 +141,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || ((message.toLowerCase().indexOf("display the latest commit") >= 0)) ) && (issueDefineSteps == 0)){
+	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
 
-		console.log("Display the latest issue (ProjectName Not Entered)");
+		//console.log("Display the latest issue (ProjectName Not Entered)");
 
 		botMessage = "... of which project?";
 
@@ -159,6 +159,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.showLatestIssue(teamName, message);
 
 		botAction.initializeAllVariables();
+
+	}else if(((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) || (message.toLowerCase().indexOf("display the commit whose id = ") >= 0) || (message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) || (message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) ) && (issueShowSteps == 0)){
+
+		console.log("Display the issue (ID Entered)");
+
+		botMessage = "... of which project?";
+
+		issueShowSteps = 1;
+		
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeProjectStepsVariable();
 
 	}else{
 
