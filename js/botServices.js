@@ -7,10 +7,13 @@ var issueId = 0;
 var projectNameForIssue = "";
 var returnMessage = "";
 var dontAllowBotToSendMessage = 0;
+var dontSaveThisUserMessage = 0;
+var bot = "bot";
 
 function findTheServiceRequired(message, teamName, currrentUsername){
 
 	dontAllowBotToSendMessage = 0;
+	dontSaveThisUserMessage = 0;
 
 	//console.log("Reached here " + message);
 
@@ -19,6 +22,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		dontAllowBotToSendMessage = 0;
 
 		botMessage = "No Problem, reverting the last command";
+
+		botAction.initializeAllVariables();
+
+	}else if((message.toLowerCase().indexOf("humor me") >= 0) || (message.toLowerCase().indexOf("have any joke") >= 0) || (message.toLowerCase().indexOf("joke of the moment") >= 0) || (message.toLowerCase().indexOf("make me laugh") >= 0) || (message.toLowerCase().indexOf("a joke for me") >= 0)){
+
+		//console.log("Jokes");
+		dontAllowBotToSendMessage = 1;
+		dontSaveThisUserMessage = 1;
+
+		botAction.botMessage(teamName, message, currrentUsername);
+		botAction.botMessage(teamName, "Picking a good one for ya", bot);
+
+		botAction.getJokes(teamName);
 
 		botAction.initializeAllVariables();
 
@@ -257,6 +273,49 @@ var botAction = {
 	getDate: function(){ 
 		return new Date().toLocaleDateString();
 	},
+
+	getJokes: function(teamName){
+
+		var jokes = [
+			"Did you hear about the guy whose whole left side was cut off? He\'s all right now.",
+			"I'm reading a book about anti-gravity. It's impossible to put down.",
+			"I wondered why the baseball was getting bigger. Then it hit me.",
+			"It's not that the man did not know how to juggle, he just didn't have the balls to do it.",
+			"I'm glad I know sign language, it's pretty handy.",
+			"My friend's bakery burned down last night. Now his business is toast.",
+			"Why did the cookie cry? It was feeling crumby.",
+			"I used to be a banker, but I lost interest.",
+			"A drum and a symbol fall off a cliff",
+			"Why do seagulls fly over the sea? Because they aren't bay-gulls!",
+			"Why did the fireman wear red, white, and blue suspenders? To hold his pants up.",
+			"Why didn't the crab share his food? Because crabs are territorial animals, that don't share anything.",
+			"Why was the javascript developer sad? Because he didn't Node how to Express himself.",
+			"What do I look like? A JOKE MACHINE!?",
+			"How did the hipster burn the roof of his mouth? He ate the pizza before it was cool.",
+			"Why is it hard to make puns for kleptomaniacs? They are always taking things literally.",
+			"Why do mermaid wear sea-shells? Because b-shells are too small.",
+			"I'm a humorless, cold hearted, machine.",
+			"Two fish in a tank. One looks to the other and says 'Can you even drive this thing???'",
+			"Two fish swim down a river, and hit a wall. One says: 'Dam!'",
+			"What's funnier than a monkey dancing with an elephant? Two monkeys dancing with an elephant.",
+			"How did Darth Vader know what Luke was getting for Christmas? He felt his presents.",
+			"What's red and bad for your teeth? A Brick.",
+			"What's orange and sounds like a parrot? A Carrot.",
+			"What do you call a cow with no legs? Ground beef",
+			"Two guys walk into a bar. You'd think the second one would have noticed.",
+			"What is a centipedes's favorite Beatle song?  I want to hold your hand, hand, hand, hand...",
+			"What do you call a chicken crossing the road? Poultry in moton. ",
+			"Did you hear about the Mexican train killer?  He had locomotives",
+			"What do you call a fake noodle?  An impasta",
+			"How many tickles does it take to tickle an octupus? Ten-tickles!", 
+			"At the rate law schools are turning them out, by 2050 there will be more lawyers than humans."
+		];
+
+		var randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+
+		botAction.botMessage(teamName, randomJoke, bot);
+
+	},
 	
 	defineANewProject: function(projectName, teamName){
 		//console.log(teamName + " " + projectName);
@@ -268,15 +327,15 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage);                 
+               		botAction.botMessage(teamName, returnMessage, bot);                 
                 }else if(result == "2"){
                 	returnMessage = "This Project already exists.";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: Not able to define the Project " + projectName; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -291,18 +350,18 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Okay, Now type down the text for new Issue.";
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage);
+               		botAction.botMessage(teamName, returnMessage, bot);
                		issueDefineSteps = 2;
 					projectNameForIssue = message;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 	botAction.initializeIssueStepsVariable();
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -320,18 +379,18 @@ var botAction = {
             	if(result == "1"){
             		returnMessage = "Success: Issue commited to " + projectName;
                		//console.log(returnMessage);
-               		botAction.botMessage(teamName, returnMessage);
+               		botAction.botMessage(teamName, returnMessage, bot);
                		dontAllowBotToSendMessage = 0;                 
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 	dontAllowBotToSendMessage = 0;
                 }else{
                 	console.log(result);
                 	returnMessage = "Failure: Not able to commit the issue to " + projectName; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 	dontAllowBotToSendMessage = 0;
               	}
             }
@@ -358,17 +417,17 @@ var botAction = {
 				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
 				            });
 				            //console.log(returnMessage);
-				            botAction.botMessage(teamName, returnMessage);
+				            botAction.botMessage(teamName, returnMessage, bot);
 			            }
 			        });               
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -394,17 +453,17 @@ var botAction = {
 				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
 				            });
 				            //console.log(returnMessage);
-				            botAction.botMessage(teamName, returnMessage);
+				            botAction.botMessage(teamName, returnMessage, bot);
 			            }
 			        });               
                 }else if(result == "2"){
                 	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
                 	//console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
                 }else{
                 	returnMessage = "Failure: There's some problem with our servers please try again later."; 
                 	console.log(returnMessage);
-                	botAction.botMessage(teamName, returnMessage);
+                	botAction.botMessage(teamName, returnMessage, bot);
               	}
             }
         });
@@ -433,11 +492,11 @@ var botAction = {
 		issueShowLatestSteps = 0;
 	},
 
-	botMessage: function(teamName, returnMessage){
+	botMessage: function(teamName, returnMessage, username){
 		$.ajax({
 		    type: "POST",
 		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
-		    data:"teamname=" + teamName + "&sender=bot&message=" + returnMessage,
+		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage,
 		    success: function(result){
 			    if(result == "1"){
 			    	//console.log("Success");

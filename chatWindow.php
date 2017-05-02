@@ -107,20 +107,22 @@
           }
 
           if(messageCallsBot){
-            $.ajax({
-              type: "POST",
-              url: "actions.php?actions=saveMessage",
-              data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
-              success: function(result){
-                if(result == "1"){
-                  //console.log("Success");
-                  $('#newMessage').val("");                 
-                }else{
-                  console.log("Failure");
-                  $('#alert').html(result).show();
+            if(!dontSaveThisUserMessage){
+              $.ajax({
+                type: "POST",
+                url: "actions.php?actions=saveMessage",
+                data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
+                success: function(result){
+                  if(result == "1"){
+                    //console.log("Success");
+                    $('#newMessage').val("");                 
+                  }else{
+                    console.log("Failure");
+                    $('#alert').html(result).show();
+                  }
                 }
-              }
-            });
+              });
+            }
             if(!dontAllowBotToSendMessage){
               $.ajax({
                 type: "POST",
