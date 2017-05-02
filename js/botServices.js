@@ -48,6 +48,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeIssueShowLatestStepsVariable();
+		botAction.initializeIssueShowStepsVariable();
 
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 
@@ -78,6 +79,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueShowLatestStepsVariable();
+		botAction.initializeIssueShowStepsVariable();
 
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
 
@@ -99,6 +101,8 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeProjectStepsVariable();
 		botAction.initializeIssueShowLatestStepsVariable();
+		botAction.initializeIssueStepsVariable();
+		botAction.initializeIssueShowStepsVariable();
 
 	}else if(issueDefineSteps == 2){
 
@@ -152,6 +156,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+		botAction.initializeIssueShowStepsVariable();
 
 	}else if(issueShowLatestSteps == 1){
 
@@ -359,6 +364,10 @@ var botAction = {
         });
 	},
 
+	initializeIssueShowStepsVariable: function(){
+		issueShowSteps = 0;
+	},
+
 	initializeIssueStepsVariable: function(){
 		issueDefineSteps = 0;
 	},
@@ -372,6 +381,7 @@ var botAction = {
 	},
 
 	initializeAllVariables: function(){
+		issueShowSteps = 0;
 		issueDefineSteps = 0;
 		projectDefineSteps = 0;
 		issueShowLatestSteps = 0;
