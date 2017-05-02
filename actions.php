@@ -289,6 +289,38 @@
                     array_push($arr, $row);
                 }
             }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+            echo json_encode($arr);
+
+        }
+
+        if($_GET['actions'] == 'showIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+
+            $query = "SELECT * FROM ".$tableName." WHERE id = ".$_POST['issueId']." LIMIT 1";
+
+            $result = mysqli_query($link, $query);
+            $arr = array();
+            $row_count = mysqli_num_rows($result);
+            
+            if($row_count > 0){
+                while ($row=mysqli_fetch_array($result)) {
+                    array_push($arr, $row);
+                }
+            }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
             echo json_encode($arr);
 
         }
@@ -297,6 +329,8 @@
             echo $error;
             exit();
         }
+
+
 
     }
 

@@ -10,6 +10,8 @@ var dontAllowBotToSendMessage = 0;
 
 function findTheServiceRequired(message, teamName, currrentUsername){
 
+	dontAllowBotToSendMessage = 0;
+
 	//console.log("Reached here " + message);
 
 	if(message.toLowerCase().indexOf("revert last command") >= 0){
@@ -202,7 +204,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "... of which project?";
 
-		issueId = message.substr(43);
+		issueId = message.substr(42);
 		issueId.trim();
 		console.log(issueId);
 
@@ -217,7 +219,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "... of which project?";
 
-		issueId = message.substr(42);
+		issueId = message.substr(41);
 		issueId.trim();
 		console.log(issueId);
 
@@ -225,6 +227,14 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+
+	}else if(issueShowSteps == 1){
+
+		dontAllowBotToSendMessage = 1;
+
+		botAction.showIssue(teamName, message, issueId);
+
+		botAction.initializeAllVariables();
 
 	}else{
 
@@ -341,6 +351,42 @@ var botAction = {
 			            type: "POST",
 			            url: "http://localhost/SlackClone/actions.php?actions=showLatestIssue",
 			            data: "teamname=" + teamName + "&projectname=" + projectName,
+			            dataType: "json",
+			            success: function(result){
+			 				//console.log(result);
+			 				$.each(result,function(index,item){
+				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
+				            });
+				            //console.log(returnMessage);
+				            botAction.botMessage(teamName, returnMessage);
+			            }
+			        });               
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
+                	//console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+                }else{
+                	returnMessage = "Failure: There's some problem with our servers please try again later."; 
+                	console.log(returnMessage);
+                	botAction.botMessage(teamName, returnMessage);
+              	}
+            }
+        });
+	},
+
+	showIssue: function(teamName, projectName, issueId){
+		console.log(projectName);
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+               		//console.log("Moving Ahead");
+               		$.ajax({
+			            type: "POST",
+			            url: "http://localhost/SlackClone/actions.php?actions=showIssue",
+			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId,
 			            dataType: "json",
 			            success: function(result){
 			 				//console.log(result);

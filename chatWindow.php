@@ -100,7 +100,7 @@
 
     		if(message != ""){
 
-          if ((~message.indexOf("OK Bot")) || (projectDefineSteps) || (issueDefineSteps == 1) || (issueDefineSteps == 2) || (issueShowLatestSteps)){
+          if ((~message.indexOf("OK Bot")) || (projectDefineSteps) || (issueDefineSteps == 1) || (issueDefineSteps == 2) || (issueShowLatestSteps) || (issueShowSteps) ){
             messageCallsBot = true;
             findTheServiceRequired(message, teamName, currentUsername);
             //console.log(messageCallsBot);
