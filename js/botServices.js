@@ -523,6 +523,42 @@ var botAction = {
 
 };
 
+var botDoctor = {
+
+	assignSymptomsID: function(symptom){
+
+		if(symptom.toLowerCase().indexOf("abdominal pain")){
+			doctorId = 10;
+		}else if(symptom.toLowerCase().indexOf("anxiety")){
+			doctorId = 238;
+		}else if(symptom.toLowerCase().indexOf("back pain")){
+			doctorId = 104;
+		}else if(symptom.toLowerCase().indexOf("burning eyes")){
+			doctorId = 75;
+		}else if(symptom.toLowerCase().indexOf("burning in the throat")){
+			doctorId = 46;
+		}else if(symptom.toLowerCase().indexOf("cheek swelling")){
+			doctorId = 170;
+		}else if(symptom.toLowerCase().indexOf("chest pain")){
+			doctorId = 17;
+		}else if(symptom.toLowerCase().indexOf("chest tightness")){
+			doctorId = 31;
+		}else if(symptom.toLowerCase().indexOf("chills")){
+			doctorId = 175;
+		}else if(symptom.toLowerCase().indexOf("cold sweats")){
+			doctorId = 139;
+		}else if(symptom.toLowerCase().indexOf("cough")){
+			doctorId = 15;
+		}else if(symptom.toLowerCase().indexOf("dizziness")){
+			doctorId = 207;
+		}else{
+			//default
+		}
+
+	}
+
+};
+
 var botDoctorURL = {
 
 	loadSymptoms: function(){ 
