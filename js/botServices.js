@@ -10,6 +10,12 @@ var dontAllowBotToSendMessage = 0;
 var dontSaveThisUserMessage = 0;
 var bot = "bot";
 
+var baseUrl = "https://sandbox-healthservice.priaid.ch/";
+var token = "?"; //Type your token (APIMedic) here 
+var endUrl = "&language=en-gb&format=json";
+
+var doctorId;
+
 function findTheServiceRequired(message, teamName, currrentUsername){
 
 	dontAllowBotToSendMessage = 0;
@@ -506,5 +512,37 @@ var botAction = {
 		    }
 		});		
 	}
+
+};
+
+var botDoctorURL = {
+
+	loadSymptoms: function(){ 
+		return baseUrl + 'symptoms' + token + endUrl;
+	},
+	
+	loadIssues: function(){ 
+		return baseUrl + 'issues' + endUrl;
+	},
+	
+	loadIssueInfo: function(){ 
+		return baseUrl + 'issues/' + doctorId + '/info' + token + endUrl;
+	},
+
+	loadDiagnosis: function(){ 
+		return baseUrl + 'diagnosis' + token + endUrl; 
+	},
+
+	loadSpecialisations: function(){ 
+		return baseUrl + 'diagnosis/specialisations' + token + endUrl; 
+	},
+
+	loadBodyLocations: function(){ 
+		return baseUrl + 'body/locations' + token + endUrl;
+	},
+
+	loadBodySublocations: function() { 
+		return baseUrl + 'body/locations/' + doctorId + token + endUrl;
+	}	
 
 };
