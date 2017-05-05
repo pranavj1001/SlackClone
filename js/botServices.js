@@ -551,6 +551,24 @@ var botDoctor = {
 			doctorId = 15;
 		}else if(symptom.toLowerCase().indexOf("dizziness")){
 			doctorId = 207;
+		}else if(symptom.toLowerCase().indexOf("drooping eyelid")){
+			doctorId = 244;
+		}else if(symptom.toLowerCase().indexOf("dry eyes")){
+			doctorId = 273;
+		}else if(symptom.toLowerCase().indexOf("earache")){
+			doctorId = 87;
+		}else if(symptom.toLowerCase().indexOf("early satiety")){
+			doctorId = 92;
+		}else if(symptom.toLowerCase().indexOf("eye pain")){
+			doctorId = 287;
+		}else if(symptom.toLowerCase().indexOf("eye redness")){
+			doctorId = 33;
+		}else if(symptom.toLowerCase().indexOf("fast, deepened breathing")){
+			doctorId = 153;
+		}else if(symptom.toLowerCase().indexOf("feeling of foreign body in the eye")){
+			doctorId = 76;
+		}else if(symptom.toLowerCase().indexOf("fever")){
+			doctorId = 11;
 		}else{
 			//default
 		}
