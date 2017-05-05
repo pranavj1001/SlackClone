@@ -192,13 +192,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
 
-		console.log("Display the issue (ID Entered)");
+		//console.log("Display the issue (ID Entered)");
 
 		botMessage = "... of which project?";
 
 		issueId = message.substr(36);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueShowSteps = 1;
 		
@@ -207,13 +207,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
 
-		console.log("Display the issue (ID Entered)");
+		//console.log("Display the issue (ID Entered)");
 
 		botMessage = "... of which project?";
 
 		issueId = message.substr(37);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueShowSteps = 1;
 		
@@ -222,13 +222,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
 
-		console.log("Display the issue (ID Entered)");
+		//console.log("Display the issue (ID Entered)");
 
 		botMessage = "... of which project?";
 
 		issueId = message.substr(42);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueShowSteps = 1;
 		
@@ -237,18 +237,26 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
 
-		console.log("Display the issue (ID Entered)");
+		//console.log("Display the issue (ID Entered)");
 
 		botMessage = "... of which project?";
 
 		issueId = message.substr(41);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueShowSteps = 1;
 		
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
+
+	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
+
+		console.log("Doctor Bot (Symptoms)");
+
+		botDoctor.assignSymptomsID();
+
+		botAction.initializeAllVariables();
 
 	}else if(issueShowSteps == 1){
 
