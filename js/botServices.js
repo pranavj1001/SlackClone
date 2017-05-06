@@ -593,6 +593,28 @@ var botDoctor = {
 			doctorId = 112;
 		}else if(symptom.toLowerCase().indexOf("missed period")){
 			doctorId = 123;
+		}else if(symptom.toLowerCase().indexOf("nausea")){
+			doctorId = 44;
+		}else if(symptom.toLowerCase().indexOf("neck pain")){
+			doctorId = 136;
+		}else if(symptom.toLowerCase().indexOf("nervousness")){
+			doctorId = 114;
+		}else if(symptom.toLowerCase().indexOf("night cough")){
+			doctorId = 133;
+		}else if(symptom.toLowerCase().indexOf("pain in the limbs")){
+			doctorId = 12;
+		}else if(symptom.toLowerCase().indexOf("pain on swallowing")){
+			doctorId = 203;
+		}else if(symptom.toLowerCase().indexOf("palpitations")){
+			doctorId = 37;
+		}else if(symptom.toLowerCase().indexOf("paralysis")){
+			doctorId = 140;
+		}else if(symptom.toLowerCase().indexOf("reduced appetite")){
+			doctorId = 54;
+		}else if(symptom.toLowerCase().indexOf("runny nose")){
+			doctorId = 14;
+		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
+			doctorId = 29;
 		}else{
 			//default
 		}
