@@ -615,6 +615,44 @@ var botDoctor = {
 			doctorId = 14;
 		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
 			doctorId = 29;
+		}else if(symptom.toLowerCase().indexOf("skin rash")){
+			doctorId = 124;
+		}else if(symptom.toLowerCase().indexOf("sleeplessness")){
+			doctorId = 52;
+		}else if(symptom.toLowerCase().indexOf("sneezing")){
+			doctorId = 95;
+		}else if(symptom.toLowerCase().indexOf("sore throeat")){
+			doctorId = 13;
+		}else if(symptom.toLowerCase().indexOf("sputum")){
+			doctorId = 64;
+		}else if(symptom.toLowerCase().indexOf("stomach burning")){
+			doctorId = 179;
+		}else if(symptom.toLowerCase().indexOf("stuffy nose")){
+			doctorId = 28;
+		}else if(symptom.toLowerCase().indexOf("sweating")){
+			doctorId = 138;
+		}else if(symptom.toLowerCase().indexOf("swollen glands in the armpits")){
+			doctorId = 248;
+		}else if(symptom.toLowerCase().indexOf("swollen glands on the neck")){
+			doctorId = 169;
+		}else if(symptom.toLowerCase().indexOf("tears")){
+			doctorId = 211;
+		}else if(symptom.toLowerCase().indexOf("tiredness")){
+			doctorId = 16;
+		}else if(symptom.toLowerCase().indexOf("tremor at rest")){
+			doctorId = 115;
+		}else if(symptom.toLowerCase().indexOf("unconsciousness, short")){
+			doctorId = 144;
+		}else if(symptom.toLowerCase().indexOf("vomiting")){
+			doctorId = 101;
+		}else if(symptom.toLowerCase().indexOf("vomiting blood")){
+			doctorId = 181;
+		}else if(symptom.toLowerCase().indexOf("weakness")){
+			doctorId = 56;
+		}else if(symptom.toLowerCase().indexOf("weight gain")){
+			doctorId = 23;
+		}else if(symptom.toLowerCase().indexOf("wheezing")){
+			doctorId = 30;
 		}else{
 			//default
 		}
