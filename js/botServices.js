@@ -512,6 +512,11 @@ var botAction = {
 	},
 
 	saveMessage: function(teamName, returnMessage, username){
+
+		if(returnMessage == ""){
+			returnMessage = "Not able to perform this request.";
+		}
+
 		$.ajax({
 		    type: "POST",
 		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
@@ -523,7 +528,10 @@ var botAction = {
 			        console.log("Failure: " + result);
 			    }
 		    }
-		});		
+		});
+
+		returnMessage = "";
+
 	}
 
 };
