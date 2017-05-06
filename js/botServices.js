@@ -569,6 +569,30 @@ var botDoctor = {
 			doctorId = 76;
 		}else if(symptom.toLowerCase().indexOf("fever")){
 			doctorId = 11;
+		}else if(symptom.toLowerCase().indexOf("going black before the eyes")){
+			doctorId = 57;
+		}else if(symptom.toLowerCase().indexOf("headache")){
+			doctorId = 9;
+		}else if(symptom.toLowerCase().indexOf("heartburn")){
+			doctorId = 45;
+		}else if(symptom.toLowerCase().indexOf("hiccups")){
+			doctorId = 122;
+		}else if(symptom.toLowerCase().indexOf("hot flushes")){
+			doctorId = 149;
+		}else if(symptom.toLowerCase().indexOf("increased thirst")){
+			doctorId = 40;
+		}else if(symptom.toLowerCase().indexOf("itching eyes")){
+			doctorId = 73;
+		}else if(symptom.toLowerCase().indexOf("itching in the nose")){
+			doctorId = 96;
+		}else if(symptom.toLowerCase().indexOf("lip swelling")){
+			doctorId = 35;
+		}else if(symptom.toLowerCase().indexOf("memory gap")){
+			doctorId = 235;
+		}else if(symptom.toLowerCase().indexOf("menstruation disorder")){
+			doctorId = 112;
+		}else if(symptom.toLowerCase().indexOf("missed period")){
+			doctorId = 123;
 		}else{
 			//default
 		}
