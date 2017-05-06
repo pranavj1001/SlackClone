@@ -87,6 +87,8 @@
 
     <script type="text/javascript">
 
+      var oldNumberOfRows;
+
     	$('#alert').hide();
 
     	$('#sendMessageButton').click(function(){
@@ -172,6 +174,7 @@
 	          data : "teamname="+teamName,
 	          dataType : "json",
 	          success : function(response,status,http){
+
 	            $("#messageBox").val("");
 	            $.each(response,function(index,item){
 
@@ -187,9 +190,24 @@
 	        });
 	    };
 
-	    updateMessage();
+      function checkDataBase(){
+        var teamName = "<?php echo $TeamName; ?>";
+         
+          $.ajax({
+            type : "POST",
+            url : "actions.php?actions=checkForChanges",
+            data : "teamname="+teamName,
+            success : function(result){
+              if(oldNumberOfRows != result){
+                updateMessage();
+              }
+            }
+          });
+      };
 
-	    setInterval(updateMessage,1000);
+      updateMessage();
+
+	    setInterval(checkDataBase,1000);
 
    	</script>
 
