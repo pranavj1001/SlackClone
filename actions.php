@@ -204,7 +204,15 @@
                 $query = "CREATE TABLE IF NOT EXISTS `slackclone`.`".$tableName."` ( `id` INT NOT NULL AUTO_INCREMENT , `issuedescription` TEXT NOT NULL , `createdby` TEXT NOT NULL , `datetime` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
 
                 if(mysqli_query($link, $query)){
-                    echo 1;
+
+                    $query = "INSERT INTO `".$tableName."` (`id`, `issuedescription`, `createdby`, `datetime`) VALUES ('0', 'no issues found', 'admin', '".$_POST['datetime']."')";
+
+                    if(mysqli_query($link, $query)){
+                        echo 1;
+                    }else{
+                        echo 3;
+                    }    
+
                 }else{
                     $error = "Sorry, our server might be down, couldn't create a new project";
                 }

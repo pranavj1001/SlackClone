@@ -250,19 +250,21 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeIssueStepsVariable();
 		botAction.initializeProjectStepsVariable();
 
-	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
-
-		console.log("Doctor Bot (Symptoms)");
-
-		botDoctor.assignSymptomsID();
-
-		botAction.initializeAllVariables();
-
 	}else if(issueShowSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
 
 		botAction.showIssue(teamName, message, issueId);
+
+		botAction.initializeAllVariables();
+
+	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
+
+		console.log("Doctor Bot (Symptoms)");
+
+		dontAllowBotToSendMessage = 1;
+
+		botDoctor.assignSymptomsID(message);
 
 		botAction.initializeAllVariables();
 
@@ -332,11 +334,14 @@ var botAction = {
 	},
 	
 	defineANewProject: function(projectName, teamName){
+
+		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+
 		//console.log(teamName + " " + projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=createANewProject",
-            data: "teamname=" + teamName + "&projectname=" + projectName,
+            data: "teamname=" + teamName + "&projectname=" + projectName + "&datetime=" + currentDateTimeInISOFormat,
             success: function(result){
             	if(result == "1"){
             		returnMessage = "Success: New Project " + projectName + " is now online!"; 
@@ -654,8 +659,10 @@ var botDoctor = {
 		}else if(symptom.toLowerCase().indexOf("wheezing")){
 			doctorId = 30;
 		}else{
-			//default
+			doctorId = 999;
 		}
+
+		console.log(doctorId);
 
 	}
 
