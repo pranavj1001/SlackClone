@@ -333,6 +333,24 @@
 
         }
 
+        if($_GET['actions'] == 'checkForChangesInTable'){
+
+            $error = "";
+            $result = 0;
+
+            $query = "SELECT COUNT(*) FROM ".$_POST['teamname']."";
+
+            $result = mysqli_query($link, $query);
+
+            echo $result;
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
         if($error != ""){
             echo $error;
             exit();

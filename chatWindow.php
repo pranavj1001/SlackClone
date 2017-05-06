@@ -195,9 +195,10 @@
          
           $.ajax({
             type : "POST",
-            url : "actions.php?actions=checkForChanges",
+            url : "actions.php?actions=checkForChangesInTable",
             data : "teamname="+teamName,
             success : function(result){
+              //console.log(result);
               if(oldNumberOfRows != result){
                 updateMessage();
               }
