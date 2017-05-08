@@ -295,7 +295,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0)){
+	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0)){
 
 		//console.log("Movie Bot");
 		
@@ -753,6 +753,8 @@ var botMovie = {
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
 		}else if(choice == 1){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=" + year;
+		}else if(choice == 2){
+			var urlToCall = movieBaseURL + "tv/popular?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
 		}
 
 		$.ajax({
@@ -762,9 +764,16 @@ var botMovie = {
 			success: function(result){
 				//console.log(result.results);
 				var item;
-				for(var i = 0; i < 5; i++){
-					item = result.results[i];
-				   	returnMessage += "Name: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+				if(choice != 2){
+					for(var i = 0; i < 5; i++){
+						item = result.results[i];
+					   	returnMessage += "Here you go\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+					}
+				}else if(choice == 2){
+					for(var i = 0; i < 5; i++){
+						item = result.results[i];
+					   	returnMessage += "Here you go\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n\n";
+					}
 				}
 				//console.log(returnMessage);
 				botAction.saveMessage(teamName, returnMessage, bot);
