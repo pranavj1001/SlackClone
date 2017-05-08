@@ -271,9 +271,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
+	}else if((message.toLowerCase().indexOf("display current popular movies from the year ") >= 0) || (message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0)){
 
-		console.log("Movie Bot (Year)");
+		//console.log("Movie Bot (Year)");
 
 		var year = message.substr(52);
 		year.trim();
@@ -285,13 +285,23 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display current popular movies") >= 0){
+	}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0)){
 
-		console.log("Movie Bot");
+		//console.log("Movie Bot");
 		
 		botMessage = "Ohok, fetching movie details......";
 
 		botMovie.showPopularMovies(teamName, 0, 0000);
+
+		botAction.initializeAllVariables();
+
+	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0)){
+
+		//console.log("Movie Bot");
+		
+		botMessage = "Ohok, fetching TV Shows details......";
+
+		botMovie.showPopularMovies(teamName, 2, 0000);
 
 		botAction.initializeAllVariables();
 
