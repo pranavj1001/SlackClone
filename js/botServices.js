@@ -14,6 +14,9 @@ var baseUrl = "https://sandbox-healthservice.priaid.ch/";
 var token = "?"; //Type your token (APIMedic) here 
 var endUrl = "&language=en-gb&format=json";
 
+var movieBaseURL = "https://api.themoviedb.org/3/";
+var apiKey = ""; //Type your api key (TMDb) here
+
 var doctorId;
 
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -265,6 +268,14 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		dontAllowBotToSendMessage = 1;
 
 		botDoctor.assignSymptomsID(message);
+
+		botAction.initializeAllVariables();
+
+	}else if(message.toLowerCase().indexOf("display current popular movies ") >= 0){
+
+		console.log("Movie Bot");
+
+		botMovie.showPopularMovies();
 
 		botAction.initializeAllVariables();
 
