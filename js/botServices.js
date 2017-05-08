@@ -271,11 +271,12 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display current popular movies ") >= 0){
+	}else if(message.toLowerCase().indexOf("display current popular movies") >= 0){
 
 		console.log("Movie Bot");
+		dontAllowBotToSendMessage = 1;
 
-		botMovie.showPopularMovies();
+		botMovie.showPopularMovies(teamName);
 
 		botAction.initializeAllVariables();
 
@@ -721,21 +722,23 @@ var botDoctorURL = {
 
 var botMovie = {
 
-	showPopularMovies: function(){
+	showPopularMovies: function(teamName){
 
-		var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb +"&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+		var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
 
 		$.ajax({
 			type: "GET",
 			url: urlToCall,
 			dataType: "json",
 			success: function(result){
-				console.log(result);
-				// $.each(result,function(index,item){
-				//    	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
-				// });
+				//console.log(result.results);
+				var item;
+				for(var i = 0; i < 5; i++){
+					item = result.results[i];
+				   	returnMessage += "Name: '"+ item.title + "'\nDescription: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+				}
 				//console.log(returnMessage);
-				//botAction.saveMessage(teamName, returnMessage, bot);
+				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
 
