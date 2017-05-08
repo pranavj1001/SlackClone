@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2017 at 12:25 PM
+-- Generation Time: May 08, 2017 at 08:06 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -295,7 +295,35 @@ INSERT INTO `team3` (`id`, `sender`, `message`) VALUES
 (107, 'bot', 'Ohok, working on it....'),
 (108, 'bot', 'Success: New Projectproject67 is now online!'),
 (109, 'user2', 'Hey Bot'),
-(110, 'bot', 'Hey there, I''m a bot.');
+(110, 'bot', 'Hey there, I''m a bot.'),
+(111, 'user2', 'OK Bot humor me'),
+(112, 'bot', 'Picking a good one for ya'),
+(113, 'user2', 'OK Bot humor me'),
+(114, 'bot', 'Picking a good one for ya'),
+(115, 'user2', 'OK Bot humor me'),
+(116, 'bot', 'Picking a good one for ya'),
+(117, 'user2', 'OK Bot humor me'),
+(118, 'bot', 'Picking a good one for ya'),
+(119, 'user2', 'OK Bot humor me'),
+(120, 'bot', 'Picking a good one for ya'),
+(121, 'user2', 'OK Bot humor me'),
+(122, 'bot', 'Picking a good one for ya'),
+(123, 'user2', 'OK Bot humor me'),
+(124, 'bot', 'Picking a good one for ya'),
+(125, 'bot', 'What do I look like? A JOKE MACHINE!?'),
+(126, 'user2', 'OK Bot humor me'),
+(127, 'bot', 'Picking a good one for ya'),
+(128, 'bot', 'I''m glad I know sign language, it''s pretty handy.'),
+(129, 'user2', 'OK Bot humor me'),
+(130, 'bot', 'Picking a good one for ya'),
+(131, 'user2', 'OK Bot'),
+(132, 'bot', 'Hey there, user2 How can I help you?'),
+(133, 'bot', 'Picking a good one for ya'),
+(134, 'user2', 'OK Bot humor me'),
+(135, 'bot', 'Did you hear about the guy whose whole left side was cut off? He''s all right now.'),
+(136, 'user2', 'OK Bot humor me'),
+(137, 'bot', 'Picking a good one for ya'),
+(138, 'bot', 'Why do mermaid wear sea-shells? Because b-shells are too small.');
 
 -- --------------------------------------------------------
 
@@ -429,7 +457,53 @@ INSERT INTO `team4` (`id`, `sender`, `message`) VALUES
 (113, 'user2', 'project1'),
 (114, 'user2', 'first trial'),
 (115, 'bot', '... To which project?'),
-(116, 'bot', 'Failure: Not able to commit the issue to ');
+(116, 'bot', 'Failure: Not able to commit the issue to '),
+(117, 'user2', 'OK Bot I''m feeling tiredness'),
+(118, 'bot', 'Hey there, user2 How can I help you?'),
+(119, 'bot', 'Hey there, user2 How can I help you?'),
+(120, 'user2', 'OK Bot I''m feeling anxiety'),
+(121, 'user2', 'OK Bot display the latest commit'),
+(122, 'bot', '... of which project?'),
+(123, 'user2', 'project1'),
+(124, 'user2', 'OK Bot display the latest commit'),
+(125, 'bot', '... of which project?'),
+(126, 'user2', 'project2'),
+(127, 'bot', 'This Project doesn''t exist. Want to create a new project with this name: ''project2'' ? Then just type ''OK Bot create a new project'''),
+(128, 'user2', 'OK Bot define a project'),
+(129, 'bot', 'Alright, what''s the name of the project?'),
+(130, 'user2', 'project2'),
+(131, 'bot', 'Ohok, working on it....'),
+(132, 'bot', 'Success: New Project project2 is now online!'),
+(133, 'user2', 'OK Bot display the latest commit of project2'),
+(134, 'bot', 'Ohok, working on it....'),
+(135, 'bot', 'Issue #1\nDescription: no issues found\nIssued by: admin\nDate and Time: 2017-05-06 23:32:44\n'),
+(136, 'user2', 'OK Bot display a commit whose id equals 3'),
+(137, 'bot', 'Hey there, user2 How can I help you?'),
+(138, 'user2', 'OK Bot display the commit whose id equals 3'),
+(139, 'bot', '... of which project?'),
+(140, 'user2', 'project2'),
+(141, 'bot', 'Issue #1\nDescription: no issues found\nIssued by: admin\nDate and Time: 2017-05-06 23:32:44\n'),
+(142, 'user2', 'OK Bot define a new issue'),
+(143, 'bot', 'Hey there, user2 How can I help you?'),
+(144, 'user2', 'OK Bot commit an issue'),
+(145, 'bot', '... To which project?'),
+(146, 'user2', 'project2'),
+(147, 'bot', 'Ohok, working on it....'),
+(148, 'bot', 'Okay, Now type down the text for new Issue.'),
+(149, 'user2', 'issue trial'),
+(150, 'bot', 'Success: Issue commited to project2'),
+(151, 'user2', 'OK Bot display the commit whose id equals 3'),
+(152, 'bot', '... of which project?'),
+(153, 'user2', 'project2'),
+(154, 'bot', 'Success: Issue commited to project2'),
+(155, 'user2', 'OK Bot display the commit whose id equals 3'),
+(156, 'bot', '... of which project?'),
+(157, 'user2', 'project2'),
+(158, 'bot', 'Not Able to perform this request.'),
+(159, 'user2', 'Hey'),
+(160, 'user2', 'YOLO'),
+(161, 'user2', 'OK Bot'),
+(162, 'bot', 'Hey there, user2 How can I help you?');
 
 -- --------------------------------------------------------
 
@@ -443,6 +517,27 @@ CREATE TABLE `team4project1` (
   `createdby` text NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team4project2`
+--
+
+CREATE TABLE `team4project2` (
+  `id` int(11) NOT NULL,
+  `issuedescription` text NOT NULL,
+  `createdby` text NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team4project2`
+--
+
+INSERT INTO `team4project2` (`id`, `issuedescription`, `createdby`, `datetime`) VALUES
+(1, 'no issues found', 'admin', '2017-05-06 23:32:44'),
+(2, 'issue trial', 'user2', '2017-05-06 23:37:09');
 
 -- --------------------------------------------------------
 
@@ -586,7 +681,79 @@ INSERT INTO `team5` (`id`, `sender`, `message`) VALUES
 (123, 'user6', 'OK Bot display the latest issue'),
 (124, 'bot', '... of which project?'),
 (125, 'user6', 'project1'),
-(126, 'bot', 'Issue #2\nDescription: Second Issue\nIssued by: user6\nDate and Time: 2017-05-01 14:32:28\n');
+(126, 'bot', 'Issue #2\nDescription: Second Issue\nIssued by: user6\nDate and Time: 2017-05-01 14:32:28\n'),
+(127, 'user2', 'user2 here'),
+(128, 'user2', 'OK Bot what is the date?'),
+(129, 'bot', 'Current Date is 5/2/2017'),
+(130, 'bot', 'Current Date is 5/2/2017'),
+(131, 'user2', 'OK Bot what is the date?'),
+(132, 'user2', 'OK Bot display the commit whose id = 2'),
+(133, 'bot', '... of which project?'),
+(134, 'user2', 'OK Bot display the issue whose id = 2'),
+(135, 'bot', 'Hey there, user2 How can I help you?'),
+(136, 'user2', 'OK Bot display the issue whose id = 2'),
+(137, 'bot', 'Hey there, user2 How can I help you?'),
+(138, 'user2', 'OK Bot display the commit whose id equals 2'),
+(139, 'bot', '... of which project?'),
+(140, 'user2', 'OK Bot display the commit whose id equals 2'),
+(141, 'bot', '... of which project?'),
+(142, 'user2', 'OK Bot display the commit whose id equals 2'),
+(143, 'bot', '... of which project?'),
+(144, 'user2', 'OK Bot display the commit whose id = 1'),
+(145, 'bot', '... of which project?'),
+(146, 'user2', 'project1'),
+(147, 'user2', 'OK Bot display the commit whose id = 1'),
+(148, 'bot', '... of which project?'),
+(149, 'user2', 'project1'),
+(150, 'bot', 'Issue #1\nDescription: First Issue - Work on designing the site, it is too rough and looks mediocre\nIssued by: user6\nDate and Time: 2017-05-01 13:36:36\n'),
+(151, 'user5', 'OK Bot display current popular movies'),
+(152, 'bot', 'Hey there, user5 How can I help you?'),
+(153, 'user5', 'OK Bot display current popular movies'),
+(154, 'bot', 'Hey there, I''m a bot.'),
+(155, 'user5', 'OK Bot display current popular movies'),
+(156, 'user5', 'OK Bot display current popular movies'),
+(157, 'user5', 'OK Bot display current popular movies'),
+(158, 'user5', 'OK Bot display current popular movies'),
+(159, 'user5', 'OK Bot display current popular movies'),
+(160, 'user5', 'OK Bot display current popular movies'),
+(161, 'user5', 'OK Bot display current popular movies'),
+(162, 'user5', 'OK Bot display current popular movies'),
+(163, 'user5', 'OK Bot display current popular movies'),
+(164, 'user5', 'OK Bot display current popular movies'),
+(165, 'user5', 'OK Bot display current popular movies'),
+(166, 'user5', 'OK Bot display current popular movies'),
+(167, 'user5', 'OK Bot display current popular movies'),
+(168, 'user5', 'OK Bot display current popular movies'),
+(169, 'user5', 'OK Bot display current popular movies'),
+(170, 'user5', 'OK Bot display current popular movies'),
+(171, 'user5', 'OK Bot display current popular movies'),
+(172, 'bot', 'Name: ''Guardians of the Galaxy Vol. 2''\nDescription: The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill''s true parentage.\nReleased Date: 2017-04-24\n\nName: ''Beauty and the Beast''\nDescription: A live-action adaptation of Disney''s version of the classic ''Beauty and the Beast'' tale of a cursed prince and a beautiful young woman who helps him break the spell.\nReleased Date: 2017-03-16\n\nName: ''The Fate of the Furious''\nDescription: When a mysterious woman seduces Dom into the world of crime and a betrayal of those closest to him, the crew face trials that will test them as never before.\nReleased Date: 2017-04-12\n\nName: ''The Boss Baby''\nDescription: A story about how a new baby''s arrival impacts a family, told from the point of view of a delightfully unreliable narrator, a wildly imaginative 7 year old named Tim.\nReleased Date: 2017-03-23\n\nName: ''Guardians of the Galaxy''\nDescription: Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.\nReleased Date: 2014-07-30\n\n'),
+(173, 'user5', 'OK Bot display current popular movies'),
+(174, 'bot', 'Ohok, fetching movie details......'),
+(175, 'bot', 'Name: ''Guardians of the Galaxy Vol. 2''\nDescription: The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill''s true parentage.\nReleased Date: 2017-04-24\n\nName: ''Beauty and the Beast''\nDescription: A live-action adaptation of Disney''s version of the classic ''Beauty and the Beast'' tale of a cursed prince and a beautiful young woman who helps him break the spell.\nReleased Date: 2017-03-16\n\nName: ''The Fate of the Furious''\nDescription: When a mysterious woman seduces Dom into the world of crime and a betrayal of those closest to him, the crew face trials that will test them as never before.\nReleased Date: 2017-04-12\n\nName: ''The Boss Baby''\nDescription: A story about how a new baby''s arrival impacts a family, told from the point of view of a delightfully unreliable narrator, a wildly imaginative 7 year old named Tim.\nReleased Date: 2017-03-23\n\nName: ''Guardians of the Galaxy''\nDescription: Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.\nReleased Date: 2014-07-30\n\n'),
+(176, 'user5', 'OK Bot display current popular movies from the year 2016'),
+(177, 'bot', 'Ohok, fetching movie details......'),
+(178, 'user5', 'OK Bot display current popular movies from the year 2016'),
+(179, 'bot', 'Ohok, fetching movie details......'),
+(180, 'user5', 'OK Bot display current popular movies from the year 2016'),
+(181, 'bot', 'Ohok, fetching movie details......'),
+(182, 'user5', 'OK Bot display the current popular movies from the year 2016'),
+(183, 'bot', 'Hey there, user5 How can I help you?'),
+(184, 'user5', 'OK Bot display current popular movies from the year 2016'),
+(185, 'bot', 'Ohok, fetching movie details......'),
+(186, 'bot', 'Name: ''Sing''\nOverview: A koala named Buster recruits his best friend to help him drum up business for his theater by hosting a singing competition.\nReleased Date: 2016-11-23\n\nName: ''Captain America: Civil War''\nOverview: Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.\nReleased Date: 2016-04-27\n\nName: ''Rogue One: A Star Wars Story''\nOverview: A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy.\nReleased Date: 2016-12-14\n\nName: ''John Wick''\nOverview: Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.\nReleased Date: 2014-10-22\n\nName: ''Fantastic Beasts and Where to Find Them''\nOverview: In 1926, Newt Scamander arrives at the Magical Congress of the United States of America with a magically expanded briefcase, which houses a number of dangerous creatures and their habitats. When the creatures escape from the briefcase, it sends the American wizarding authorities after Newt, and threatens to strain even further the state of magical and non-magical relations.\nReleased Date: 2016-11-16\n\n'),
+(187, 'user5', 'OK Bot display the current popular tv shows'),
+(188, 'bot', 'Hey there, user5 How can I help you?'),
+(189, 'user5', 'OK Bot display the current popular tv shows'),
+(190, 'bot', 'Hey there, user5 How can I help you?'),
+(191, 'user5', 'OK Bot display the current popular tv shows'),
+(192, 'bot', 'Hey there, user5 How can I help you?'),
+(193, 'user5', 'OK Bot display current popular tv shows'),
+(194, 'bot', 'Ohok, fetching TV Shows details......'),
+(195, 'bot', 'Name: ''undefined''\nOverview: The Doctor looks and seems human. He''s handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living â€“ more of a hobby actually, and he''s very, very good at it. He''s saved us from alien menaces and evil from before time began â€“ but just who is he?\nReleased Date: undefined\n\nName: ''undefined''\nOverview: Sheriff''s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon''s equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny''s social skills and common sense.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won''t be long before the world learns what Barry Allen has become...The Flash.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night''s Watch, is all that stands between the realms of men and icy horrors beyond.\nReleased Date: undefined\n\n'),
+(196, 'user5', 'OK Bot display the current popular tv shows'),
+(197, 'bot', 'Ohok, fetching TV Shows details......'),
+(198, 'bot', 'Name: ''Doctor Who''\nOverview: The Doctor looks and seems human. He''s handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living â€“ more of a hobby actually, and he''s very, very good at it. He''s saved us from alien menaces and evil from before time began â€“ but just who is he?\nReleased Date: 2005-03-26\n\nName: ''The Walking Dead''\nOverview: Sheriff''s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\nReleased Date: 2010-10-31\n\nName: ''The Big Bang Theory''\nOverview: The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon''s equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny''s social skills and common sense.\nReleased Date: 2007-09-24\n\nName: ''The Flash''\nOverview: After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won''t be long before the world learns what Barry Allen has become...The Flash.\nReleased Date: 2014-10-07\n\nName: ''Game of Thrones''\nOverview: Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night''s Watch, is all that stands between the realms of men and icy horrors beyond.\nReleased Date: 2011-04-17\n\n');
 
 -- --------------------------------------------------------
 
@@ -859,6 +1026,12 @@ ALTER TABLE `team4project1`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `team4project2`
+--
+ALTER TABLE `team4project2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `team5`
 --
 ALTER TABLE `team5`
@@ -922,22 +1095,27 @@ ALTER TABLE `team2`
 -- AUTO_INCREMENT for table `team3`
 --
 ALTER TABLE `team3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT for table `team4`
 --
 ALTER TABLE `team4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 --
 -- AUTO_INCREMENT for table `team4project1`
 --
 ALTER TABLE `team4project1`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `team4project2`
+--
+ALTER TABLE `team4project2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `team5`
 --
 ALTER TABLE `team5`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 --
 -- AUTO_INCREMENT for table `team5project1`
 --
