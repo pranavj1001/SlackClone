@@ -271,13 +271,27 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
+
+		console.log("Movie Bot (Year)");
+
+		var year = message.substr(52);
+		year.trim();
+		console.log(year);
+		
+		botMessage = "Ohok, fetching movie details......";
+
+		botMovie.showPopularMovies(teamName, 1, year);
+
+		botAction.initializeAllVariables();
+
 	}else if(message.toLowerCase().indexOf("display current popular movies") >= 0){
 
 		console.log("Movie Bot");
 		
 		botMessage = "Ohok, fetching movie details......";
 
-		botMovie.showPopularMovies(teamName);
+		botMovie.showPopularMovies(teamName, 0, 0000);
 
 		botAction.initializeAllVariables();
 
@@ -723,9 +737,13 @@ var botDoctorURL = {
 
 var botMovie = {
 
-	showPopularMovies: function(teamName){
+	showPopularMovies: function(teamName, choice, year){
 
-		var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+		if(choice == 0){
+			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+		}else if(choice == 1){
+			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=" + year;
+		}
 
 		$.ajax({
 			type: "GET",
