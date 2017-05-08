@@ -15,7 +15,7 @@ var token = "?"; //Type your token (APIMedic) here
 var endUrl = "&language=en-gb&format=json";
 
 var movieBaseURL = "https://api.themoviedb.org/3/";
-var apiKey = ""; //Type your api key (TMDb) here
+var apiKeyTMDb = ""; //Type your api key (TMDb) here
 
 var doctorId;
 
@@ -716,5 +716,29 @@ var botDoctorURL = {
 	loadBodySublocations: function() { 
 		return baseUrl + 'body/locations/' + doctorId + token + endUrl;
 	}	
+
+};
+
+var botMovie = {
+
+	showPopularMovies: function(){
+
+		var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb +"&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+
+		$.ajax({
+			type: "GET",
+			url: urlToCall,
+			dataType: "json",
+			success: function(result){
+				console.log(result);
+				// $.each(result,function(index,item){
+				//    	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
+				// });
+				//console.log(returnMessage);
+				//botAction.saveMessage(teamName, returnMessage, bot);
+			}
+		});
+
+	}
 
 };
