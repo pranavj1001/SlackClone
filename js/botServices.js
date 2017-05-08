@@ -274,7 +274,8 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	}else if(message.toLowerCase().indexOf("display current popular movies") >= 0){
 
 		console.log("Movie Bot");
-		dontAllowBotToSendMessage = 1;
+		
+		botMessage = "Ohok, fetching movie details......";
 
 		botMovie.showPopularMovies(teamName);
 
@@ -735,7 +736,7 @@ var botMovie = {
 				var item;
 				for(var i = 0; i < 5; i++){
 					item = result.results[i];
-				   	returnMessage += "Name: '"+ item.title + "'\nDescription: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+				   	returnMessage += "Name: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
 				}
 				//console.log(returnMessage);
 				botAction.saveMessage(teamName, returnMessage, bot);
