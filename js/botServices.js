@@ -764,15 +764,16 @@ var botMovie = {
 			success: function(result){
 				//console.log(result.results);
 				var item;
+				returnMessage = "Here you go";
 				if(choice != 2){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "Here you go\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
 					}
 				}else if(choice == 2){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "Here you go\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n\n";
+					   	returnMessage += "\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n\n";
 					}
 				}
 				//console.log(returnMessage);
