@@ -333,7 +333,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		//console.log("User just wants to see the bot");
 
-		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
+		botMessage = "Hey there, " + currrentUsername + " How can I help you? You may have typed the wrong command. Follow the manual for help.";
 
 		botAction.initializeAllVariables();
 
