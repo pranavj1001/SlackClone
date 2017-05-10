@@ -281,7 +281,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botMessage = "Ohok, fetching movie details......";
 
-		botMovie.showPopularMovies(teamName, 1, year);
+		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
 
 		botAction.initializeAllVariables();
 
@@ -291,7 +291,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botMessage = "Ohok, fetching movie details......";
 
-		botMovie.showPopularMovies(teamName, 0, 0000);
+		botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
 
 		botAction.initializeAllVariables();
 
@@ -301,7 +301,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botMessage = "Ohok, fetching TV Shows details......";
 
-		botMovie.showPopularMovies(teamName, 2, 0000);
+		botMovie.fetchDetailsFromTMDb(teamName, 2, 0000);
 
 		botAction.initializeAllVariables();
 
@@ -311,7 +311,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botMessage = "Ohok, fetching TV Shows details......";
 
-		botMovie.showPopularMovies(teamName, 3, 0000);
+		botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
 
 		botAction.initializeAllVariables();
 
@@ -757,7 +757,7 @@ var botDoctorURL = {
 
 var botMovie = {
 
-	showPopularMovies: function(teamName, choice, year){
+	fetchDetailsFromTMDb: function(teamName, choice, year){
 
 		if(choice == 0){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
