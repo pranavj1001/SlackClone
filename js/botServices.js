@@ -305,6 +305,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0)){
+
+		//console.log("Movie Bot");
+		
+		botMessage = "Ohok, fetching TV Shows details......";
+
+		botMovie.showPopularMovies(teamName, 3, 0000);
+
+		botAction.initializeAllVariables();
+
 	}else{
 
 		//console.log("User just wants to see the bot");
