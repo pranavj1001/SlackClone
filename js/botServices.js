@@ -271,11 +271,25 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if((message.toLowerCase().indexOf("display current popular movies from the year ") >= 0) || (message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0)){
+	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
 
 		//console.log("Movie Bot (Year)");
 
 		var year = message.substr(52);
+		year.trim();
+		console.log(year);
+		
+		botMessage = "Ohok, fetching movie details......";
+
+		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
+
+		botAction.initializeAllVariables();
+
+	}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
+
+		//console.log("Movie Bot (Year)");
+
+		var year = message.substr(56);
 		year.trim();
 		console.log(year);
 		
