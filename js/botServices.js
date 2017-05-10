@@ -777,12 +777,12 @@ var botMovie = {
 				//console.log(result.results);
 				var item;
 				returnMessage = "Here you go";
-				if(choice != 2){
+				if((choice != 2) && (choice != 3)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
 					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
 					}
-				}else if(choice == 2){
+				}else{ //else if((choice == 2) || (choice == 3)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
 					   	returnMessage += "\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n\n";
