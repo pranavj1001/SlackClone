@@ -810,3 +810,26 @@ var botMovie = {
 	}
 
 };
+
+var botStocks = {
+
+	getStockInfo: function(){
+		var USERNAME = "";
+		var PASSWORD = "";
+
+		$.ajax
+		({
+		  type: "GET",
+		  url: "https://api.intrinio.com/companies?ticker=AAPL",
+		  dataType: 'json',
+		  async: false,
+		  headers: {
+		    "Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
+		  },
+		  success: function (response){
+		    console.log(response);
+		  }
+		});
+	}
+
+};
