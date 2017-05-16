@@ -19,6 +19,8 @@ var apiKeyTMDb = ""; //Type your api key (TMDb) here
 
 var doctorId;
 
+var stockCompanyName = "";
+
 function findTheServiceRequired(message, teamName, currrentUsername){
 
 	dontAllowBotToSendMessage = 0;
@@ -326,6 +328,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "Ohok, fetching TV Shows details......";
 
 		botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
+
+		botAction.initializeAllVariables();
+
+	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
+
+		console.log("Stock Bot");
+
+		stockCompanyName = message.substr(40);
+
+		botStocks.getCompanyInfo(1, stockCompanyName);
 
 		botAction.initializeAllVariables();
 
@@ -814,7 +826,7 @@ var botMovie = {
 var botStocks = {
 
 	getCompanyInfo: function(){
-		
+
 		var USERNAME = "";
 		var PASSWORD = "";
 
