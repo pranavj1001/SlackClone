@@ -74,11 +74,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "Alright, what's the name of the project?";
 
-		projectDefineSteps = 1;
+		botAction.initializeAllVariables();
 
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeIssueShowLatestStepsVariable();
-		botAction.initializeIssueShowStepsVariable();
+		projectDefineSteps = 1;
 
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 
@@ -104,12 +102,10 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "... To which project?";
 
+		botAction.initializeAllVariables();
+
 		issueDefineSteps = 1;
 		//console.log(issueDefineSteps);
-		
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueShowLatestStepsVariable();
-		botAction.initializeIssueShowStepsVariable();
 
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
 
@@ -127,12 +123,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "Ohok, working on it....";
 
-		botAction.preCommitAnIssue(message, teamName, message);
+		botAction.initializeAllVariables();
 
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueShowLatestStepsVariable();
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeIssueShowStepsVariable();
+		botAction.preCommitAnIssue(message, teamName, message);
 
 	}else if(issueDefineSteps == 2){
 
@@ -182,11 +175,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "... of which project?";
 
+		botAction.initializeAllVariables();
+
 		issueShowLatestSteps = 1;
-		
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
-		botAction.initializeIssueShowStepsVariable();
 
 	}else if(issueShowLatestSteps == 1){
 
@@ -206,10 +197,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		issueId.trim();
 		//console.log(issueId);
 
+		botAction.initializeAllVariables();
+
 		issueShowSteps = 1;
-		
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
 
 	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
 
@@ -221,10 +211,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		issueId.trim();
 		//console.log(issueId);
 
+		botAction.initializeAllVariables();
+
 		issueShowSteps = 1;
-		
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
 
 	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
 
@@ -236,10 +225,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		issueId.trim();
 		//console.log(issueId);
 
+		botAction.initializeAllVariables();
+
 		issueShowSteps = 1;
-		
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
 
 	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
 
@@ -251,10 +239,9 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		issueId.trim();
 		//console.log(issueId);
 
+		botAction.initializeAllVariables();
+
 		issueShowSteps = 1;
-		
-		botAction.initializeIssueStepsVariable();
-		botAction.initializeProjectStepsVariable();
 
 	}else if(issueShowSteps == 1){
 
