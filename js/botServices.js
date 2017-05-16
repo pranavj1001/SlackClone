@@ -335,7 +335,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "About which company?";
 
-		//botStocks.getCompanyInfo(message, teamName);
+		botStocks.getCompanyInfo(message, teamName);
 
 		botAction.initializeAllVariables();
 
@@ -349,7 +349,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		stockCompanyName.trim();
 		console.log(stockCompanyName);
 
-		//botStocks.getCompanyInfo(stockCompanyName, teamName);
+		botStocks.getCompanyInfo(stockCompanyName, teamName);
 
 		botAction.initializeAllVariables();
 
@@ -858,6 +858,7 @@ var botStocks = {
 			},
 			success: function (response){
 				console.log(response);
+				botStocks.getStockPrice(stockCompanyName);
 			},
 			error: function(response){
 				botAction.saveMessage(teamName, "Oops! Not able to find this company", bot);
@@ -865,14 +866,16 @@ var botStocks = {
 		});
 	},
 
-	getStockPrice: function(){
+	getStockPrice: function(stockCompanyName){
 
 		var USERNAME = "";
 		var PASSWORD = "";
 
+		var urlToCall = "https://api.intrinio.com/data_point?identifier=" + stockCompanyName + "&item=close_price";
+
 		$.ajax({
 		  	type: "GET",
-			url: "https://api.intrinio.com/data_point?identifier=AAPL&item=close_price",
+			url: urlToCall,
 			dataType: 'json',
 			headers: {
 			    "Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
