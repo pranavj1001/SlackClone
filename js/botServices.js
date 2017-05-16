@@ -813,23 +813,41 @@ var botMovie = {
 
 var botStocks = {
 
-	getStockInfo: function(){
+	getCompanyInfo: function(){
+		
 		var USERNAME = "";
 		var PASSWORD = "";
 
-		$.ajax
-		({
-		  type: "GET",
-		  url: "https://api.intrinio.com/companies?ticker=AAPL",
-		  dataType: 'json',
-		  async: false,
-		  headers: {
-		    "Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
-		  },
-		  success: function (response){
-		    console.log(response);
-		  }
+		$.ajax({
+			type: "GET",
+			url: "https://api.intrinio.com/companies?ticker=AAPL",
+			dataType: 'json',
+			headers: {
+				"Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
+			},
+			success: function (response){
+				console.log(response);
+			}
 		});
+	}
+
+	getStockPrice: function(){
+
+		var USERNAME = "";
+		var PASSWORD = "";
+
+		$.ajax({
+		  	type: "GET",
+			url: "https://api.intrinio.com/data_point?identifier=AAPL&item=close_price",
+			dataType: 'json',
+			headers: {
+			    "Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
+			},
+			success: function(response) {
+				console.log(response);
+			}
+		});
+
 	}
 
 };
