@@ -9,6 +9,7 @@ var returnMessage = "";
 var dontAllowBotToSendMessage = 0;
 var dontSaveThisUserMessage = 0;
 var bot = "bot";
+var stockCompanyPause;
 
 var baseUrl = "https://sandbox-healthservice.priaid.ch/";
 var token = "?"; //Type your token (APIMedic) here 
@@ -331,6 +332,26 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
+
+		console.log("Stock Bot (Company Name Not Mentioned)");
+
+		botMessage = "About which company?";
+
+		botAction.initializeAllVariables();
+
+		stockCompanyPause = 1;
+
+	}else if(stockCompanyPause){
+
+		console.log("Stock Bot (Get Company Name)");
+
+		botMessage = "About which company?";
+
+		//botStocks.getCompanyInfo(message, teamName);
+
+		botAction.initializeAllVariables();
+
 	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
 
 		console.log("Stock Bot (Company Name Mentioned)");
@@ -338,8 +359,10 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "Ohok, Working on it......";
 
 		stockCompanyName = message.substr(40);
+		stockCompanyName.trim();
+		console.log(stockCompanyName);
 
-		botStocks.getCompanyInfo(stockCompanyName, teamName);
+		//botStocks.getCompanyInfo(stockCompanyName, teamName);
 
 		botAction.initializeAllVariables();
 
@@ -579,9 +602,14 @@ var botAction = {
 		issueShowLatestSteps = 0;
 	},
 
+	initializeStockCompanyPauseVariable: function(){
+		stockCompanyPause = 0;
+	},
+
 	initializeAllVariables: function(){
 		issueShowSteps = 0;
 		issueDefineSteps = 0;
+		stockCompanyPause = 0;
 		projectDefineSteps = 0;
 		issueShowLatestSteps = 0;
 	},
@@ -808,12 +836,12 @@ var botMovie = {
 				if((choice != 2) && (choice != 3)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n\n";
+					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n";
 					}
 				}else{ //else if((choice == 2) || (choice == 3)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n\n";
+					   	returnMessage += "\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n";
 					}
 				}
 				//console.log(returnMessage);
@@ -848,7 +876,7 @@ var botStocks = {
 				botAction.saveMessage(teamName, "Oops! Not able to find this company", bot);
 			}
 		});
-	}
+	},
 
 	getStockPrice: function(){
 
