@@ -333,11 +333,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
 
-		console.log("Stock Bot");
+		console.log("Stock Bot (Company Name Mentioned)");
+
+		botMessage = "Ohok, Working on it......";
 
 		stockCompanyName = message.substr(40);
 
-		botStocks.getCompanyInfo(1, stockCompanyName);
+		botStocks.getCompanyInfo(stockCompanyName, teamName);
 
 		botAction.initializeAllVariables();
 
@@ -825,20 +827,25 @@ var botMovie = {
 
 var botStocks = {
 
-	getCompanyInfo: function(){
+	getCompanyInfo: function(stockCompanyName, teamName){
 
 		var USERNAME = "";
 		var PASSWORD = "";
 
+		var urlToCall = "https://api.intrinio.com/companies?ticker=" + stockCompanyName; 
+
 		$.ajax({
 			type: "GET",
-			url: "https://api.intrinio.com/companies?ticker=AAPL",
+			url: urlToCall,
 			dataType: 'json',
 			headers: {
 				"Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
 			},
 			success: function (response){
 				console.log(response);
+			},
+			error: function(response){
+				botAction.saveMessage(teamName, "Oops! Not able to find this company", bot);
 			}
 		});
 	}
