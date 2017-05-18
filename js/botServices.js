@@ -844,8 +844,8 @@ var botStocks = {
 
 	getCompanyInfo: function(stockCompanyName, teamName){
 
-		var USERNAME = "8a304ec3a55a2ca523be45ad37f94797";
-		var PASSWORD = "32fab8030b2d0be7946aacb40984a1e2";
+		var USERNAME = "";
+		var PASSWORD = "";
 
 		var urlToCall = "https://api.intrinio.com/companies?ticker=" + stockCompanyName;
 		var returnMessage = "Oops! Not able to find this company"; 
@@ -861,7 +861,7 @@ var botStocks = {
 				//console.log(response);
 				returnMessage = "\nShowing Info about: " + stockCompanyName + "\nLegal Name: " + response.legal_name + "\nSector: " + response.sector + "\nIndustry Group: " + response.industry_group + "\nAddress: " + response.business_address + "\nPhone Number: " + response.business_phone_no + "\nCompany URL: " + response.company_url;
 				//console.log(returnMessage);
-				botStocks.getStockPrice(stockCompanyName, returnMessage);
+				botStocks.getStockPrice(stockCompanyName, returnMessage, teamName);
 			},
 			error: function(response){
 				botAction.saveMessage(teamName, returnMessage, bot);
@@ -869,10 +869,10 @@ var botStocks = {
 		});
 	},
 
-	getStockPrice: function(stockCompanyName, returnMessage){
+	getStockPrice: function(stockCompanyName, returnMessage, teamName){
 
-		var USERNAME = "8a304ec3a55a2ca523be45ad37f94797";
-		var PASSWORD = "32fab8030b2d0be7946aacb40984a1e2";
+		var USERNAME = "";
+		var PASSWORD = "";
 
 		var urlToCall = "https://api.intrinio.com/data_point?identifier=" + stockCompanyName + "&item=close_price";
 
@@ -887,6 +887,7 @@ var botStocks = {
 				//console.log(response);
 				returnMessage += "\nStock Price: " + response.value;
 				console.log(returnMessage);
+				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
 
