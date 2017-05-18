@@ -847,7 +847,8 @@ var botStocks = {
 		var USERNAME = "";
 		var PASSWORD = "";
 
-		var urlToCall = "https://api.intrinio.com/companies?ticker=" + stockCompanyName; 
+		var urlToCall = "https://api.intrinio.com/companies?ticker=" + stockCompanyName;
+		var returnMessage = "Oops! Not able to find this company"; 
 
 		$.ajax({
 			type: "GET",
@@ -858,10 +859,12 @@ var botStocks = {
 			},
 			success: function (response){
 				console.log(response);
+				returnMessage = "\nShowing Info about: " + stockCompanyName + "\nLegal Name: " + response.legal_name + "\nSector: " + response.sector + "\nIndustry Group: " + response.industry_group + "\nAddress: " + response.business_address + "\nPhone Number: " + response.business_phone_no + "\nCompany URL: " + response.company_url;
+				console.log(returnMessage);
 				botStocks.getStockPrice(stockCompanyName);
 			},
 			error: function(response){
-				botAction.saveMessage(teamName, "Oops! Not able to find this company", bot);
+				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
 	},
