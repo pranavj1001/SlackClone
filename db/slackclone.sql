@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2017 at 08:06 PM
+-- Generation Time: May 18, 2017 at 07:18 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -753,7 +753,16 @@ INSERT INTO `team5` (`id`, `sender`, `message`) VALUES
 (195, 'bot', 'Name: ''undefined''\nOverview: The Doctor looks and seems human. He''s handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living â€“ more of a hobby actually, and he''s very, very good at it. He''s saved us from alien menaces and evil from before time began â€“ but just who is he?\nReleased Date: undefined\n\nName: ''undefined''\nOverview: Sheriff''s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon''s equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny''s social skills and common sense.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won''t be long before the world learns what Barry Allen has become...The Flash.\nReleased Date: undefined\n\nName: ''undefined''\nOverview: Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night''s Watch, is all that stands between the realms of men and icy horrors beyond.\nReleased Date: undefined\n\n'),
 (196, 'user5', 'OK Bot display the current popular tv shows'),
 (197, 'bot', 'Ohok, fetching TV Shows details......'),
-(198, 'bot', 'Name: ''Doctor Who''\nOverview: The Doctor looks and seems human. He''s handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living â€“ more of a hobby actually, and he''s very, very good at it. He''s saved us from alien menaces and evil from before time began â€“ but just who is he?\nReleased Date: 2005-03-26\n\nName: ''The Walking Dead''\nOverview: Sheriff''s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\nReleased Date: 2010-10-31\n\nName: ''The Big Bang Theory''\nOverview: The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon''s equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny''s social skills and common sense.\nReleased Date: 2007-09-24\n\nName: ''The Flash''\nOverview: After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won''t be long before the world learns what Barry Allen has become...The Flash.\nReleased Date: 2014-10-07\n\nName: ''Game of Thrones''\nOverview: Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night''s Watch, is all that stands between the realms of men and icy horrors beyond.\nReleased Date: 2011-04-17\n\n');
+(198, 'bot', 'Name: ''Doctor Who''\nOverview: The Doctor looks and seems human. He''s handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living â€“ more of a hobby actually, and he''s very, very good at it. He''s saved us from alien menaces and evil from before time began â€“ but just who is he?\nReleased Date: 2005-03-26\n\nName: ''The Walking Dead''\nOverview: Sheriff''s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.\nReleased Date: 2010-10-31\n\nName: ''The Big Bang Theory''\nOverview: The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon''s equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny''s social skills and common sense.\nReleased Date: 2007-09-24\n\nName: ''The Flash''\nOverview: After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won''t be long before the world learns what Barry Allen has become...The Flash.\nReleased Date: 2014-10-07\n\nName: ''Game of Thrones''\nOverview: Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night''s Watch, is all that stands between the realms of men and icy horrors beyond.\nReleased Date: 2011-04-17\n\n'),
+(199, 'user4', 'OK Bot show me stock related info about GE'),
+(200, 'bot', 'Ohok, Working on it......'),
+(201, 'user4', 'OK Bot show me stock related info about GE'),
+(202, 'bot', 'Ohok, Working on it......'),
+(203, 'bot', 'Oops! Not able to find this company'),
+(204, 'user4', 'OK Bot show me stock related info about GE'),
+(205, 'bot', 'Ohok, Working on it......'),
+(206, 'user4', 'OK Bot show me stock related info about GOOGL'),
+(207, 'bot', 'Ohok, Working on it......');
 
 -- --------------------------------------------------------
 
@@ -931,6 +940,67 @@ INSERT INTO `team6project101` (`id`, `issuedescription`, `createdby`, `datetime`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `team7`
+--
+
+CREATE TABLE `team7` (
+  `id` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team7`
+--
+
+INSERT INTO `team7` (`id`, `sender`, `message`) VALUES
+(1, 'user7', 'OK Bot'),
+(2, 'bot', 'Hey there, user7 How can I help you? You may have typed the wrong command. Follow the manual for help.'),
+(3, 'user7', 'OK Bot show me stock related info about AAPL'),
+(4, 'bot', 'Ohok, Working on it......'),
+(5, 'bot', 'Oops! Not able to find this company'),
+(6, 'user7', 'OK Bot show me stock related info about AAPL'),
+(7, 'bot', 'Ohok, Working on it......'),
+(8, 'bot', 'Ohok, Working on it......'),
+(9, 'user7', 'OK Bot show me stock related info about AAPL'),
+(10, 'user7', 'OK Bot show me stock related info about AAPL'),
+(11, 'bot', 'Ohok, Working on it......'),
+(12, 'user7', 'OK Bot show me stock related info about AAPL'),
+(13, 'bot', 'Ohok, Working on it......'),
+(14, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(15, 'bot', 'Ohok, Working on it......'),
+(16, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(17, 'bot', 'Ohok, Working on it......'),
+(18, 'user7', 'OK Bot show me stock related info about GE'),
+(19, 'bot', 'Ohok, Working on it......'),
+(20, 'user7', 'OK Bot show me stock related info about SONY'),
+(21, 'bot', 'Ohok, Working on it......'),
+(22, 'bot', 'Oops! Not able to find this company'),
+(23, 'user7', 'OK Bot show me stock related info about TYO'),
+(24, 'bot', 'Ohok, Working on it......'),
+(25, 'bot', 'Oops! Not able to find this company'),
+(26, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(27, 'bot', 'Ohok, Working on it......'),
+(28, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(29, 'bot', 'Ohok, Working on it......'),
+(30, 'user7', 'OK Bot show me stock related info GOOGL'),
+(31, 'bot', 'Hey there, user7 How can I help you? You may have typed the wrong command. Follow the manual for help.'),
+(32, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(33, 'bot', 'Ohok, Working on it......'),
+(34, 'bot', 'Ohok, Working on it......'),
+(35, 'user7', 'OK Bot show me stock related info about GOOGL'),
+(36, 'bot', '\nShowing Info about: GOOGL\nLegal Name: Alphabet Inc.\nSector: Technology\nIndustry Group: Internet Information Providers\nAddress: 1600 AMPHITHEATRE PARKWAY, MOUNTAIN VIEW, CA 94043\nPhone Number: 650-253-0000\nCompany URL: abc.xyz\nStock Price: 947.85'),
+(37, 'bot', '\nShowing Info about: GOOGL\nLegal Name: Alphabet Inc.\nSector: Technology\nIndustry Group: Internet Information Providers\nAddress: 1600 AMPHITHEATRE PARKWAY, MOUNTAIN VIEW, CA 94043\nPhone Number: 650-253-0000\nCompany URL: abc.xyz\nStock Price: 947.85'),
+(38, 'user7', 'OK Bot show me stock related info about AAPL'),
+(39, 'bot', 'Ohok, Working on it......'),
+(40, 'bot', '\nShowing Info about: AAPL\nLegal Name: APPLE INC\nSector: Consumer Goods\nIndustry Group: Electronic Equipment\nAddress: ONE INFINITE LOOP, CUPERTINO, CA 95014\nPhone Number: (408) 996-1010\nCompany URL: www.apple.com\nStock Price: 152.06'),
+(41, 'user7', 'OK Bot show me stock related info about GE'),
+(42, 'bot', 'Ohok, Working on it......'),
+(43, 'bot', '\nShowing Info about: GE\nLegal Name: GENERAL ELECTRIC CO\nSector: Industrial Goods\nIndustry Group: Diversified Machinery\nAddress: 41 FARNSWORTH STREET, BOSTON, MA 02210\nPhone Number: 617-443-3000\nCompany URL: www.ge.com\nStock Price: 27.47');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teamdetails`
 --
 
@@ -951,7 +1021,8 @@ INSERT INTO `teamdetails` (`id`, `teamadmin`, `teamname`, `teampassword`) VALUES
 (7, 'user5', 'team3', '294b319c79e3069a92434871571c9ae8'),
 (8, 'user5', 'team5', '7a548f160996fafe2f51969211f2e0c7'),
 (9, 'user2', 'team4', '1de9a70660fb54b17535e830c8614358'),
-(10, 'user6', 'team6', '271170ec2bed4c154a45b775c8f25c23');
+(10, 'user6', 'team6', '271170ec2bed4c154a45b775c8f25c23'),
+(11, 'user7', 'team7', '7456d7c7b4aa2fb72474d7786489fba1');
 
 -- --------------------------------------------------------
 
@@ -977,7 +1048,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (4, 'user3', 'user3@user3.com', '131537b807ca3664ddc5e6b0fae2d5f9'),
 (5, 'user4', 'user4@user4.com', '7edb860a8c4181757a1e2db4fbc52a3f'),
 (6, 'user5', 'user5@user5.com', '0c1009e92128844c97a43f69f3be12d6'),
-(7, 'user6', 'user6@user6.com', 'f20a7f13b868541e32ec92105c42ba25');
+(7, 'user6', 'user6@user6.com', 'f20a7f13b868541e32ec92105c42ba25'),
+(8, 'user7', 'user7@user7.com', 'c42118712e96bc41c105d69495b63de2');
 
 --
 -- Indexes for dumped tables
@@ -1056,6 +1128,12 @@ ALTER TABLE `team6project101`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `team7`
+--
+ALTER TABLE `team7`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
@@ -1115,7 +1193,7 @@ ALTER TABLE `team4project2`
 -- AUTO_INCREMENT for table `team5`
 --
 ALTER TABLE `team5`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 --
 -- AUTO_INCREMENT for table `team5project1`
 --
@@ -1132,15 +1210,20 @@ ALTER TABLE `team6`
 ALTER TABLE `team6project101`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `team7`
+--
+ALTER TABLE `team7`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
 -- AUTO_INCREMENT for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
