@@ -34,3 +34,10 @@
   - [ ] Can tell medication based on symptoms.
   - [ ] Can tell whether the current disease is severe or not.
   - [ ] Can suggest nearby hospitals.
+  
+## Manual
+
+  This section will be updated soon.
+  
+  
+**Note**: The bot is not complete yet, but is under constant development.
