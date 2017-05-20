@@ -5,6 +5,8 @@
   
 ## Features
 
+  The Features not marked are not done yet. Also, as soon as I get new implementable ideas, I add them here i.e. unmarked features may also be new upcoming features.
+
 ### Assistant
   - [X] Greets the user when called.
   - [X] Has sense of humor to make the mood light.
