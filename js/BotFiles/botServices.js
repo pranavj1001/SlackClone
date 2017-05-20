@@ -49,13 +49,17 @@ var apiKeyTMDb = ""; //Type your api key (TMDb) here
 //var which will be used in our api for our doctorBot
 var doctorId;
 
+//This function is called from the main chatWindow.php page
+//It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
 function findTheServiceRequired(message, teamName, currrentUsername){
 
+	//by default let the main chatWindow control the saving of messages.
 	dontAllowBotToSendMessage = 0;
 	dontSaveThisUserMessage = 0;
 
-	//console.log("Reached here " + message);
+	//Below, are multi if-else statements which are nothing but rules which tell the bot to do certain things.
 
+	//this rules initializes all the variables which basically ends every process which the bot was previously doing
 	if(message.toLowerCase().indexOf("revert last command") >= 0){
 
 		dontAllowBotToSendMessage = 0;
