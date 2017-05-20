@@ -1,26 +1,53 @@
+//Note: Work is still in progress, code is not refined and optimized yet,
+//as my main goal currently is to make the bot do all things that i want it to do.
+//However, suggestions are welcome :)
+
+//var to contain BotMessage, also shared on the main chatWindow page, use with caution
 var botMessage = "Hey there, I'm a bot.";
+
+//var which is used in creating a new project table
 var projectDefineSteps = 0;
+
+//var which is used in creating/revealing an issue/a commit for/of a project
 var issueDefineSteps = 0;
 var issueShowLatestSteps = 0;
 var issueShowSteps = 0;
 var issueId = 0;
 var projectNameForIssue = "";
+
+//var to contain BotMessage, not shared with the main chatWindow page (used in different processes defined below)
 var returnMessage = "";
+
+//var to control the saving of message on the main chatWindow from here
+//due to many asynchronous calls, sometimes due to delay the ordering of bot and user messages may suffer.
+//therefore inorder to control this, these vars are used.
 var dontAllowBotToSendMessage = 0;
 var dontSaveThisUserMessage = 0;
-var bot = "bot";
-var stockCompanyPause;
 
+var bot = "bot";
+
+//-------API vars-------//
+//For API keys ask/email me or create your own key at their site. It's free to get a API Key
+
+//used Intrinio API to get stock related info of a company.
+//awesome API, should try it out.
+var stockCompanyPause;
+var stockCompanyName = "";
+
+//used APIMedic API to get info about medication and symptoms.
+//However, if we are able to create our own data (our very own API) and use then APIMedic api will be of no use.
+//Currently working on do so ^.
 var baseUrl = "https://sandbox-healthservice.priaid.ch/";
 var token = "?"; //Type your token (APIMedic) here 
 var endUrl = "&language=en-gb&format=json";
 
+//used TMDb api to info about popular movies and tv shows.
+//awesome API, should try it out.
 var movieBaseURL = "https://api.themoviedb.org/3/";
 var apiKeyTMDb = ""; //Type your api key (TMDb) here
 
+//var which will be used in our api for our doctorBot
 var doctorId;
-
-var stockCompanyName = "";
 
 function findTheServiceRequired(message, teamName, currrentUsername){
 
