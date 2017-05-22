@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.main{
+	width: 60%;
+	border: 1px solid black;
+}
+.left{
+    color:red;
+    border:1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+.right{
+	text-align: right;
+	border:1px solid black;
+    padding: 10px;
+     margin: 10px;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var chat = ["mukesh:hello1",
+            "ganesh:hello2",
+            "mukesh:hello3",
+            "ganesh:hello4",
+            "mukesh:hello5",
+            "ganesh:hello6",
+            "mukesh:hello7",
+            "ganesh:hello8",
+            "mukesh:hello9",
+            "ganesh:hello10",
+            "mukesh:hello11",
+            "ganesh:hello12",
+            "mukesh:hello13",
+            "mukesh:hello15",
+            "ganesh:hello14",
+            "ganesh:hello16",
+            "mukesh:hello17",
+            "ganesh:hello18",
+            "mukesh:hello19",
+            "ganesh:hello20"];
+
+ var sender="mukesh:";
+ var replier="ganesh:";
+ var len=chat.length;
+
+$(document).ready(function(){
+
+	for(i=0;i<len;i++){
+		if(chat[i].indexOf(sender)!=-1){
+            $("<br>").insertAfter($("<div>"+chat[i]+"</div>").addClass("left").appendTo(".main"));
+        }
+        else if (chat[i].indexOf(replier)!=-1) {
+        	$("<br>").insertAfter($("<div>"+chat[i]+"</div>").addClass("right").appendTo(".main"));
+        } 
+
+    }
+
+});
+</script>
+</head>
+<body>
+
+<div class="main">
+</div>
+</body>
+</html>
