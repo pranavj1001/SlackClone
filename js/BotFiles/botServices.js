@@ -59,7 +59,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 	//Below, are multi if-else statements which are nothing but rules which tell the bot to do certain things.
 
-	//this rules initializes all the variables which basically ends every process which the bot was previously doing
+	//this rules initializes all the variables which basically ends every process which the bot was previously doing.
 	if(message.toLowerCase().indexOf("revert last command") >= 0){
 
 		dontAllowBotToSendMessage = 0;
@@ -68,6 +68,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//this rule picks up a random joke from the array below in botAction object literal.
 	}else if((message.toLowerCase().indexOf("humor me") >= 0) || (message.toLowerCase().indexOf("have any joke") >= 0) || (message.toLowerCase().indexOf("joke of the moment") >= 0) || (message.toLowerCase().indexOf("make me laugh") >= 0) || (message.toLowerCase().indexOf("a joke for me") >= 0)){
 
 		//console.log("Jokes");
@@ -81,6 +82,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//this rule sets botMessage to current local time
 	}else if((message.toLowerCase().indexOf("what's the time") >= 0) || (message.toLowerCase().indexOf("whats the time") >= 0) || (message.toLowerCase().indexOf("what is the time") >= 0) || (message.toLowerCase().indexOf("what's the time?") >= 0) || (message.toLowerCase().indexOf("whats the time?") >= 0) || (message.toLowerCase().indexOf("what is the time?") >= 0)){
 
 		//console.log("Get Time");
@@ -90,6 +92,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//this rule sets botMessage to current local date
 	}else if((message.toLowerCase().indexOf("what's the date") >= 0) || (message.toLowerCase().indexOf("whats the date") >= 0) || (message.toLowerCase().indexOf("what is the date") >= 0) || (message.toLowerCase().indexOf("what's the date?") >= 0) || (message.toLowerCase().indexOf("whats the date?") >= 0) || (message.toLowerCase().indexOf("what is the date?") >= 0)){
 
 		//console.log("Get Time");
@@ -99,6 +102,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//this rule is used to define a new project, tells user to write the name of the project
 	}else if(((message.toLowerCase().indexOf("define a new project") >= 0) || (message.toLowerCase().indexOf("create a new project") >= 0) || (message.toLowerCase().indexOf("create a project") >= 0) || (message.toLowerCase().indexOf("define a project") >= 0)) && (projectDefineSteps == 0)){
 
 		//console.log("Create a new Project");
@@ -109,6 +113,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		projectDefineSteps = 1;
 
+	//if the user explicitly says to revert project definition
 	}else if(((message.toLowerCase().indexOf("revert project definition") >= 0) || (message.toLowerCase().indexOf("revert project creation") >= 0)) && (projectDefineSteps === 1)){
 
 		//console.log("Rollback Project Declaration");
@@ -117,6 +122,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//if user doesn't reverts back previous rule then the project name is taken and a new table is created in db 
 	}else if(projectDefineSteps === 1){
 
 		//console.log("Actual, Project Creation started.");
@@ -127,6 +133,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeAllVariables();
 
+	//this rule is used to commit an issue in the project, bot asks for projectname
 	}else if(((message.toLowerCase().indexOf("commit an issue") >= 0) || (message.toLowerCase().indexOf("insert an issue") >= 0) || (message.toLowerCase().indexOf("add an issue") >= 0)) && (issueDefineSteps == 0)){
 
 		//console.log("Commit an issue");
@@ -138,6 +145,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		issueDefineSteps = 1;
 		//console.log(issueDefineSteps);
 
+	//if user explicitly says to revert issue creation
 	}else if(((message.toLowerCase().indexOf("revert issue definition") >= 0) || (message.toLowerCase().indexOf("revert issue creation") >= 0)) && ((issueDefineSteps === 1) || (issueDefineSteps === 2))){
 
 		//console.log("Rollback Issue Creation");
@@ -148,6 +156,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		
 		botAction.initializeAllVariables();
 
+	//if user doesn't revert back then, projectname is taken and is checked whether that project exists or not.
 	}else if(issueDefineSteps == 1){
 
 		//console.log("Checking whether that project exits or not.");
@@ -158,6 +167,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.preCommitAnIssue(message, teamName, message);
 
+	//if successful in previous rule then bot saves the issue in the projectname table
 	}else if(issueDefineSteps == 2){
 
 		//console.log("Final Stage: Commit the issue");
