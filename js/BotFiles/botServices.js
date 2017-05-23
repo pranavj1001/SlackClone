@@ -178,6 +178,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//if the user explicitly says to revert revealing of issues or commits
 	}else if(message.toLowerCase().indexOf("revert issue revealing") >= 0){
 
 		dontAllowBotToSendMessage = 0;
@@ -186,11 +187,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display latest issue/commit (projectName Entered)
 	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
 
 		//console.log("Display the latest issue (ProjectName Entered)");
 		projectNameForIssue = message.substr(35);
-		//console.log(projectNameForIssue);
 
 		botMessage = "Ohok, working on it....";
 
@@ -198,6 +199,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display latest issue/commit (projectName Entered)
 	}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
 
 		//console.log("Display the latest issue (ProjectName Entered)");
@@ -210,6 +212,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display latest issue (projectName not Entered)
 	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
 
 		//console.log("Display the latest issue (ProjectName Not Entered)");
@@ -220,6 +223,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueShowLatestSteps = 1;
 
+	//if user didn't enter the projectName then take the projectName
 	}else if(issueShowLatestSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
@@ -228,6 +232,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display issue/commit (projectName not Entered but ID is given)
 	}else if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
 
 		//console.log("Display the issue (ID Entered)");
@@ -242,6 +247,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueShowSteps = 1;
 
+	//rule to display issue/commit (projectName not Entered but ID is given)
 	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
 
 		//console.log("Display the issue (ID Entered)");
@@ -256,6 +262,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueShowSteps = 1;
 
+	//rule to display issue/commit (projectName not Entered but ID is given)
 	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
 
 		//console.log("Display the issue (ID Entered)");
@@ -270,6 +277,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueShowSteps = 1;
 
+	//rule to display issue/commit (projectName not Entered but ID is given)
 	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
 
 		//console.log("Display the issue (ID Entered)");
@@ -284,6 +292,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueShowSteps = 1;
 
+	//take the projectName and display the issue/commit
 	}else if(issueShowSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
@@ -292,6 +301,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//take the current feelings of user and display corresponding problem/disease
 	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
 
 		console.log("Doctor Bot (Symptoms)");
@@ -302,6 +312,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display popular movies (year given)
 	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
 
 		//console.log("Movie Bot (Year)");
@@ -316,6 +327,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display popular movies (year given)
 	}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
 
 		//console.log("Movie Bot (Year)");
@@ -330,6 +342,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display popular movies (year not given, current year assumed automatically)
 	}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me current popular movies") >= 0)){
 
 		//console.log("Movie Bot");
@@ -340,6 +353,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display popular tv shows (current year assumed)
 	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me current popular tv shows") >= 0)){
 
 		//console.log("Movie Bot");
@@ -350,6 +364,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display top rated tv shows (current year assumed)
 	}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me current top rated tv shows") >= 0)){
 
 		//console.log("Movie Bot");
@@ -360,6 +375,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display information about a company (companyName not given)
 	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
 
 		console.log("Stock Bot (Company Name Not Mentioned)");
@@ -370,6 +386,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		stockCompanyPause = 1;
 
+	//take companyName from user (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(stockCompanyPause){
 
 		console.log("Stock Bot (Get Company Name)");
@@ -380,6 +397,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to display information about a company (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
 
 		console.log("Stock Bot (Company Name Mentioned)");
@@ -394,6 +412,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//default botMessge
 	}else{
 
 		//console.log("User just wants to see the bot");
