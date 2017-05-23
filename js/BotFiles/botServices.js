@@ -412,12 +412,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//default botMessge
-	}else{
+	//show the bot is alive
+	}else if(message.trim() == "OK Bot"){
 
 		//console.log("User just wants to see the bot");
 
-		botMessage = "Hey there, " + currrentUsername + " How can I help you? You may have typed the wrong command. Follow the manual for help.";
+		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
+
+		botAction.initializeAllVariables();
+
+	//user types wrong command
+	}else{
+
+		botMessage = "Sorry, I don't understand.";
 
 		botAction.initializeAllVariables();
 
