@@ -432,16 +432,21 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 };
 
+//this object literal to basic stuff that the bot will perform
 var botAction = {
 
+	//this function gets the current time
 	getTime: function(){ 
 		return new Date().toLocaleTimeString();
 	},
 
+	//this function gets the current date
 	getDate: function(){ 
 		return new Date().toLocaleDateString();
 	},
 
+	//this function picks up a random joke from the array given below
+	//add more jokes if u have and it isn't here
 	getJokes: function(teamName){
 
 		var jokes = [
@@ -485,8 +490,10 @@ var botAction = {
 
 	},
 	
+	//this function creates a new table for the userEnteredProjectName project.
 	defineANewProject: function(projectName, teamName){
 
+		//to get current time and date in format which is accepted by the db.
 		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
 
 		//console.log(teamName + " " + projectName);
@@ -512,6 +519,7 @@ var botAction = {
         });
 	},
 
+	//this function is used to check whehther a table exists for a userEnteredProjectName project.
 	preCommitAnIssue: function(projectName, teamName, message){
 		$.ajax({
             type: "POST",
@@ -538,6 +546,7 @@ var botAction = {
         });
 	},
 
+	//this function is used to commit issue to the userEnteredProjectName project.
 	commitAnIssue: function(issueData, teamName, currrentUsername, projectName){
 
 		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
@@ -568,8 +577,9 @@ var botAction = {
         });
 	},
 
+	//this function is used to show the topmost tuple from userEnteredProjectName project table.
 	showLatestIssue: function(teamName, projectName){
-		console.log(projectName);
+		//console.log(projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
@@ -604,6 +614,7 @@ var botAction = {
         });
 	},
 
+	//this function is used to show issue of a userEnteredProjectName project but here id of the tuple should be given
 	showIssue: function(teamName, projectName, issueId){
 		console.log(projectName);
 		$.ajax({
@@ -640,6 +651,8 @@ var botAction = {
         });
 	},
 
+	//below given functions do what their name suggests
+
 	initializeIssueShowStepsVariable: function(){
 		issueShowSteps = 0;
 	},
@@ -668,6 +681,8 @@ var botAction = {
 		issueShowLatestSteps = 0;
 	},
 
+	//this function is used to save the message to the db
+	//it mostly used to save messages for the bot
 	saveMessage: function(teamName, returnMessage, username){
 
 		if(returnMessage == ""){
@@ -693,6 +708,8 @@ var botAction = {
 
 };
 
+//this is doctor bot
+//Work In Progress - will update when bot is ready
 var botDoctor = {
 
 	assignSymptomsID: function(symptom){
