@@ -351,6 +351,45 @@
 
         }
 
+        if($_GET['actions'] == 'deleteIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+        
+            $query = "SELECT COUNT(*) FROM ".$tableName."";
+
+            $maxID = mysqli_query($link, $query);
+
+            if($_POST['issueId'] > $maxID){
+                echo 1;
+            }else{
+
+                $query = "SELECT createdby FROM ".$tableName." WHERE id = ".$_POST['issueId']."";
+
+                $result = mysqli_query($link, $query);
+
+                if($result != $_POST['username']){
+                    echo 3;
+                }else{
+                    $query = "DELETE * FROM ".$tableName." WHERE id = ".$_POST['issueId']."";
+
+                    if(mysqli_query($link, $query)){
+                        echo 1;
+                    }else{
+                        echo 2;
+                    }
+
+                }
+
+            }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
         if($error != ""){
             echo $error;
             exit();
