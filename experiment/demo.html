@@ -1,30 +1,46 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <style>
 .main{
-	width: 60%;
-	border: 1px solid black;
+    width: 80%;
+    border: 1px solid black;
+    position: absolute;
 }
 .left{
     color:red;
-    border:1px solid black;
+    border:1px solid transparent;
     padding: 10px;
     margin: 10px;
+    float: left;
+    width: 60%;
+    border-radius: 10px;
+    background-color: #C0C0C0;
+    color: white;
+    border-top-left-radius:0px;
 }
+
 .right{
-	text-align: right;
-	border:1px solid black;
+/*  text-align: right;
+*/  border:1px solid transparent;
     padding: 10px;
-     margin: 10px;
+    margin: 10px;
+    float: right;
+    width: 60%;
+    background-color: #00b359;
+    border-radius: 10px;
+    color: white;
+    border-top-right-radius:0px;
 }
+
+
+
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 var chat = ["mukesh:hello1",
-            "ganesh:hello2",
+            "ganesh:hello2TensorFlow™ is an open source software library for numerical computation using data flow graphs. Nodes in the graph represent mathematical operations, while the graph edges represent the multidimensional data arrays (tensors) communicated between them. The flexible architecture allows you to deploy computation to one or more CPUs or GPUs in a desktop, server, or mobile device with a single API. TensorFlow was originally developed by researchers and engineers working on the Google Brain Team within Google's Machine Intelligence research organization for the purposes of conducting machine learning and deep neural networks research, but the system is general enough to be applicable in a wide variety of other domains as well.",
             "mukesh:hello3",
             "ganesh:hello4",
             "mukesh:hello5",
@@ -50,12 +66,12 @@ var chat = ["mukesh:hello1",
 
 $(document).ready(function(){
 
-	for(i=0;i<len;i++){
-		if(chat[i].indexOf(sender)!=-1){
-            $("<br>").insertAfter($("<div>"+chat[i]+"</div>").addClass("left").appendTo(".main"));
+    for(i=0;i<len;i++){
+        if(chat[i].indexOf(sender)!=-1){
+            $("<br>").insertAfter($("<div>"+chat[i].substring(sender.length)+"</div>").addClass("left").appendTo(".main"));
         }
         else if (chat[i].indexOf(replier)!=-1) {
-        	$("<br>").insertAfter($("<div>"+chat[i]+"</div>").addClass("right").appendTo(".main"));
+            $("<br>").insertAfter($("<div>"+chat[i].substring(replier.length)+"</div>").addClass("right").appendTo(".main"));
         } 
 
     }
@@ -67,5 +83,6 @@ $(document).ready(function(){
 
 <div class="main">
 </div>
+
 </body>
 </html>
