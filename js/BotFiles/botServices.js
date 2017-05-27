@@ -263,6 +263,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to delete the issue from the project
+	}else if(issueDeletion == 1){
+
+		issueDeletion = 0;
+
+		botMessage = "Alright, working on it. Will let you know when its done.";
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
 	//if the user explicitly says to revert revealing of issues or commits
 	}else if(message.toLowerCase().indexOf("revert issue revealing") >= 0){
 
