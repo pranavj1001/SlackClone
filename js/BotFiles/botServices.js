@@ -882,16 +882,26 @@ var botDoctorURL = {
 
 };
 
+//this is the obj literal for the MovieBot.
+//all movie and tv shows related queries are executed here.
 var botMovie = {
 
+	//this function is used to contact TMDb and fetch details from their API.
 	fetchDetailsFromTMDb: function(teamName, choice, year){
 
+		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+
+		//if the user wants to view popular movies (year is given by the user)
 		}else if(choice == 1){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=" + year;
+
+		//if the user wants to view popular tv shows
 		}else if(choice == 2){
 			var urlToCall = movieBaseURL + "tv/popular?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
+
+		//if the user wants to view top rated tv shows
 		}else if(choice == 3){
 			var urlToCall = movieBaseURL + "tv/top_rated?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
 		}
@@ -924,6 +934,8 @@ var botMovie = {
 
 };
 
+//this is the obj literal for the stocksBot.
+//all company info and stocks related queries are executed here
 var botStocks = {
 
 	getCompanyInfo: function(stockCompanyName, teamName){
