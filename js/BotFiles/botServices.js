@@ -14,6 +14,7 @@ var issueShowLatestSteps = 0;
 var issueShowSteps = 0;
 var issueId = 0;
 var projectNameForIssue = "";
+var issueDeletion = 0;
 
 //var to contain BotMessage, not shared with the main chatWindow page (used in different processes defined below)
 var returnMessage = "";
@@ -175,6 +176,90 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		dontAllowBotToSendMessage = 1;
 
 		botAction.commitAnIssue(message, teamName, currrentUsername, projectNameForIssue);
+
+		botAction.initializeAllVariables();
+
+	//rule to delete issue/commits from a project
+	}else if(message.toLowerCase().indexOf("delete an issue whose id = ") >= 0){
+
+		issueId = message.substr(34);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
+	//rule to delete issues/commits from a project
+	}else if(message.toLowerCase().indexOf("delete an issue whose id is ") >= 0){
+
+		issueId = message.substr(35);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
+	//rule to delete issues/commits from a project
+	}else if(message.toLowerCase().indexOf("delete an issue whose id equals ") >= 0){
+
+		issueId = message.substr(39);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
+	//rule to delete commits/issues from a project
+	}else if(message.toLowerCase().indexOf("delete a commit whose id = ") >= 0){
+
+		issueId = message.substr(34);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
+	//rule to delete commits/issues from a project
+	}else if(message.toLowerCase().indexOf("delete a commit whose id is ") >= 0){
+
+		issueId = message.substr(35);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
+
+		botAction.initializeAllVariables();
+
+	//rule to delete commits/issues from a project
+	}else if(message.toLowerCase().indexOf("delete a commit whose id equals ") >= 0){
+
+		issueId = message.substr(39);
+		issueId.trim();
+
+		issueDeletion = 1;
+
+		dontAllowBotToSendMessage = 1;
+
+		//call the function
 
 		botAction.initializeAllVariables();
 
