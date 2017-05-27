@@ -706,7 +706,7 @@ var botAction = {
 
 	//this function is used to show issue of a userEnteredProjectName project but here id of the tuple should be given
 	showIssue: function(teamName, projectName, issueId){
-		console.log(projectName);
+		//console.log(projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
@@ -743,7 +743,33 @@ var botAction = {
 
 	//this function is used to delete issues from a userEnteredProjectName project
 	deleteIssue: function(username, projectName, issueId, teamName){
-
+		console.log(projectName + " " + issueId);
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+               		//console.log("Moving Ahead");
+               		$.ajax({
+			            type: "POST",
+			            url: "http://localhost/SlackClone/actions.php?actions=deleteIssue",
+			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId + "&username=" + username,
+			            success: function(result){
+			 				//console.log(result);
+			            }
+			        });               
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
+                	//console.log(returnMessage);
+                	botAction.saveMessage(teamName, returnMessage, bot);
+                }else{
+                	returnMessage = "Failure: There's some problem with our servers please try again later."; 
+                	console.log(returnMessage);
+                	botAction.saveMessage(teamName, returnMessage, bot);
+              	}
+            }
+        });
 	},
 
 	//below given functions do what their name suggests
