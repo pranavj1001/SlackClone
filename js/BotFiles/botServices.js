@@ -184,7 +184,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(34);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -197,7 +197,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(35);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -210,7 +210,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(39);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -223,7 +223,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(34);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -236,7 +236,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(35);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -249,7 +249,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(39);
 		issueId.trim();
-		console.log(issueId);
+		//console.log(issueId);
 
 		issueDeletion = 1;
 
@@ -394,7 +394,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	//take the current feelings of user and display corresponding problem/disease
 	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
 
-		console.log("Doctor Bot (Symptoms)");
+		//console.log("Doctor Bot (Symptoms)");
 
 		dontAllowBotToSendMessage = 1;
 
@@ -409,7 +409,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		var year = message.substr(52);
 		year.trim();
-		console.log(year);
+		//console.log(year);
 		
 		botMessage = "Ohok, fetching movie details......";
 
@@ -424,7 +424,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		var year = message.substr(56);
 		year.trim();
-		console.log(year);
+		//console.log(year);
 		
 		botMessage = "Ohok, fetching movie details......";
 
@@ -468,7 +468,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	//rule to display information about a company (companyName not given)
 	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
 
-		console.log("Stock Bot (Company Name Not Mentioned)");
+		//console.log("Stock Bot (Company Name Not Mentioned)");
 
 		botMessage = "About which company?";
 
@@ -479,7 +479,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	//take companyName from user (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(stockCompanyPause){
 
-		console.log("Stock Bot (Get Company Name)");
+		//console.log("Stock Bot (Get Company Name)");
 
 		botMessage = "About which company?";
 
@@ -490,7 +490,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 	//rule to display information about a company (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
 
-		console.log("Stock Bot (Company Name Mentioned)");
+		//console.log("Stock Bot (Company Name Mentioned)");
 
 		botMessage = "Ohok, Working on it......";
 
@@ -743,7 +743,7 @@ var botAction = {
 
 	//this function is used to delete issues from a userEnteredProjectName project
 	deleteIssue: function(username, projectName, issueId, teamName){
-		console.log(projectName + " " + issueId);
+		//console.log(projectName + " " + issueId);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
