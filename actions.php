@@ -364,16 +364,18 @@
                 echo 2;
             }else{
 
-                $query = "SELECT createdby FROM ".$tableName." WHERE id = ".$_POST['issueId']."";
+                $query = "SELECT * FROM ".$tableName." WHERE id = ".$_POST['issueId']." LIMIT 1";
 
                 $result = mysqli_query($link, $query);
+                $row = mysqli_fetch_array($result);
 
-                if($result != $_POST['username']){
+                if($row['createdby'] != $_POST['username']){
                     echo 3;
                 }else{
-                    $query = "DELETE * FROM ".$tableName." WHERE id = ".$_POST['issueId']."";
+                    $query = "DELETE FROM ".$tableName." WHERE ".$tableName.".id = ".$_POST['issueId']." LIMIT 1";
+                    $result = mysqli_query($link, $query);
 
-                    if(mysqli_query($link, $query)){
+                    if($result){
                         echo 1;
                     }else{
                         echo 4;

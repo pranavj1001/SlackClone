@@ -188,7 +188,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -201,7 +201,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -214,7 +214,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -227,7 +227,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -240,7 +240,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -253,7 +253,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueDeletion = 1;
 
-		dontAllowBotToSendMessage = 1;
+		botMessage = "... of which project?";
 
 		botAction.initializeAllVariables();
 
@@ -773,6 +773,8 @@ var botAction = {
 			 					returnMessage = "Sorry, couldn't delete the issue. Servers might be down for maintenance. Please try again later.";
 			 					//console.log(returnMessage);
                					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else{
+			 					console.log(result);
 			 				}
 			            }
 			        });               
