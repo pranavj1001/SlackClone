@@ -19,7 +19,7 @@
   - [X] Can create a new project for the team (group of users).
   - [X] Can commit an issue to a defined project.
   - [X] Can display the issue/s of a project.
-  - [ ] Can delete the issue.
+  - [X] Can delete the issue.
   
 ### StockBot
   - [X] Can display the info of a company.
