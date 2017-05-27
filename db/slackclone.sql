@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2017 at 07:18 PM
+-- Generation Time: May 27, 2017 at 11:48 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -119,7 +119,112 @@ INSERT INTO `team1` (`id`, `sender`, `message`) VALUES
 (78, 'bot', 'Ohok, working on it....'),
 (79, 'bot', 'This Project already exists.'),
 (80, 'user4', 'Alright'),
-(81, 'user4', 'Alright');
+(81, 'user4', 'Alright'),
+(82, 'user1', 'OK Bot commit an issue'),
+(83, 'bot', '... To which project?'),
+(84, 'user1', 'project1'),
+(85, 'bot', 'Ohok, working on it....'),
+(86, 'bot', 'Okay, Now type down the text for new Issue.'),
+(87, 'user1', 'First issue'),
+(88, 'bot', 'Success: Issue commited to project1'),
+(89, 'user1', 'OK Bot commit an issue'),
+(90, 'bot', '... To which project?'),
+(91, 'user1', 'project1'),
+(92, 'bot', 'Ohok, working on it....'),
+(93, 'bot', 'Okay, Now type down the text for new Issue.'),
+(94, 'user1', 'will be deleted'),
+(95, 'bot', 'Success: Issue commited to project1'),
+(96, 'user1', 'OK Bot commit an issue'),
+(97, 'bot', '... To which project?'),
+(98, 'user1', 'project1'),
+(99, 'bot', 'Ohok, working on it....'),
+(100, 'bot', 'Okay, Now type down the text for new Issue.'),
+(101, 'user1', 'third issue'),
+(102, 'bot', 'Success: Issue commited to project1'),
+(103, 'user1', 'OK Bot delete a commit whose id = 2'),
+(104, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(105, 'bot', '... of which project?'),
+(106, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(107, 'bot', '... of which project?'),
+(108, 'user1', 'project1'),
+(109, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(110, 'bot', 'Sorry you''re not authorized to delete this issue'),
+(111, 'bot', '... of which project?'),
+(112, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(113, 'user1', 'project1'),
+(114, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(115, 'user1', 'OK Bot'),
+(116, 'bot', 'Hey there, user1 How can I help you?'),
+(117, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(118, 'bot', '... of which project?'),
+(119, 'user1', 'project1'),
+(120, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(121, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(122, 'bot', '... of which project?'),
+(123, 'user1', 'project1'),
+(124, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(125, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(126, 'bot', '... of which project?'),
+(127, 'user1', 'project1'),
+(128, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(129, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(130, 'bot', '... of which project?'),
+(131, 'user1', 'project1'),
+(132, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(133, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(134, 'bot', '... of which project?'),
+(135, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(136, 'user1', 'project1'),
+(137, 'bot', 'Sorry, couldn''t delete the issue. Servers might be down for maintenance. Please try again later.'),
+(138, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(139, 'bot', '... of which project?'),
+(140, 'user1', 'project1'),
+(141, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(142, 'bot', 'Sorry, couldn''t delete the issue. Servers might be down for maintenance. Please try again later.'),
+(143, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(144, 'bot', '... of which project?'),
+(145, 'user1', 'project1'),
+(146, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(147, 'bot', 'Sorry, couldn''t delete the issue. Servers might be down for maintenance. Please try again later.'),
+(148, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(149, 'bot', '... of which project?'),
+(150, 'user1', 'project1'),
+(151, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(152, 'bot', 'Success: Deleted Issue #2 by user1'),
+(153, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(154, 'bot', '... of which project?'),
+(155, 'user1', 'project1'),
+(156, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(157, 'bot', 'Sorry, couldn''t delete the issue. Servers might be down for maintenance. Please try again later.'),
+(158, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(159, 'bot', '... of which project?'),
+(160, 'user1', 'project1'),
+(161, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(162, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(163, 'bot', '... of which project?'),
+(164, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(165, 'user1', 'project1'),
+(166, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(167, 'bot', '... of which project?'),
+(168, 'user1', 'project1'),
+(169, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(170, 'user1', 'OK Bot commit an issue'),
+(171, 'bot', '... To which project?'),
+(172, 'user1', 'project1'),
+(173, 'bot', 'Ohok, working on it....'),
+(174, 'bot', 'Okay, Now type down the text for new Issue.'),
+(175, 'user1', 'fourth issue'),
+(176, 'bot', 'Success: Issue commited to project1'),
+(177, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(178, 'bot', '... of which project?'),
+(179, 'user1', 'project1'),
+(180, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(181, 'bot', 'Sorry, couldn''t delete the issue. Servers might be down for maintenance. Please try again later.'),
+(182, 'user1', 'OK Bot delete a commit whose id equals 2'),
+(183, 'bot', '... of which project?'),
+(184, 'user1', 'project1'),
+(185, 'bot', 'Alright, working on it. Will let you know when its done.'),
+(186, 'bot', 'Success: Deleted Issue #2 by user1');
 
 -- --------------------------------------------------------
 
@@ -133,6 +238,14 @@ CREATE TABLE `team1project1` (
   `createdby` text NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team1project1`
+--
+
+INSERT INTO `team1project1` (`id`, `issuedescription`, `createdby`, `datetime`) VALUES
+(1, 'First issue', 'user1', '2017-05-27 14:37:25'),
+(3, 'third issue', 'user1', '2017-05-27 14:38:28');
 
 -- --------------------------------------------------------
 
@@ -996,7 +1109,43 @@ INSERT INTO `team7` (`id`, `sender`, `message`) VALUES
 (40, 'bot', '\nShowing Info about: AAPL\nLegal Name: APPLE INC\nSector: Consumer Goods\nIndustry Group: Electronic Equipment\nAddress: ONE INFINITE LOOP, CUPERTINO, CA 95014\nPhone Number: (408) 996-1010\nCompany URL: www.apple.com\nStock Price: 152.06'),
 (41, 'user7', 'OK Bot show me stock related info about GE'),
 (42, 'bot', 'Ohok, Working on it......'),
-(43, 'bot', '\nShowing Info about: GE\nLegal Name: GENERAL ELECTRIC CO\nSector: Industrial Goods\nIndustry Group: Diversified Machinery\nAddress: 41 FARNSWORTH STREET, BOSTON, MA 02210\nPhone Number: 617-443-3000\nCompany URL: www.ge.com\nStock Price: 27.47');
+(43, 'bot', '\nShowing Info about: GE\nLegal Name: GENERAL ELECTRIC CO\nSector: Industrial Goods\nIndustry Group: Diversified Machinery\nAddress: 41 FARNSWORTH STREET, BOSTON, MA 02210\nPhone Number: 617-443-3000\nCompany URL: www.ge.com\nStock Price: 27.47'),
+(44, 'user7', 'OK Bot define a project '),
+(45, 'bot', 'Alright, what''s the name of the project?'),
+(46, 'user7', 'project1'),
+(47, 'bot', 'Ohok, working on it....'),
+(48, 'bot', 'Success: New Project project1 is now online!'),
+(49, 'user7', 'OK Bot commit an issue'),
+(50, 'bot', '... To which project?'),
+(51, 'user7', 'project1'),
+(52, 'bot', 'Ohok, working on it....'),
+(53, 'bot', 'Okay, Now type down the text for new Issue.'),
+(54, 'user7', 'first issue'),
+(55, 'bot', 'Success: Issue commited to project1'),
+(56, 'user7', 'OK Bot display the latest commit of project1'),
+(57, 'bot', 'Ohok, working on it....'),
+(58, 'bot', 'Issue #2\nDescription: first issue\nIssued by: user7\nDate and Time: 2017-05-19 00:16:52\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team7project1`
+--
+
+CREATE TABLE `team7project1` (
+  `id` int(11) NOT NULL,
+  `issuedescription` text NOT NULL,
+  `createdby` text NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team7project1`
+--
+
+INSERT INTO `team7project1` (`id`, `issuedescription`, `createdby`, `datetime`) VALUES
+(1, 'no issues found', 'admin', '2017-05-19 00:15:19'),
+(2, 'first issue', 'user7', '2017-05-19 00:16:52');
 
 -- --------------------------------------------------------
 
@@ -1134,6 +1283,12 @@ ALTER TABLE `team7`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `team7project1`
+--
+ALTER TABLE `team7project1`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
@@ -1153,12 +1308,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `team1`
 --
 ALTER TABLE `team1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 --
 -- AUTO_INCREMENT for table `team1project1`
 --
 ALTER TABLE `team1project1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `team1project2`
 --
@@ -1213,7 +1368,12 @@ ALTER TABLE `team6project101`
 -- AUTO_INCREMENT for table `team7`
 --
 ALTER TABLE `team7`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+--
+-- AUTO_INCREMENT for table `team7project1`
+--
+ALTER TABLE `team7project1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `teamdetails`
 --
