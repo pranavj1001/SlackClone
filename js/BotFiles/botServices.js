@@ -184,12 +184,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(34);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -198,12 +197,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(35);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -212,12 +210,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(39);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -226,12 +223,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(34);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -240,12 +236,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(35);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -254,12 +249,11 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		issueId = message.substr(39);
 		issueId.trim();
+		console.log(issueId);
 
 		issueDeletion = 1;
 
 		dontAllowBotToSendMessage = 1;
-
-		//call the function
 
 		botAction.initializeAllVariables();
 
@@ -270,7 +264,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botMessage = "Alright, working on it. Will let you know when its done.";
 
-		//call the function
+		botAction.deleteIssue(currrentUsername, message, issueId, teamName);
 
 		botAction.initializeAllVariables();
 
@@ -745,6 +739,11 @@ var botAction = {
               	}
             }
         });
+	},
+
+	//this function is used to delete issues from a userEnteredProjectName project
+	deleteIssue: function(username, projectName, issueId, teamName){
+
 	},
 
 	//below given functions do what their name suggests
