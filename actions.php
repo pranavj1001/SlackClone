@@ -361,7 +361,7 @@
             $maxID = mysqli_query($link, $query);
 
             if($_POST['issueId'] > $maxID){
-                echo 1;
+                echo 2;
             }else{
 
                 $query = "SELECT createdby FROM ".$tableName." WHERE id = ".$_POST['issueId']."";
@@ -376,7 +376,7 @@
                     if(mysqli_query($link, $query)){
                         echo 1;
                     }else{
-                        echo 2;
+                        echo 4;
                     }
 
                 }

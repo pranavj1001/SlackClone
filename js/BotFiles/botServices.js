@@ -757,6 +757,23 @@ var botAction = {
 			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId + "&username=" + username,
 			            success: function(result){
 			 				//console.log(result);
+			 				if(result == 1){
+			 					returnMessage = "Success: Deleted Issue #" + issueId + " by " + username;
+               					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 2){
+			 					returnMessage = "The issue with IssueId #" + issueId + " does not exist.";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 3){
+			 					returnMessage = "Sorry you're not authorized to delete this issue";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 4){
+			 					returnMessage = "Sorry, couldn't delete the issue. Servers might be down for maintenance. Please try again later.";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}
 			            }
 			        });               
                 }else if(result == "2"){
