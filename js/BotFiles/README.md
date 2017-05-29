@@ -37,8 +37,8 @@
   - [ ] Can tell whether the current disease is severe or not.
   - [ ] Can suggest nearby hospitals.
   
-### NewsBot - WIP
-  - [ ] Can show popular news (global)
+### NewsBot
+  - [X] Can show popular news (global)
   - [ ] Can show popular news of various types
   
 ## Manual
