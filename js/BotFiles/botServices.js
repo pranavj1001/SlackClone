@@ -1094,6 +1094,7 @@ var botMovie = {
 //all company info and stocks related queries are executed here
 var botStocks = {
 
+	//this function checks whether the commpany exists or not and if it exists then it gathers data about it.
 	getCompanyInfo: function(stockCompanyName, teamName){
 
 		var USERNAME = "";
@@ -1121,6 +1122,7 @@ var botStocks = {
 		});
 	},
 
+	//this function gets stock info about the company, forms the message and has the ability to save the message. 
 	getStockPrice: function(stockCompanyName, returnMessage, teamName){
 
 		var USERNAME = "";
@@ -1140,6 +1142,38 @@ var botStocks = {
 				returnMessage += "\nStock Price: " + response.value;
 				console.log(returnMessage);
 				botAction.saveMessage(teamName, returnMessage, bot);
+			}
+		});
+
+	}
+
+};
+
+//this is the object literal for the news bot.
+//all news related queries are executed here.
+var newsBot = {
+
+	//this function gets the news that the users want.
+	getNews: function(newsType){
+
+		var urlToCall = "https://newsapi.org/v1/articles?source="
+
+		//if the newsType is global
+		if(newsType == "global"){
+			urlToCall += "bbc-news&sortBy=top&apiKey=";
+		}
+
+		urlToCall += newsAPIKey;
+
+		$.ajax({
+			type: "GET",
+			url: urlToCall,
+			dataType: "json",
+			success: function(result){
+				console.log(result.articles);
+				
+				// console.log(returnMessage);
+				// botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
 
