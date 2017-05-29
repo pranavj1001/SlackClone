@@ -35,25 +35,6 @@ var bot = "bot";
 var stockCompanyPause;
 var stockCompanyName = "";
 
-//used APIMedic API to get info about medication and symptoms.
-//However, if we are able to create our own data (our very own API) and use then APIMedic api will be of no use.
-//Currently working on do so ^.
-var baseUrl = "https://sandbox-healthservice.priaid.ch/";
-var token = "?"; //Type your token (APIMedic) here 
-var endUrl = "&language=en-gb&format=json";
-
-//used TMDb api to info about popular movies and tv shows.
-//awesome API, should try it out.
-var movieBaseURL = "https://api.themoviedb.org/3/";
-var apiKeyTMDb = ""; //Type your api key (TMDb) here
-
-//var which will be used in our api for our doctorBot
-var doctorId;
-
-//used NewsAPI to get news.
-//awesome API, should try it out.
-var newsAPIKey;
-
 
 //This function is called from the main chatWindow.php page
 //It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
@@ -870,6 +851,16 @@ var botDoctor = {
 
 	assignSymptomsID: function(symptom){
 
+		//var which will be used in our api for our doctorBot
+		var doctorId;
+
+		//used APIMedic API to get info about medication and symptoms.
+		//However, if we are able to create our own data (our very own API) and use then APIMedic api will be of no use.
+		//Currently working on do so ^.
+		var baseUrl = "https://sandbox-healthservice.priaid.ch/";
+		var token = "?"; //Type your token (APIMedic) here 
+		var endUrl = "&language=en-gb&format=json";
+
 		if(symptom.toLowerCase().indexOf("abdominal pain")){
 			doctorId = 10;
 		}else if(symptom.toLowerCase().indexOf("anxiety")){
@@ -1045,6 +1036,11 @@ var botMovie = {
 	//this function is used to contact TMDb and fetch details from their API.
 	fetchDetailsFromTMDb: function(teamName, choice, year){
 
+		//used TMDb api to info about popular movies and tv shows.
+		//awesome API, should try it out.
+		var movieBaseURL = "https://api.themoviedb.org/3/";
+		var apiKeyTMDb = ""; //Type your api key (TMDb) here
+
 		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
@@ -1155,6 +1151,10 @@ var newsBot = {
 
 	//this function gets the news that the users want.
 	getNews: function(newsType){
+
+		//used NewsAPI to get news.
+		//awesome API, should try it out.
+		var newsAPIKey;
 
 		var urlToCall = "https://newsapi.org/v1/articles?source="
 
