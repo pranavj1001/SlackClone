@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2017 at 11:48 AM
+-- Generation Time: May 29, 2017 at 06:52 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -1150,6 +1150,38 @@ INSERT INTO `team7project1` (`id`, `issuedescription`, `createdby`, `datetime`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `team8`
+--
+
+CREATE TABLE `team8` (
+  `id` int(11) NOT NULL,
+  `sender` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team8`
+--
+
+INSERT INTO `team8` (`id`, `sender`, `message`) VALUES
+(1, 'user1', 'OK Bot'),
+(2, 'bot', 'Hey there, user1 How can I help you?'),
+(3, 'user1', 'OK Bot sjas'),
+(4, 'bot', 'Sorry, I don''t understand.'),
+(5, 'user1', 'OK Bot show me some news'),
+(6, 'bot', 'Sorry, I don''t understand.'),
+(7, 'user1', 'OK Bot show me some news'),
+(8, 'bot', 'Ohok, Working on it......'),
+(9, 'user1', 'OK Bot show me some news'),
+(10, 'bot', 'Ohok, Working on it......'),
+(11, 'bot', 'Here you go\nTitle: ''BA boss ''won''t resign'' over flight chaos''\nDescription: Chief executive Alex Cruz says flight disruption at Heathrow and Gatwick had nothing to do with cost cutting.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-40083778\nPublished on: T14:54:54 00:00\n\nTitle: ''Hamerton Zoo evacuated after ''serious incident''''\nDescription: A zoo is evacuated following a "serious incident" but no animals have escaped, police confirm.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-england-cambridgeshire-40084713\nPublished on: T16:12:50 00:00\n\nTitle: ''Tiger Woods held on drink-driving charge''\nDescription: Golf star Tiger Woods is arrested on a drink-driving charge in Florida, police say.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/world-us-canada-40087317\nPublished on: T16:23:45 00:00\n\nTitle: ''Manchester attack: CCTV appears to show bomber shopping hours before explosion''\nDescription: Footage emerges appearing to show Salman Abedi in a Manchester shop a day before the bombing.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/av/uk-40082292/manchester-attack-cctv-appears-to-show-bomber-shopping-hours-before-explosion\nPublished on: T15:00:17 00:00\n\nTitle: ''Manchester attacks: Police issue new bomber photo''\nDescription: Officers want to hear from anyone who might have seen Salman Abedi carrying the blue suitcase.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-40086352\nPublished on: T16:41:10 00:00\n\nTitle: ''Former Blue Peter presenter John Noakes dies at 83''\nDescription: The TV show''s longest-serving presenter was a favourite with viewers in the 1960s and 70s.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/entertainment-arts-40083025\nPublished on: T12:42:47 00:00\n'),
+(12, 'user1', 'OK Bot show me some news'),
+(13, 'bot', 'Ohok, Working on it......'),
+(14, 'bot', 'Here you go\nTitle: ''BA boss ''won''t resign'' over flight chaos''\nDescription: Chief executive Alex Cruz says flight disruption at Heathrow and Gatwick had nothing to do with cost cutting.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-40083778\nPublished on: 2017-05-29\n\nTitle: ''Hamerton Zoo evacuated after ''serious incident''''\nDescription: A zoo is evacuated following a "serious incident" but no animals have escaped, police confirm.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-england-cambridgeshire-40084713\nPublished on: 2017-05-29\n\nTitle: ''Tiger Woods held on drink-driving charge''\nDescription: Golf star Tiger Woods is arrested on a drink-driving charge in Florida, police say.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/world-us-canada-40087317\nPublished on: 2017-05-29\n\nTitle: ''Manchester attack: CCTV appears to show bomber shopping hours before explosion''\nDescription: Footage emerges appearing to show Salman Abedi in a Manchester shop a day before the bombing.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/av/uk-40082292/manchester-attack-cctv-appears-to-show-bomber-shopping-hours-before-explosion\nPublished on: 2017-05-29\n\nTitle: ''Manchester attacks: Police issue new bomber photo''\nDescription: Officers want to hear from anyone who might have seen Salman Abedi carrying the blue suitcase.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/uk-40086352\nPublished on: 2017-05-29\n\nTitle: ''Former Blue Peter presenter John Noakes dies at 83''\nDescription: The TV show''s longest-serving presenter was a favourite with viewers in the 1960s and 70s.\nAuthor: BBC News\nMore info: http://www.bbc.co.uk/news/entertainment-arts-40083025\nPublished on: 2017-05-29\n');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teamdetails`
 --
 
@@ -1171,7 +1203,8 @@ INSERT INTO `teamdetails` (`id`, `teamadmin`, `teamname`, `teampassword`) VALUES
 (8, 'user5', 'team5', '7a548f160996fafe2f51969211f2e0c7'),
 (9, 'user2', 'team4', '1de9a70660fb54b17535e830c8614358'),
 (10, 'user6', 'team6', '271170ec2bed4c154a45b775c8f25c23'),
-(11, 'user7', 'team7', '7456d7c7b4aa2fb72474d7786489fba1');
+(11, 'user7', 'team7', '7456d7c7b4aa2fb72474d7786489fba1'),
+(12, 'user1', 'team8', '32de5be683a5f413ee47f4868cdd40ac');
 
 -- --------------------------------------------------------
 
@@ -1289,6 +1322,12 @@ ALTER TABLE `team7project1`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `team8`
+--
+ALTER TABLE `team8`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
@@ -1313,7 +1352,7 @@ ALTER TABLE `team1`
 -- AUTO_INCREMENT for table `team1project1`
 --
 ALTER TABLE `team1project1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `team1project2`
 --
@@ -1375,10 +1414,15 @@ ALTER TABLE `team7`
 ALTER TABLE `team7project1`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `team8`
+--
+ALTER TABLE `team8`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT for table `teamdetails`
 --
 ALTER TABLE `teamdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --
