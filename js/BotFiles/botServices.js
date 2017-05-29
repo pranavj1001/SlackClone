@@ -50,6 +50,11 @@ var apiKeyTMDb = ""; //Type your api key (TMDb) here
 //var which will be used in our api for our doctorBot
 var doctorId;
 
+//used NewsAPI to get news.
+//awesome API, should try it out.
+var newsAPIKey;
+
+
 //This function is called from the main chatWindow.php page
 //It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -499,6 +504,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		console.log(stockCompanyName);
 
 		botStocks.getCompanyInfo(stockCompanyName, teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is not entered by the user
+	}else if((message.toLowerCase().indexOf("show me some news ") >= 0) || (message.toLowerCase().indexOf("show me global news ") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		//call function
 
 		botAction.initializeAllVariables();
 
