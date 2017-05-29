@@ -489,13 +489,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//rule to catch news related queries, type of news is not entered by the user
-	}else if((message.toLowerCase().indexOf("show me some news ") >= 0) || (message.toLowerCase().indexOf("show me global news ") >= 0)){
+	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0)){
 
 		//console.log("News Bot (Type not entered)");
 
 		botMessage = "Ohok, Working on it......";
 
-		//call function
+		newsBot.getNews("global", teamName);
 
 		botAction.initializeAllVariables();
 
@@ -1150,11 +1150,11 @@ var botStocks = {
 var newsBot = {
 
 	//this function gets the news that the users want.
-	getNews: function(newsType){
+	getNews: function(newsType, teamName){
 
 		//used NewsAPI to get news.
 		//awesome API, should try it out.
-		var newsAPIKey;
+		var newsAPIKey = "";
 
 		var urlToCall = "https://newsapi.org/v1/articles?source="
 
@@ -1170,10 +1170,15 @@ var newsBot = {
 			url: urlToCall,
 			dataType: "json",
 			success: function(result){
-				console.log(result.articles);
-				
-				// console.log(returnMessage);
-				// botAction.saveMessage(teamName, returnMessage, bot);
+				//console.log(result.articles);
+				var item;
+				returnMessage = "Here you go";
+				for(var i = 0; i < 6; i++){
+					item = result.articles[i];
+					returnMessage += "\nTitle: '"+ item.title + "'\nDescription: " + item.description + "\nAuthor: " + item.author + "\nMore info: " + item.url + "\nPublished on: " + item.publishedAt.substr(0,10) + "\n";
+				}
+				//console.log(returnMessage);
+				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
 
