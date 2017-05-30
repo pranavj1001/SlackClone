@@ -598,6 +598,28 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to catch news related queries, type of news is reddit
+	}else if((message.toLowerCase().indexOf("show me some reddit news") >= 0) || (message.toLowerCase().indexOf("show me reddit news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("reddit", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is football
+	}else if((message.toLowerCase().indexOf("show me some football news") >= 0) || (message.toLowerCase().indexOf("show me football news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("football", teamName);
+
+		botAction.initializeAllVariables();
+
 	//show the bot is alive
 	}else if(message.trim() == "OK Bot"){
 
@@ -1292,6 +1314,14 @@ var newsBot = {
 		//if the newsType is music. Source -> MTV News
 		}else if(newsType == "music"){
 			urlToCall += "mtv-news&sortBy=top&apiKey=";
+
+		//if the newsType is reddit. Source -> Reddit
+		}else if(newsType == "reddit"){
+			urlToCall += "reddit-r-all&sortBy=top&apiKey=";
+
+		//if the newsType is football. Source -> Football Italia
+		}else if(newsType == "football"){
+			urlToCall += "football-italia&sortBy=top&apiKey=";
 
 		}
 
