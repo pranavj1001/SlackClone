@@ -1257,39 +1257,39 @@ var newsBot = {
 
 		var urlToCall = "https://newsapi.org/v1/articles?source="
 
-		//if the newsType is global
+		//if the newsType is global. Source -> BBC News
 		if(newsType == "global"){
 			urlToCall += "bbc-news&sortBy=top&apiKey=";
 
-		//if the newsType is business
+		//if the newsType is business. Source -> Business Insider
 		}else if(newsType == "business"){
 			urlToCall += "business-insider&sortBy=top&apiKey=";
 
-		//if the newsType is technology
+		//if the newsType is technology. Source -> Engadget
 		}else if(newsType == "technology"){
 			urlToCall += "engadget&sortBy=top&apiKey=";
 
-		//if the newsType is gaming
+		//if the newsType is gaming. Source -> IGN
 		}else if(newsType == "gaming"){
 			urlToCall += "ign&sortBy=top&apiKey=";
 
-		//if the newsType is sports
+		//if the newsType is sports. Source -> ESPN
 		}else if(newsType == "sports"){
 			urlToCall += "espn&sortBy=top&apiKey=";
 
-		//if the newsType is cricket
+		//if the newsType is cricket. Source -> ESPN Cricket
 		}else if(newsType == "cricket"){
 			urlToCall += "espn-cric-info&sortBy=top&apiKey=";
 
-		//if the newsType is science
+		//if the newsType is science. Source -> National Geographic
 		}else if(newsType == "science"){
 			urlToCall += "national-geographic&sortBy=top&apiKey=";
 
-		//if the newsType is indian
+		//if the newsType is indian. Source -> Times Of India
 		}else if(newsType == "indian"){
 			urlToCall += "the-times-of-india&sortBy=top&apiKey=";
 
-		//if the newsType is music
+		//if the newsType is music. Source -> MTV News
 		}else if(newsType == "music"){
 			urlToCall += "mtv-news&sortBy=top&apiKey=";
 
