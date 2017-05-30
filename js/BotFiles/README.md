@@ -7,7 +7,7 @@
 
   The Features not marked are not done yet. Also, as soon as I get new implementable ideas, I add them here i.e. unmarked features may also be new upcoming features.
 
-### Assistant
+### Assistant - (50% Complete)
   - [X] Greets the user when called.
   - [X] Has sense of humor to make the mood light.
   - [X] Can tell the current date and time.
@@ -15,31 +15,31 @@
   - [ ] Calculator.
   - [ ] History of the day.
 
-### Version Control System
+### Version Control System - (100% Complete)
   - [X] Can create a new project for the team (group of users).
   - [X] Can commit an issue to a defined project.
   - [X] Can display the issue/s of a project.
   - [X] Can delete the issue.
   
-### StockBot
+### StockBot - (66.67% Complete)
   - [X] Can display the info of a company.
   - [X] Can display the current stockPrice of that company.
   - [ ] Can tell the history of a company.  
 
-### MovieBot
+### MovieBot - (75% Complete)
   - [X] Can show popular Movies with description.
   - [X] Can show popular Movies based on year with description.
   - [ ] Can show description of a particular Movie.
   - [X] Can show popular TV Shows with description.
   
-### DoctorBot - WIP
+### DoctorBot - (WIP)
   - [ ] Can tell medication based on symptoms.
   - [ ] Can tell whether the current disease is severe or not.
   - [ ] Can suggest nearby hospitals.
   
-### NewsBot
+### NewsBot - (100% Complete)
   - [X] Can show popular news (global)
-  - [ ] Can show popular news of various types
+  - [X] Can show popular news of various types like Gaming, Sports, Cricket, Football, Technology, Business, Music, Indian, Entertainment and Science.
   
 ## Manual
 
