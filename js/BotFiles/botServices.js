@@ -489,13 +489,79 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//rule to catch news related queries, type of news is not entered by the user
-	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0)){
+	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || || (message.toLowerCase().indexOf("show me some global news") >= 0)){
 
 		//console.log("News Bot (Type not entered)");
 
 		botMessage = "Ohok, Working on it......";
 
 		newsBot.getNews("global", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is entertainment
+	}else if((message.toLowerCase().indexOf("show me some entertainment news") >= 0) || (message.toLowerCase().indexOf("show me entertainment news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("entertainment", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is gaming
+	}else if((message.toLowerCase().indexOf("show me some gaming news") >= 0) || (message.toLowerCase().indexOf("show me gaming news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("gaming", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is business
+	}else if((message.toLowerCase().indexOf("show me some business news") >= 0) || (message.toLowerCase().indexOf("show me business news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("business", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is technology
+	}else if((message.toLowerCase().indexOf("show me some technology news") >= 0) || (message.toLowerCase().indexOf("show me technology news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("technology", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is sports
+	}else if((message.toLowerCase().indexOf("show me some sports news") >= 0) || (message.toLowerCase().indexOf("show me sports news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("sports", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is cricket
+	}else if((message.toLowerCase().indexOf("show me some cricket news") >= 0) || (message.toLowerCase().indexOf("show me cricket news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("cricket", teamName);
 
 		botAction.initializeAllVariables();
 
