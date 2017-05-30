@@ -565,6 +565,39 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to catch news related queries, type of news is music
+	}else if((message.toLowerCase().indexOf("show me some music news") >= 0) || (message.toLowerCase().indexOf("show me music news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("music", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is indian
+	}else if((message.toLowerCase().indexOf("show me some indian news") >= 0) || (message.toLowerCase().indexOf("show me indian news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("indian", teamName);
+
+		botAction.initializeAllVariables();
+
+	//rule to catch news related queries, type of news is science
+	}else if((message.toLowerCase().indexOf("show me some science news") >= 0) || (message.toLowerCase().indexOf("show me science news") >= 0)){
+
+		//console.log("News Bot (Type not entered)");
+
+		botMessage = "Ohok, Working on it......";
+
+		newsBot.getNews("science", teamName);
+
+		botAction.initializeAllVariables();
+
 	//show the bot is alive
 	}else if(message.trim() == "OK Bot"){
 
@@ -1247,6 +1280,8 @@ var newsBot = {
 		//if the newsType is cricket
 		}else if(newsType == "cricket"){
 			urlToCall += "espn-cric-info&sortBy=top&apiKey=";
+
+
 		}
 
 		urlToCall += newsAPIKey;
