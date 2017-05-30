@@ -39,7 +39,7 @@
   
 ### NewsBot - (100% Complete)
   - [X] Can show popular news (global)
-  - [X] Can show popular news of various types like Gaming, Sports, Cricket, Football, Technology, Business, Music, Indian, Entertainment and Science.
+  - [X] Can show popular news of various types like Gaming, Sports, Cricket, Football, Technology, Business, Music, Indian, Entertainment, Reddit and Science.
   
 ## Manual
 
