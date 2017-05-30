@@ -1281,6 +1281,17 @@ var newsBot = {
 		}else if(newsType == "cricket"){
 			urlToCall += "espn-cric-info&sortBy=top&apiKey=";
 
+		//if the newsType is science
+		}else if(newsType == "science"){
+			urlToCall += "national-geographic&sortBy=top&apiKey=";
+
+		//if the newsType is indian
+		}else if(newsType == "indian"){
+			urlToCall += "the-times-of-india&sortBy=top&apiKey=";
+
+		//if the newsType is music
+		}else if(newsType == "music"){
+			urlToCall += "mtv-news&sortBy=top&apiKey=";
 
 		}
 
