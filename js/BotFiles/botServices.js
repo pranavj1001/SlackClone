@@ -489,7 +489,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//rule to catch news related queries, type of news is not entered by the user
-	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || || (message.toLowerCase().indexOf("show me some global news") >= 0)){
+	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || (message.toLowerCase().indexOf("show me some global news") >= 0)){
 
 		//console.log("News Bot (Type not entered)");
 
@@ -1305,8 +1305,24 @@ var newsBot = {
 				//console.log(result.articles);
 				var item;
 				returnMessage = "Here you go";
-				for(var i = 0; i < 6; i++){
+				for(var i = 0; i < 5; i++){
 					item = result.articles[i];
+					//console.log(item);
+					if(item.title == null){
+						item.title = "NA";
+					}
+					if(item.description == null){
+						item.description = "NA";
+					}
+					if(item.author == null){
+						item.author = "NA";
+					}
+					if(item.url == null){
+						item.url = "NA";
+					}
+					if(item.publishedAt == null){
+						item.publishedAt = "NA";
+					}
 					returnMessage += "\nTitle: '"+ item.title + "'\nDescription: " + item.description + "\nAuthor: " + item.author + "\nMore info: " + item.url + "\nPublished on: " + item.publishedAt.substr(0,10) + "\n";
 				}
 				//console.log(returnMessage);
