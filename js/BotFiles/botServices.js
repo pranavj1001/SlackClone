@@ -488,135 +488,12 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to catch news related queries, type of news is not entered by the user
-	}else if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || (message.toLowerCase().indexOf("show me some global news") >= 0)){
+	
+	}else if(message.toLowerCase().indexOf("news") >= 0){
 
-		//console.log("News Bot (Type not entered)");
+		//console.log("let the news Bot handle this message");
 
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("global", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is entertainment
-	}else if((message.toLowerCase().indexOf("show me some entertainment news") >= 0) || (message.toLowerCase().indexOf("show me entertainment news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("entertainment", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is gaming
-	}else if((message.toLowerCase().indexOf("show me some gaming news") >= 0) || (message.toLowerCase().indexOf("show me gaming news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("gaming", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is business
-	}else if((message.toLowerCase().indexOf("show me some business news") >= 0) || (message.toLowerCase().indexOf("show me business news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("business", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is technology
-	}else if((message.toLowerCase().indexOf("show me some technology news") >= 0) || (message.toLowerCase().indexOf("show me technology news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("technology", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is sports
-	}else if((message.toLowerCase().indexOf("show me some sports news") >= 0) || (message.toLowerCase().indexOf("show me sports news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("sports", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is cricket
-	}else if((message.toLowerCase().indexOf("show me some cricket news") >= 0) || (message.toLowerCase().indexOf("show me cricket news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("cricket", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is music
-	}else if((message.toLowerCase().indexOf("show me some music news") >= 0) || (message.toLowerCase().indexOf("show me music news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("music", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is indian
-	}else if((message.toLowerCase().indexOf("show me some indian news") >= 0) || (message.toLowerCase().indexOf("show me indian news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("indian", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is science
-	}else if((message.toLowerCase().indexOf("show me some science news") >= 0) || (message.toLowerCase().indexOf("show me science news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("science", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is reddit
-	}else if((message.toLowerCase().indexOf("show me some reddit news") >= 0) || (message.toLowerCase().indexOf("show me reddit news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("reddit", teamName);
-
-		botAction.initializeAllVariables();
-
-	//rule to catch news related queries, type of news is football
-	}else if((message.toLowerCase().indexOf("show me some football news") >= 0) || (message.toLowerCase().indexOf("show me football news") >= 0)){
-
-		//console.log("News Bot (Type not entered)");
-
-		botMessage = "Ohok, Working on it......";
-
-		newsBot.getNews("football", teamName);
+		newsBot.checkQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
@@ -1269,6 +1146,145 @@ var botStocks = {
 //this is the object literal for the news bot.
 //all news related queries are executed here.
 var newsBot = {
+
+	//this function checks the rule and decides the newsType
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to catch news related queries, type of news is not entered by the user
+		if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || (message.toLowerCase().indexOf("show me some global news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("global", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is entertainment
+		}else if((message.toLowerCase().indexOf("show me some entertainment news") >= 0) || (message.toLowerCase().indexOf("show me entertainment news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("entertainment", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is gaming
+		}else if((message.toLowerCase().indexOf("show me some gaming news") >= 0) || (message.toLowerCase().indexOf("show me gaming news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("gaming", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is business
+		}else if((message.toLowerCase().indexOf("show me some business news") >= 0) || (message.toLowerCase().indexOf("show me business news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("business", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is technology
+		}else if((message.toLowerCase().indexOf("show me some technology news") >= 0) || (message.toLowerCase().indexOf("show me technology news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("technology", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is sports
+		}else if((message.toLowerCase().indexOf("show me some sports news") >= 0) || (message.toLowerCase().indexOf("show me sports news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("sports", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is cricket
+		}else if((message.toLowerCase().indexOf("show me some cricket news") >= 0) || (message.toLowerCase().indexOf("show me cricket news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("cricket", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is music
+		}else if((message.toLowerCase().indexOf("show me some music news") >= 0) || (message.toLowerCase().indexOf("show me music news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("music", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is indian
+		}else if((message.toLowerCase().indexOf("show me some indian news") >= 0) || (message.toLowerCase().indexOf("show me indian news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("indian", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is science
+		}else if((message.toLowerCase().indexOf("show me some science news") >= 0) || (message.toLowerCase().indexOf("show me science news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("science", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is reddit
+		}else if((message.toLowerCase().indexOf("show me some reddit news") >= 0) || (message.toLowerCase().indexOf("show me reddit news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("reddit", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is football
+		}else if((message.toLowerCase().indexOf("show me some football news") >= 0) || (message.toLowerCase().indexOf("show me football news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("football", teamName);
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
 
 	//this function gets the news that the users want.
 	getNews: function(newsType, teamName){
