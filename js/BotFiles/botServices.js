@@ -388,69 +388,6 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to display popular movies (year given)
-	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
-
-		//console.log("Movie Bot (Year)");
-
-		var year = message.substr(52);
-		year.trim();
-		//console.log(year);
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
-
-		botAction.initializeAllVariables();
-
-	//rule to display popular movies (year given)
-	}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
-
-		//console.log("Movie Bot (Year)");
-
-		var year = message.substr(56);
-		year.trim();
-		//console.log(year);
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
-
-		botAction.initializeAllVariables();
-
-	//rule to display popular movies (year not given, current year assumed automatically)
-	}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me current popular movies") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
-
-		botAction.initializeAllVariables();
-
-	//rule to display popular tv shows (current year assumed)
-	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me current popular tv shows") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching TV Shows details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 2, 0000);
-
-		botAction.initializeAllVariables();
-
-	//rule to display top rated tv shows (current year assumed)
-	}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me current top rated tv shows") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching TV Shows details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
-
-		botAction.initializeAllVariables();
-
 	//rule to display information about a company (companyName not given)
 	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
 
@@ -488,7 +425,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	
+	//call the movieBot
+	}else if((message.toLowerCase().indexOf("tv shows") >= 0) || (message.toLowerCase().indexOf("movies") >= 0)){
+
+		//console.log("let the news Bot handle this message");
+
+		movieBot.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//call the newsBot
 	}else if(message.toLowerCase().indexOf("news") >= 0){
 
 		//console.log("let the news Bot handle this message");
@@ -1030,6 +976,76 @@ var botDoctorURL = {
 //this is the obj literal for the MovieBot.
 //all movie and tv shows related queries are executed here.
 var botMovie = {
+
+	//this function checks the rule for movies and tv shows related queries
+	checkQueries: function(message, teamName, currrentUsername){
+
+		if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
+
+			//console.log("Movie Bot (Year)");
+
+			var year = message.substr(52);
+			year.trim();
+			//console.log(year);
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 1, year);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular movies (year given)
+		}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
+
+			//console.log("Movie Bot (Year)");
+
+			var year = message.substr(56);
+			year.trim();
+			//console.log(year);
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 1, year);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular movies (year not given, current year assumed automatically)
+		}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me current popular movies") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular tv shows (current year assumed)
+		}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me current popular tv shows") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching TV Shows details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 2, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display top rated tv shows (current year assumed)
+		}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me current top rated tv shows") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching TV Shows details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
+
+			botAction.initializeAllVariables();
+
+		
+		}
+
+	},
 
 	//this function is used to contact TMDb and fetch details from their API.
 	fetchDetailsFromTMDb: function(teamName, choice, year){
