@@ -26,10 +26,10 @@
   - [X] Can display the current stockPrice of that company.
   - [ ] Can tell the history of a company.  
 
-### MovieBot - (75% Complete)
+### MovieBot - (100% Complete)
   - [X] Can show popular Movies with description.
   - [X] Can show popular Movies based on year with description.
-  - [ ] Can show description of a particular Movie.
+  - [X] Can show upcoming movies.
   - [X] Can show popular TV Shows with description.
   
 ### DoctorBot - (WIP)
