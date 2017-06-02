@@ -110,10 +110,11 @@
 
           if(messageCallsBot){
             if(!dontSaveThisUserMessage){
+              var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
               $.ajax({
                 type: "POST",
                 url: "actions.php?actions=saveMessage",
-                data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
+                data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message  + "&datetime=" + currentDateTimeInISOFormat,
                 success: function(result){
                   if(result == "1"){
                     //console.log("Success");
@@ -126,10 +127,11 @@
               });
             }
             if(!dontAllowBotToSendMessage){
+              var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
               $.ajax({
                 type: "POST",
                 url: "actions.php?actions=saveMessage",
-                data:"teamname=" + teamName + "&sender=bot&message=" + botMessage,
+                data:"teamname=" + teamName + "&sender=bot&message=" + botMessage + "&datetime=" + currentDateTimeInISOFormat,
                 success: function(result){
                   if(result == "1"){
                     //console.log("Success");
@@ -142,10 +144,11 @@
               });
             }
           }else if(!messageCallsBot){
+            var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
             $.ajax({
               type: "POST",
               url: "actions.php?actions=saveMessage",
-              data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message,
+              data:"teamname=" + teamName + "&sender=" + currentUsername + "&message=" + message  + "&datetime=" + currentDateTimeInISOFormat,
               success: function(result){
                 if(result == "1"){
                   //console.log("Success");

@@ -770,10 +770,12 @@ var botAction = {
 			returnMessage = "Not able to perform this request.";
 		}
 
+		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+
 		$.ajax({
 		    type: "POST",
 		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
-		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage,
+		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage + "&datetime=" + currentDateTimeInISOFormat,
 		    success: function(result){
 			    if(result == "1"){
 			    	//console.log("Success");
