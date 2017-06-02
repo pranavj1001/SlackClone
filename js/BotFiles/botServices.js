@@ -1065,7 +1065,7 @@ var botMovie = {
 		//used TMDb api to info about popular movies and tv shows.
 		//awesome API, should try it out.
 		var movieBaseURL = "https://api.themoviedb.org/3/";
-		var apiKeyTMDb = "867611d6b3f8882764c7aec28bc288ed"; //Type your api key (TMDb) here
+		var apiKeyTMDb = ""; //Type your api key (TMDb) here
 
 		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
