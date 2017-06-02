@@ -430,7 +430,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		//console.log("let the news Bot handle this message");
 
-		movieBot.checkQueries(message, teamName, currrentUsername);
+		botMovie.checkQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
@@ -980,7 +980,8 @@ var botMovie = {
 	//this function checks the rule for movies and tv shows related queries
 	checkQueries: function(message, teamName, currrentUsername){
 
-		if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
+		//rule to display popular movies (year given)
+		if(message.toLowerCase().indexOf("display popular movies from the year ") >= 0){
 
 			//console.log("Movie Bot (Year)");
 
@@ -995,7 +996,7 @@ var botMovie = {
 			botAction.initializeAllVariables();
 
 		//rule to display popular movies (year given)
-		}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
+		}else if(message.toLowerCase().indexOf("display the popular movies from the year ") >= 0){
 
 			//console.log("Movie Bot (Year)");
 
@@ -1017,6 +1018,17 @@ var botMovie = {
 			botMessage = "Ohok, fetching movie details......";
 
 			botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display upcoming movies
+		}else if((message.toLowerCase().indexOf("display upcoming movies") >= 0) || (message.toLowerCase().indexOf("display the upcoming movies") >= 0) || (message.toLowerCase().indexOf("show me the upcoming movies") >= 0) || (message.toLowerCase().indexOf("show me upcoming movies") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 4, 0000);
 
 			botAction.initializeAllVariables();
 
@@ -1053,7 +1065,7 @@ var botMovie = {
 		//used TMDb api to info about popular movies and tv shows.
 		//awesome API, should try it out.
 		var movieBaseURL = "https://api.themoviedb.org/3/";
-		var apiKeyTMDb = ""; //Type your api key (TMDb) here
+		var apiKeyTMDb = "867611d6b3f8882764c7aec28bc288ed"; //Type your api key (TMDb) here
 
 		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
@@ -1070,6 +1082,10 @@ var botMovie = {
 		//if the user wants to view top rated tv shows
 		}else if(choice == 3){
 			var urlToCall = movieBaseURL + "tv/top_rated?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
+		
+		//if the user wants to view upcoming movies
+		}else if(choice == 4){
+			var urlToCall = movieBaseURL + "movie/upcoming?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
 		}
 
 		$.ajax({
@@ -1080,7 +1096,7 @@ var botMovie = {
 				//console.log(result.results);
 				var item;
 				returnMessage = "Here you go";
-				if((choice != 2) && (choice != 3)){
+				if((choice == 0) || (choice == 1) || (choice == 4)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
 					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n";
