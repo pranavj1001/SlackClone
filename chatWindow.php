@@ -25,12 +25,49 @@
     <!-- Custom styles for this template -->
     <link href="css/chatWindow.css" rel="stylesheet">
 
+<style type="text/css">
+  .main{
+    overflow-y: auto;
+    height: 385px;
+    width: 88%;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    /*position: absolute;*/
+}
+.left{
+    color:red;
+    border:1px solid transparent;
+    padding: 10px;
+    margin: 10px;
+    float: left;
+    width: 60%;
+    border-radius: 10px;
+    background-color: #C0C0C0;
+    color: white;
+    border-top-left-radius:0px;
+}
+
+.right{
+/*  text-align: right;
+*/  border:1px solid transparent;
+    padding: 10px;
+    margin: 10px;
+    float: right;
+    width: 60%;
+    background-color: #00b359;
+    border-radius: 10px;
+    color: white;
+    border-top-right-radius:0px;
+}
+</style>
 </head>
 <body>
 
 	<?php if (isset($_SESSION['teamid'])) { ?>
 
-	<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,13 +94,18 @@
       </div>
     </nav>
 
-        <div class="container chatsContainer">
+        <!-- <div class="container chatsContainer">
         	<textarea class="form-control" id="messageBox" readonly="on"></textarea>
+        </div> -->
+        
+        <div class="main">
         </div>
+        
+
         <div class="container newMessageContainer">
         	<input class="form-control" type="text" id="newMessage" name="newMessage">
-			<button class="btn btn-primary" id="sendMessageButton">Send</button>
-		</div>
+			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
+		    </div>
 
 		<div class="container alert alert-danger" id="alert"></div>	
 
@@ -81,7 +123,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/jQuery320.min.js"></script>
-    <script type="text/javascript" src="js/botServices.js"></script>
+    <script type="text/javascript" src="js/BotFiles/botServices.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
@@ -164,31 +206,80 @@
 
     	});
 
-	    function updateMessage(){
+	    // function updateMessage(){
 
-	        var teamName = "<?php echo $TeamName; ?>";
+	    //     var teamName = "<?php /*echo*/ $TeamName; ?>";
+          
 	       
-	        $.ajax({
-	        	type : "POST",
-	          url : "actions.php?actions=updateMessage",
-	          data : "teamname="+teamName,
-	          dataType : "json",
-	          success : function(response,status,http){
+	    //     $.ajax({
+	    //     	type : "POST",
+	    //       url : "actions.php?actions=updateMessage",
+	    //       data : "teamname="+teamName,
+	    //       dataType : "json",
+	    //       success : function(response,status,http){
 
-	            $("#messageBox").val("");
-	            $.each(response,function(index,item){
+	    //         $("#messageBox").val("");
+	    //         $.each(response,function(index,item){
 
-	            	$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
-	             //lastMessageId=$item.id;
+	    //         	$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
+	    //          // lastMessageId=$item.id;
+     //           // var temp=item.sender;
+     //           // var message=item.message;
+     //           // if (temp==replierName){
+     //           //  $("<br>").insertAfter($("<div>"+temp+message+"</div>").addClass("left").appendTo(".main"));
+     //           // }
+     //           // else{
+     //           //  $("<br>").insertAfter($("<div>"+temp+message+"</div>").addClass("right").appendTo(".main"));
+     //           // }
+               
+     //         });
+     //        },
+	    //       error : function (http,status,error) {
+	    //           alert ("Some Error Ocurred : "+error);
+	    //       }
 
-	            });
-				    },
-	          error : function (http,status,error) {
-	              alert ("Some Error Ocurred : "+error);
-	          }
+	    //     });
+	    // };
 
-	        });
-	    };
+      function updateMessage(){
+
+            var teamName = "<?php echo $TeamName; ?>";
+            var currentUsername = "<?php echo $currentUsername; ?>";
+            
+           
+            $.ajax({
+                type : "POST",
+                url : "actions.php?actions=updateMessage",
+                data : "teamname="+teamName,
+                // data : "teamname="+teamName,
+                dataType : "json",
+                success : function(response,status,http){
+
+                  // $("#messageBox").val("");
+                  $( ".main" ).empty();
+                  $.each(response,function(index,item){
+
+                      // $("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
+                   
+                  // lastMessageId=item.id;
+                  var temp=item.sender;
+                   
+                  var addMessage=item.sender+":"+item.message;
+                  if (temp==currentUsername){
+                        $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("right").appendTo(".main"));
+                  }
+                  else{
+                        $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("left").appendTo(".main"));
+                  }
+                 
+                  });
+                  },
+                error : function (http,status,error) {
+                    alert ("Some Error Ocurred : "+error);
+                }
+
+            });
+        };
 
       function checkDataBase(){
         var teamName = "<?php echo $TeamName; ?>";
