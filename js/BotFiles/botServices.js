@@ -165,84 +165,6 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to delete issue/commits from a project
-	}else if(message.toLowerCase().indexOf("delete an issue whose id = ") >= 0){
-
-		issueId = message.substr(34);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-	//rule to delete issues/commits from a project
-	}else if(message.toLowerCase().indexOf("delete an issue whose id is ") >= 0){
-
-		issueId = message.substr(35);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-	//rule to delete issues/commits from a project
-	}else if(message.toLowerCase().indexOf("delete an issue whose id equals ") >= 0){
-
-		issueId = message.substr(39);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-	//rule to delete commits/issues from a project
-	}else if(message.toLowerCase().indexOf("delete a commit whose id = ") >= 0){
-
-		issueId = message.substr(34);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-	//rule to delete commits/issues from a project
-	}else if(message.toLowerCase().indexOf("delete a commit whose id is ") >= 0){
-
-		issueId = message.substr(35);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-	//rule to delete commits/issues from a project
-	}else if(message.toLowerCase().indexOf("delete a commit whose id equals ") >= 0){
-
-		issueId = message.substr(39);
-		issueId.trim();
-		//console.log(issueId);
-
-		issueDeletion = 1;
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
 	//rule to delete the issue from the project
 	}else if(issueDeletion == 1){
 
@@ -251,6 +173,13 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botMessage = "Alright, working on it. Will let you know when its done.";
 
 		botAction.deleteIssue(currrentUsername, message, issueId, teamName);
+
+		botAction.initializeAllVariables();
+
+	//call the versionControlBot (Delete Issues)
+	}else if((message.toLowerCase().indexOf("delete") >= 0) || (message.toLowerCase().indexOf("remove") >= 0)){
+
+		botVersionControl.checkDeleteIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
@@ -1362,6 +1291,164 @@ var botVersionControl = {
 
 	checkDeleteIssueQueries: function(message, teamName, currrentUsername){
 
+		//rule to delete issue/commits from a project
+		if(message.toLowerCase().indexOf("delete an issue whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("delete an issue whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("delete an issue whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issue/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		}
+
 	},
 
 	checkDisplayIssueQueries: function(message, teamName, currrentUsername){
@@ -1426,8 +1513,8 @@ var botVersionControl = {
 
 			issueShowSteps = 1;
 
-		}//rule to display issue/commit (projectName not Entered but ID is given)
-		if((message.toLowerCase().indexOf("show the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the issue whose id = ") >= 0) && (issueShowSteps == 0)){
 
 			//console.log("Display the issue (ID Entered)");
 
