@@ -263,48 +263,21 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to display latest issue/commit (projectName Entered)
-	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
-
-		//console.log("Display the latest issue (ProjectName Entered)");
-		projectNameForIssue = message.substr(35);
-
-		botMessage = "Ohok, working on it....";
-
-		botAction.showLatestIssue(teamName, projectNameForIssue);
-
-		botAction.initializeAllVariables();
-
-	//rule to display latest issue/commit (projectName Entered)
-	}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
-
-		//console.log("Display the latest issue (ProjectName Entered)");
-		projectNameForIssue = message.substr(36);
-		//console.log(projectNameForIssue);
-
-		botMessage = "Ohok, working on it....";
-
-		botAction.showLatestIssue(teamName, projectNameForIssue);
-
-		botAction.initializeAllVariables();
-
-	//rule to display latest issue (projectName not Entered)
-	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
-
-		//console.log("Display the latest issue (ProjectName Not Entered)");
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-		issueShowLatestSteps = 1;
-
 	//if user didn't enter the projectName then take the projectName
 	}else if(issueShowLatestSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
 
 		botAction.showLatestIssue(teamName, message);
+
+		botAction.initializeAllVariables();
+
+	//call the versionControlBot (Display Latest Issues)
+	}else if(message.toLowerCase().indexOf("latest") >= 0){
+
+		//console.log("let the news Bot handle this message");
+
+		botVersionControl.checkDisplayLatestIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
@@ -1518,6 +1491,44 @@ var botVersionControl = {
 	},
 
 	checkDisplayLatestIssueQueries: function(message, teamName, currrentUsername){
+
+		//rule to display latest issue/commit (projectName Entered)
+		if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
+
+			//console.log("Display the latest issue (ProjectName Entered)");
+			projectNameForIssue = message.substr(35);
+
+			botMessage = "Ohok, working on it....";
+
+			botAction.showLatestIssue(teamName, projectNameForIssue);
+
+			botAction.initializeAllVariables();
+
+		//rule to display latest issue/commit (projectName Entered)
+		}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
+
+			//console.log("Display the latest issue (ProjectName Entered)");
+			projectNameForIssue = message.substr(36);
+			//console.log(projectNameForIssue);
+
+			botMessage = "Ohok, working on it....";
+
+			botAction.showLatestIssue(teamName, projectNameForIssue);
+
+			botAction.initializeAllVariables();
+
+		//rule to display latest issue (projectName not Entered)
+		}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
+
+			//console.log("Display the latest issue (ProjectName Not Entered)");
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+			issueShowLatestSteps = 1;
+
+		}
 
 	},
 
