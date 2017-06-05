@@ -388,17 +388,6 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to display information about a company (companyName not given)
-	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
-
-		//console.log("Stock Bot (Company Name Not Mentioned)");
-
-		botMessage = "About which company?";
-
-		botAction.initializeAllVariables();
-
-		stockCompanyPause = 1;
-
 	//take companyName from user (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(stockCompanyPause){
 
@@ -410,20 +399,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to display information about a company (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
-	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
+	//call the stockBot
+	}else if((message.toLowerCase().indexOf("stock") >= 0) || (message.toLowerCase().indexOf("company") >= 0)){
 
-		//console.log("Stock Bot (Company Name Mentioned)");
+		//console.log("Stock Bot (Company Name Not Mentioned)");
 
-		botMessage = "Ohok, Working on it......";
-
-		stockCompanyName = message.substr(40);
-		stockCompanyName.trim();
-		console.log(stockCompanyName);
-
-		botStocks.getCompanyInfo(stockCompanyName, teamName);
+		botMessage = "About which company?";
 
 		botAction.initializeAllVariables();
+
+		botStocks.checkQueries(message, teamName, currrentUsername);
 
 	//call the movieBot
 	}else if((message.toLowerCase().indexOf("tv shows") >= 0) || (message.toLowerCase().indexOf("movies") >= 0)){
@@ -1121,6 +1106,39 @@ var botMovie = {
 //this is the obj literal for the stocksBot.
 //all company info and stocks related queries are executed here
 var botStocks = {
+
+	//this function checks the rule and find info about the company.
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to display information about a company (companyName not given)
+		if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
+
+			//console.log("Stock Bot (Company Name Not Mentioned)");
+
+			botMessage = "About which company?";
+
+			botAction.initializeAllVariables();
+
+			stockCompanyPause = 1;
+
+		//rule to display information about a company (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
+		}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
+
+			//console.log("Stock Bot (Company Name Mentioned)");
+
+			botMessage = "Ohok, Working on it......";
+
+			stockCompanyName = message.substr(40);
+			stockCompanyName.trim();
+			console.log(stockCompanyName);
+
+			botStocks.getCompanyInfo(stockCompanyName, teamName);
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
 
 	//this function checks whether the commpany exists or not and if it exists then it gathers data about it.
 	getCompanyInfo: function(stockCompanyName, teamName){
