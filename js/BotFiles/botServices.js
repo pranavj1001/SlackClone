@@ -308,72 +308,21 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	//rule to display issue/commit (projectName not Entered but ID is given)
-	}else if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(36);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
-	//rule to display issue/commit (projectName not Entered but ID is given)
-	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(37);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
-	//rule to display issue/commit (projectName not Entered but ID is given)
-	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(42);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
-	//rule to display issue/commit (projectName not Entered but ID is given)
-	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(41);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
 	//take the projectName and display the issue/commit
 	}else if(issueShowSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
 
 		botAction.showIssue(teamName, message, issueId);
+
+		botAction.initializeAllVariables();
+
+	//call the versionBot (Display Issues)
+	}else if((message.toLowerCase().indexOf("display") >= 0) || (message.toLowerCase().indexOf("show") >= 0)){
+
+		//console.log("let the news Bot handle this message");
+
+		botVersionControl.checkDisplayIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
@@ -1427,6 +1376,156 @@ var newsBot = {
 				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
+
+	}
+
+};
+
+//since versionControl is a big bot, therefore not all functions of the bot are in this obj literal
+//some of the functions are in 'botAction'
+//here only queries are checked
+//queries are segregated for optimization purposes
+var botVersionControl = {
+
+	checkDeleteIssueQueries: function(message, teamName, currrentUsername){
+
+	},
+
+	checkDisplayIssueQueries: function(message, teamName, currrentUsername){
+		
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(36);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(37);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(42);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(41);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		}//rule to display issue/commit (projectName not Entered but ID is given)
+		if((message.toLowerCase().indexOf("show the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(33);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the commit whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(38);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		}
+
+	},
+
+	checkDisplayLatestIssueQueries: function(message, teamName, currrentUsername){
+
+	},
+
+	checkDefineProjectQueries: function(message, teamName, currrentUsername){
+
+	},
+
+	checkDefineIssueQueries: function(message, teamName, currrentUsername){
 
 	}
 
