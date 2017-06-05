@@ -1617,14 +1617,6 @@ var botVersionControl = {
 
 		}
 
-	},
-
-	checkDefineProjectQueries: function(message, teamName, currrentUsername){
-
-	},
-
-	checkDefineIssueQueries: function(message, teamName, currrentUsername){
-
 	}
 
 };
