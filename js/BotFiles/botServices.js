@@ -636,139 +636,132 @@ var botDoctor = {
 		//var which will be used in our api for our doctorBot
 		var doctorId;
 
-		//used APIMedic API to get info about medication and symptoms.
-		//However, if we are able to create our own data (our very own API) and use then APIMedic api will be of no use.
-		//Currently working on do so ^.
-		var baseUrl = "https://sandbox-healthservice.priaid.ch/";
-		var token = "?"; //Type your token (APIMedic) here 
-		var endUrl = "&language=en-gb&format=json";
-
 		if(symptom.toLowerCase().indexOf("abdominal pain")){
 			doctorId = 10;
 		}else if(symptom.toLowerCase().indexOf("anxiety")){
-			doctorId = 238;
+			doctorId = 20;
 		}else if(symptom.toLowerCase().indexOf("back pain")){
-			doctorId = 104;
-		}else if(symptom.toLowerCase().indexOf("burning eyes")){
-			doctorId = 75;
-		}else if(symptom.toLowerCase().indexOf("burning in the throat")){
-			doctorId = 46;
-		}else if(symptom.toLowerCase().indexOf("cheek swelling")){
-			doctorId = 170;
-		}else if(symptom.toLowerCase().indexOf("chest pain")){
-			doctorId = 17;
-		}else if(symptom.toLowerCase().indexOf("chest tightness")){
-			doctorId = 31;
-		}else if(symptom.toLowerCase().indexOf("chills")){
-			doctorId = 175;
-		}else if(symptom.toLowerCase().indexOf("cold sweats")){
-			doctorId = 139;
-		}else if(symptom.toLowerCase().indexOf("cough")){
-			doctorId = 15;
-		}else if(symptom.toLowerCase().indexOf("dizziness")){
-			doctorId = 207;
-		}else if(symptom.toLowerCase().indexOf("drooping eyelid")){
-			doctorId = 244;
-		}else if(symptom.toLowerCase().indexOf("dry eyes")){
-			doctorId = 273;
-		}else if(symptom.toLowerCase().indexOf("earache")){
-			doctorId = 87;
-		}else if(symptom.toLowerCase().indexOf("early satiety")){
-			doctorId = 92;
-		}else if(symptom.toLowerCase().indexOf("eye pain")){
-			doctorId = 287;
-		}else if(symptom.toLowerCase().indexOf("eye redness")){
-			doctorId = 33;
-		}else if(symptom.toLowerCase().indexOf("fast, deepened breathing")){
-			doctorId = 153;
-		}else if(symptom.toLowerCase().indexOf("feeling of foreign body in the eye")){
-			doctorId = 76;
-		}else if(symptom.toLowerCase().indexOf("fever")){
-			doctorId = 11;
-		}else if(symptom.toLowerCase().indexOf("going black before the eyes")){
-			doctorId = 57;
-		}else if(symptom.toLowerCase().indexOf("headache")){
-			doctorId = 9;
-		}else if(symptom.toLowerCase().indexOf("heartburn")){
-			doctorId = 45;
-		}else if(symptom.toLowerCase().indexOf("hiccups")){
-			doctorId = 122;
-		}else if(symptom.toLowerCase().indexOf("hot flushes")){
-			doctorId = 149;
-		}else if(symptom.toLowerCase().indexOf("increased thirst")){
-			doctorId = 40;
-		}else if(symptom.toLowerCase().indexOf("itching eyes")){
-			doctorId = 73;
-		}else if(symptom.toLowerCase().indexOf("itching in the nose")){
-			doctorId = 96;
-		}else if(symptom.toLowerCase().indexOf("lip swelling")){
-			doctorId = 35;
-		}else if(symptom.toLowerCase().indexOf("memory gap")){
-			doctorId = 235;
-		}else if(symptom.toLowerCase().indexOf("menstruation disorder")){
-			doctorId = 112;
-		}else if(symptom.toLowerCase().indexOf("missed period")){
-			doctorId = 123;
-		}else if(symptom.toLowerCase().indexOf("nausea")){
-			doctorId = 44;
-		}else if(symptom.toLowerCase().indexOf("neck pain")){
-			doctorId = 136;
-		}else if(symptom.toLowerCase().indexOf("nervousness")){
-			doctorId = 114;
-		}else if(symptom.toLowerCase().indexOf("night cough")){
-			doctorId = 133;
-		}else if(symptom.toLowerCase().indexOf("pain in the limbs")){
-			doctorId = 12;
-		}else if(symptom.toLowerCase().indexOf("pain on swallowing")){
-			doctorId = 203;
-		}else if(symptom.toLowerCase().indexOf("palpitations")){
-			doctorId = 37;
-		}else if(symptom.toLowerCase().indexOf("paralysis")){
-			doctorId = 140;
-		}else if(symptom.toLowerCase().indexOf("reduced appetite")){
-			doctorId = 54;
-		}else if(symptom.toLowerCase().indexOf("runny nose")){
-			doctorId = 14;
-		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
-			doctorId = 29;
-		}else if(symptom.toLowerCase().indexOf("skin rash")){
-			doctorId = 124;
-		}else if(symptom.toLowerCase().indexOf("sleeplessness")){
-			doctorId = 52;
-		}else if(symptom.toLowerCase().indexOf("sneezing")){
-			doctorId = 95;
-		}else if(symptom.toLowerCase().indexOf("sore throeat")){
-			doctorId = 13;
-		}else if(symptom.toLowerCase().indexOf("sputum")){
-			doctorId = 64;
-		}else if(symptom.toLowerCase().indexOf("stomach burning")){
-			doctorId = 179;
-		}else if(symptom.toLowerCase().indexOf("stuffy nose")){
-			doctorId = 28;
-		}else if(symptom.toLowerCase().indexOf("sweating")){
-			doctorId = 138;
-		}else if(symptom.toLowerCase().indexOf("swollen glands in the armpits")){
-			doctorId = 248;
-		}else if(symptom.toLowerCase().indexOf("swollen glands on the neck")){
-			doctorId = 169;
-		}else if(symptom.toLowerCase().indexOf("tears")){
-			doctorId = 211;
-		}else if(symptom.toLowerCase().indexOf("tiredness")){
-			doctorId = 16;
-		}else if(symptom.toLowerCase().indexOf("tremor at rest")){
-			doctorId = 115;
-		}else if(symptom.toLowerCase().indexOf("unconsciousness, short")){
-			doctorId = 144;
-		}else if(symptom.toLowerCase().indexOf("vomiting")){
-			doctorId = 101;
-		}else if(symptom.toLowerCase().indexOf("vomiting blood")){
-			doctorId = 181;
-		}else if(symptom.toLowerCase().indexOf("weakness")){
-			doctorId = 56;
-		}else if(symptom.toLowerCase().indexOf("weight gain")){
-			doctorId = 23;
-		}else if(symptom.toLowerCase().indexOf("wheezing")){
 			doctorId = 30;
+		}else if(symptom.toLowerCase().indexOf("burning eyes")){
+			doctorId = 40;
+		}else if(symptom.toLowerCase().indexOf("burning in the throat")){
+			doctorId = 50;
+		}else if(symptom.toLowerCase().indexOf("cheek swelling")){
+			doctorId = 60;
+		}else if(symptom.toLowerCase().indexOf("chest pain")){
+			doctorId = 70;
+		}else if(symptom.toLowerCase().indexOf("chest tightness")){
+			doctorId = 80;
+		}else if(symptom.toLowerCase().indexOf("chills")){
+			doctorId = 90;
+		}else if(symptom.toLowerCase().indexOf("cold sweats")){
+			doctorId = 100;
+		}else if(symptom.toLowerCase().indexOf("cough")){
+			doctorId = 110;
+		}else if(symptom.toLowerCase().indexOf("dizziness")){
+			doctorId = 120;
+		}else if(symptom.toLowerCase().indexOf("drooping eyelid")){
+			doctorId = 130;
+		}else if(symptom.toLowerCase().indexOf("dry eyes")){
+			doctorId = 140;
+		}else if(symptom.toLowerCase().indexOf("earache")){
+			doctorId = 150;
+		}else if(symptom.toLowerCase().indexOf("early satiety")){
+			doctorId = 160;
+		}else if(symptom.toLowerCase().indexOf("eye pain")){
+			doctorId = 170;
+		}else if(symptom.toLowerCase().indexOf("eye redness")){
+			doctorId = 180;
+		}else if(symptom.toLowerCase().indexOf("fast, deepened breathing")){
+			doctorId = 190;
+		}else if(symptom.toLowerCase().indexOf("feeling of foreign body in the eye")){
+			doctorId = 200;
+		}else if(symptom.toLowerCase().indexOf("fever")){
+			doctorId = 210;
+		}else if(symptom.toLowerCase().indexOf("going black before the eyes")){
+			doctorId = 220;
+		}else if(symptom.toLowerCase().indexOf("headache")){
+			doctorId = 230;
+		}else if(symptom.toLowerCase().indexOf("heartburn")){
+			doctorId = 240;
+		}else if(symptom.toLowerCase().indexOf("hiccups")){
+			doctorId = 250;
+		}else if(symptom.toLowerCase().indexOf("hot flushes")){
+			doctorId = 260;
+		}else if(symptom.toLowerCase().indexOf("increased thirst")){
+			doctorId = 270;
+		}else if(symptom.toLowerCase().indexOf("itching eyes")){
+			doctorId = 280;
+		}else if(symptom.toLowerCase().indexOf("itching in the nose")){
+			doctorId = 290;
+		}else if(symptom.toLowerCase().indexOf("lip swelling")){
+			doctorId = 300;
+		}else if(symptom.toLowerCase().indexOf("memory gap")){
+			doctorId = 310;
+		}else if(symptom.toLowerCase().indexOf("menstruation disorder")){
+			doctorId = 320;
+		}else if(symptom.toLowerCase().indexOf("missed period")){
+			doctorId = 330;
+		}else if(symptom.toLowerCase().indexOf("nausea")){
+			doctorId = 340;
+		}else if(symptom.toLowerCase().indexOf("neck pain")){
+			doctorId = 350;
+		}else if(symptom.toLowerCase().indexOf("nervousness")){
+			doctorId = 360;
+		}else if(symptom.toLowerCase().indexOf("night cough")){
+			doctorId = 370;
+		}else if(symptom.toLowerCase().indexOf("pain in the limbs")){
+			doctorId = 380;
+		}else if(symptom.toLowerCase().indexOf("pain on swallowing")){
+			doctorId = 390;
+		}else if(symptom.toLowerCase().indexOf("palpitations")){
+			doctorId = 400;
+		}else if(symptom.toLowerCase().indexOf("paralysis")){
+			doctorId = 410;
+		}else if(symptom.toLowerCase().indexOf("reduced appetite")){
+			doctorId = 420;
+		}else if(symptom.toLowerCase().indexOf("runny nose")){
+			doctorId = 430;
+		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
+			doctorId = 440;
+		}else if(symptom.toLowerCase().indexOf("skin rash")){
+			doctorId = 450;
+		}else if(symptom.toLowerCase().indexOf("sleeplessness")){
+			doctorId = 460;
+		}else if(symptom.toLowerCase().indexOf("sneezing")){
+			doctorId = 470;
+		}else if(symptom.toLowerCase().indexOf("sore throeat")){
+			doctorId = 480;
+		}else if(symptom.toLowerCase().indexOf("sputum")){
+			doctorId = 490;
+		}else if(symptom.toLowerCase().indexOf("stomach burning")){
+			doctorId = 500;
+		}else if(symptom.toLowerCase().indexOf("stuffy nose")){
+			doctorId = 510;
+		}else if(symptom.toLowerCase().indexOf("sweating")){
+			doctorId = 520;
+		}else if(symptom.toLowerCase().indexOf("swollen glands in the armpits")){
+			doctorId = 530;
+		}else if(symptom.toLowerCase().indexOf("swollen glands on the neck")){
+			doctorId = 540;
+		}else if(symptom.toLowerCase().indexOf("tears")){
+			doctorId = 550;
+		}else if(symptom.toLowerCase().indexOf("tiredness")){
+			doctorId = 560;
+		}else if(symptom.toLowerCase().indexOf("tremor at rest")){
+			doctorId = 570;
+		}else if(symptom.toLowerCase().indexOf("unconsciousness, short")){
+			doctorId = 580;
+		}else if(symptom.toLowerCase().indexOf("vomiting")){
+			doctorId = 590;
+		}else if(symptom.toLowerCase().indexOf("vomiting blood")){
+			doctorId = 600;
+		}else if(symptom.toLowerCase().indexOf("weakness")){
+			doctorId = 610;
+		}else if(symptom.toLowerCase().indexOf("weight gain")){
+			doctorId = 620;
+		}else if(symptom.toLowerCase().indexOf("wheezing")){
+			doctorId = 630;
 		}else{
 			doctorId = 999;
 		}
@@ -776,38 +769,6 @@ var botDoctor = {
 		console.log(doctorId);
 
 	}
-
-};
-
-var botDoctorURL = {
-
-	loadSymptoms: function(){ 
-		return baseUrl + 'symptoms' + token + endUrl;
-	},
-	
-	loadIssues: function(){ 
-		return baseUrl + 'issues' + endUrl;
-	},
-	
-	loadIssueInfo: function(){ 
-		return baseUrl + 'issues/' + doctorId + '/info' + token + endUrl;
-	},
-
-	loadDiagnosis: function(){ 
-		return baseUrl + 'diagnosis' + token + endUrl; 
-	},
-
-	loadSpecialisations: function(){ 
-		return baseUrl + 'diagnosis/specialisations' + token + endUrl; 
-	},
-
-	loadBodyLocations: function(){ 
-		return baseUrl + 'body/locations' + token + endUrl;
-	},
-
-	loadBodySublocations: function() { 
-		return baseUrl + 'body/locations/' + doctorId + token + endUrl;
-	}	
 
 };
 
