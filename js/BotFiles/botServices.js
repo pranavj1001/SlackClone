@@ -279,6 +279,15 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//use the calculator
+	}else if((message.toLowerCase().indexOf("add") >= 0) || (message.toLowerCase().indexOf("subtract") >= 0) || (message.toLowerCase().indexOf("multiply") >= 0) || (message.toLowerCase().indexOf("divide") >= 0)){
+
+		//console.log("Calculator");
+
+		calculator.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
 	//show the bot is alive
 	}else if(message.trim() == "OK Bot"){
 
@@ -1577,6 +1586,45 @@ var botVersionControl = {
 			issueShowLatestSteps = 1;
 
 		}
+
+	}
+
+};
+
+var calculator = {
+
+	checkQueries: function(message, teamName, currrentUsername){
+
+		var expression;
+		var operator;
+		var operand1;
+		var operand2;
+
+		if(message.toLowerCase().indexOf("add") >= 0){
+
+			expression = message.substr(11);
+			console.log(expression);
+
+		}else if(message.toLowerCase().indexOf("subtract") >= 0){
+
+			expression = message.substr(16);
+			console.log(expression);
+
+		}else if(message.toLowerCase().indexOf("multiply") >= 0){
+
+			expression = message.substr(16);
+			console.log(expression);
+
+		}else if(message.toLowerCase().indexOf("divide") >= 0){
+
+			expression = message.substr(14);
+			console.log(expression);
+
+		}
+
+	},
+
+	calculate: function(operator, operand1, operand2){
 
 	}
 
