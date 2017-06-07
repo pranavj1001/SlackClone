@@ -7,7 +7,7 @@
 
   The Features not marked are not done yet. Also, as soon as I get new implementable ideas, I add them here i.e. unmarked features may also be new upcoming features.
 
-### Assistant - (50% Complete)
+### Assistant - (66.67% Complete)
   - [X] Greets the user when called.
   - [X] Has sense of humor to make the mood light.
   - [X] Can tell the current date and time.
