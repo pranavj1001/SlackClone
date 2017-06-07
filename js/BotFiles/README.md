@@ -12,7 +12,7 @@
   - [X] Has sense of humor to make the mood light.
   - [X] Can tell the current date and time.
   - [ ] Send a mail.
-  - [ ] Calculator.
+  - [X] Calculator.
   - [ ] History of the day.
 
 ### Version Control System - (100% Complete)
