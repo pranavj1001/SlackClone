@@ -1597,9 +1597,9 @@ var calculator = {
 
 		var expression;
 		var operands;
-		var operator;
-		var operand1;
-		var operand2;
+		var operator = "Not Defined";
+		var operand1 = "Not Defined";
+		var operand2 = "Not Defined";
 
 		if(message.toLowerCase().indexOf("add") >= 0){
 
@@ -1635,19 +1635,51 @@ var calculator = {
 
 		}
 
+		calculator.calculate(operator, operand1, operand2);
+
 	},
 
 	calculate: function(operator, operand1, operand2){
 
-		if(operator == "add"){
+		var answer;
 
-		}else if(operator == "subtract"){
+		if(!(isNaN(operand1)) && !(isNaN(operand2))){
 
-		}else if(operator == "multiply"){
+			if(operator == "add"){
 
-		}else if(operator == "divide"){
-			
+				answer = parseInt(operand1) + parseInt(operand2);
+
+			}else if(operator == "subtract"){
+
+				answer = parseInt(operand1) - parseInt(operand2);
+
+			}else if(operator == "multiply"){
+
+				answer = parseInt(operand1) * parseInt(operand2);
+
+			}else if(operator == "divide"){
+
+				if(parseInt(operand2) != 0){
+					answer = parseInt(operand1) / parseInt(operand2);
+				}else{
+					answer = "Division by 0 (zero) found.";
+				}
+
+			}else if (operator == "Not Defined"){
+
+				answer = "Problem found in your expression. Please check and try again.";
+
+			}
+
+			//print answer here
+
+		}else{
+
+			answer = "Please use numbers.";
+
 		}
+
+		//console.log(answer);
 
 	}
 
