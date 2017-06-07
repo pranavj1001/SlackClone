@@ -1635,11 +1635,11 @@ var calculator = {
 
 		}
 
-		calculator.calculate(operator, operand1, operand2);
+		calculator.calculate(operator, operand1, operand2, teamName);
 
 	},
 
-	calculate: function(operator, operand1, operand2){
+	calculate: function(operator, operand1, operand2, teamName){
 
 		var answer;
 
@@ -1648,34 +1648,36 @@ var calculator = {
 			if(operator == "add"){
 
 				answer = parseInt(operand1) + parseInt(operand2);
+				botMessage = "Adding " + operand1 + " and " + operand2 + " equals " + answer;
 
 			}else if(operator == "subtract"){
 
 				answer = parseInt(operand1) - parseInt(operand2);
+				botMessage = "Subtracting " + operand1 + " and " + operand2 + " equals " + answer;
 
 			}else if(operator == "multiply"){
 
 				answer = parseInt(operand1) * parseInt(operand2);
+				botMessage = "Multiplying " + operand1 + " and " + operand2 + " equals " + answer;
 
 			}else if(operator == "divide"){
 
 				if(parseInt(operand2) != 0){
 					answer = parseInt(operand1) / parseInt(operand2);
+					botMessage = "Dividing " + operand1 + " and " + operand2 + " equals " + answer;
 				}else{
-					answer = "Division by 0 (zero) found.";
+					botMessage = "Division by 0 (zero) found.";
 				}
 
 			}else if (operator == "Not Defined"){
 
-				answer = "Problem found in your expression. Please check and try again.";
+				botMessage = "Problem found in your expression. Please check and try again.";
 
 			}
 
-			//print answer here
-
 		}else{
 
-			answer = "Please use numbers.";
+			botMessage = "Please use numbers.";
 
 		}
 
