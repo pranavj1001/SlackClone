@@ -1596,6 +1596,7 @@ var calculator = {
 	checkQueries: function(message, teamName, currrentUsername){
 
 		var expression;
+		var operands;
 		var operator;
 		var operand1;
 		var operand2;
@@ -1603,28 +1604,50 @@ var calculator = {
 		if(message.toLowerCase().indexOf("add") >= 0){
 
 			expression = message.substr(11);
-			console.log(expression);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "add";
 
 		}else if(message.toLowerCase().indexOf("subtract") >= 0){
 
 			expression = message.substr(16);
-			console.log(expression);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "subtract";
 
 		}else if(message.toLowerCase().indexOf("multiply") >= 0){
 
 			expression = message.substr(16);
-			console.log(expression);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "multiply";
 
 		}else if(message.toLowerCase().indexOf("divide") >= 0){
 
 			expression = message.substr(14);
-			console.log(expression);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "divide";
 
 		}
 
 	},
 
 	calculate: function(operator, operand1, operand2){
+
+		if(operator == "add"){
+
+		}else if(operator == "subtract"){
+
+		}else if(operator == "multiply"){
+
+		}else if(operator == "divide"){
+			
+		}
 
 	}
 
