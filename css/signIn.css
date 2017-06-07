@@ -42,6 +42,14 @@ body {
   border-top-right-radius: 0;
 }
 
+.title{
+  color: white !important;
+}
+
+.bodyForm{
+  margin-top: 30px;
+}
+
 #username{
   border-radius: 0px;
 }

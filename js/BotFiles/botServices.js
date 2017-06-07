@@ -14,6 +14,7 @@ var issueShowLatestSteps = 0;
 var issueShowSteps = 0;
 var issueId = 0;
 var projectNameForIssue = "";
+var issueDeletion = 0;
 
 //var to contain BotMessage, not shared with the main chatWindow page (used in different processes defined below)
 var returnMessage = "";
@@ -34,20 +35,6 @@ var bot = "bot";
 var stockCompanyPause;
 var stockCompanyName = "";
 
-//used APIMedic API to get info about medication and symptoms.
-//However, if we are able to create our own data (our very own API) and use then APIMedic api will be of no use.
-//Currently working on do so ^.
-var baseUrl = "https://sandbox-healthservice.priaid.ch/";
-var token = "?"; //Type your token (APIMedic) here 
-var endUrl = "&language=en-gb&format=json";
-
-//used TMDb api to info about popular movies and tv shows.
-//awesome API, should try it out.
-var movieBaseURL = "https://api.themoviedb.org/3/";
-var apiKeyTMDb = ""; //Type your api key (TMDb) here
-
-//var which will be used in our api for our doctorBot
-var doctorId;
 
 //This function is called from the main chatWindow.php page
 //It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
@@ -178,6 +165,25 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//rule to delete the issue from the project
+	}else if(issueDeletion == 1){
+
+		issueDeletion = 0;
+
+		botMessage = "Alright, working on it. Will let you know when its done.";
+
+		botAction.deleteIssue(currrentUsername, message, issueId, teamName);
+
+		botAction.initializeAllVariables();
+
+	//call the versionControlBot (Delete Issues)
+	}else if((message.toLowerCase().indexOf("delete") >= 0) || (message.toLowerCase().indexOf("remove") >= 0)){
+
+		botVersionControl.checkDeleteIssueQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//if the user explicitly says to revert revealing of issues or commits
 	}else if(message.toLowerCase().indexOf("revert issue revealing") >= 0){
 
 		dontAllowBotToSendMessage = 0;
@@ -186,40 +192,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
-
-		//console.log("Display the latest issue (ProjectName Entered)");
-		projectNameForIssue = message.substr(35);
-		//console.log(projectNameForIssue);
-
-		botMessage = "Ohok, working on it....";
-
-		botAction.showLatestIssue(teamName, projectNameForIssue);
-
-		botAction.initializeAllVariables();
-
-	}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
-
-		//console.log("Display the latest issue (ProjectName Entered)");
-		projectNameForIssue = message.substr(36);
-		//console.log(projectNameForIssue);
-
-		botMessage = "Ohok, working on it....";
-
-		botAction.showLatestIssue(teamName, projectNameForIssue);
-
-		botAction.initializeAllVariables();
-
-	}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
-
-		//console.log("Display the latest issue (ProjectName Not Entered)");
-
-		botMessage = "... of which project?";
-
-		botAction.initializeAllVariables();
-
-		issueShowLatestSteps = 1;
-
+	//if user didn't enter the projectName then take the projectName
 	}else if(issueShowLatestSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
@@ -228,62 +201,16 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+	//call the versionControlBot (Display Latest Issues)
+	}else if(message.toLowerCase().indexOf("latest") >= 0){
 
-		//console.log("Display the issue (ID Entered)");
+		//console.log("let the news Bot handle this message");
 
-		botMessage = "... of which project?";
-
-		issueId = message.substr(36);
-		issueId.trim();
-		//console.log(issueId);
+		botVersionControl.checkDisplayLatestIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
-		issueShowSteps = 1;
-
-	}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(37);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
-	}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(42);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
-	}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
-
-		//console.log("Display the issue (ID Entered)");
-
-		botMessage = "... of which project?";
-
-		issueId = message.substr(41);
-		issueId.trim();
-		//console.log(issueId);
-
-		botAction.initializeAllVariables();
-
-		issueShowSteps = 1;
-
+	//take the projectName and display the issue/commit
 	}else if(issueShowSteps == 1){
 
 		dontAllowBotToSendMessage = 1;
@@ -292,9 +219,19 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//call the versionBot (Display Issues)
+	}else if((message.toLowerCase().indexOf("display") >= 0) || (message.toLowerCase().indexOf("show") >= 0)){
+
+		//console.log("let the news Bot handle this message");
+
+		botVersionControl.checkDisplayIssueQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//take the current feelings of user and display corresponding problem/disease
 	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
 
-		console.log("Doctor Bot (Symptoms)");
+		//console.log("Doctor Bot (Symptoms)");
 
 		dontAllowBotToSendMessage = 1;
 
@@ -302,77 +239,10 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("display current popular movies from the year ") >= 0){
-
-		//console.log("Movie Bot (Year)");
-
-		var year = message.substr(52);
-		year.trim();
-		console.log(year);
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
-
-		botAction.initializeAllVariables();
-
-	}else if(message.toLowerCase().indexOf("display the current popular movies from the year ") >= 0){
-
-		//console.log("Movie Bot (Year)");
-
-		var year = message.substr(56);
-		year.trim();
-		console.log(year);
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 1, year);
-
-		botAction.initializeAllVariables();
-
-	}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me current popular movies") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching movie details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
-
-		botAction.initializeAllVariables();
-
-	}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me current popular tv shows") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching TV Shows details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 2, 0000);
-
-		botAction.initializeAllVariables();
-
-	}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me current top rated tv shows") >= 0)){
-
-		//console.log("Movie Bot");
-		
-		botMessage = "Ohok, fetching TV Shows details......";
-
-		botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
-
-		botAction.initializeAllVariables();
-
-	}else if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
-
-		console.log("Stock Bot (Company Name Not Mentioned)");
-
-		botMessage = "About which company?";
-
-		botAction.initializeAllVariables();
-
-		stockCompanyPause = 1;
-
+	//take companyName from user (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(stockCompanyPause){
 
-		console.log("Stock Bot (Get Company Name)");
+		//console.log("Stock Bot (Get Company Name)");
 
 		botMessage = "About which company?";
 
@@ -380,25 +250,57 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
-	}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
+	//call the stockBot
+	}else if((message.toLowerCase().indexOf("stock") >= 0) || (message.toLowerCase().indexOf("company") >= 0)){
 
-		console.log("Stock Bot (Company Name Mentioned)");
+		//console.log("Stock Bot (Company Name Not Mentioned)");
 
-		botMessage = "Ohok, Working on it......";
-
-		stockCompanyName = message.substr(40);
-		stockCompanyName.trim();
-		console.log(stockCompanyName);
-
-		botStocks.getCompanyInfo(stockCompanyName, teamName);
+		botMessage = "About which company?";
 
 		botAction.initializeAllVariables();
 
-	}else{
+		botStocks.checkQueries(message, teamName, currrentUsername);
+
+	//call the movieBot
+	}else if((message.toLowerCase().indexOf("tv shows") >= 0) || (message.toLowerCase().indexOf("movies") >= 0)){
+
+		//console.log("let the news Bot handle this message");
+
+		botMovie.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//call the newsBot
+	}else if(message.toLowerCase().indexOf("news") >= 0){
+
+		//console.log("let the news Bot handle this message");
+
+		newsBot.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//use the calculator
+	}else if((message.toLowerCase().indexOf("add") >= 0) || (message.toLowerCase().indexOf("subtract") >= 0) || (message.toLowerCase().indexOf("multiply") >= 0) || (message.toLowerCase().indexOf("divide") >= 0)){
+
+		//console.log("Calculator");
+
+		calculator.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
+	//show the bot is alive
+	}else if(message.trim() == "OK Bot"){
 
 		//console.log("User just wants to see the bot");
 
-		botMessage = "Hey there, " + currrentUsername + " How can I help you? You may have typed the wrong command. Follow the manual for help.";
+		botMessage = "Hey there, " + currrentUsername + " How can I help you?";
+
+		botAction.initializeAllVariables();
+
+	//user types wrong command
+	}else{
+
+		botMessage = "Sorry, I don't understand.";
 
 		botAction.initializeAllVariables();
 
@@ -406,16 +308,21 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 };
 
+//this object literal to basic stuff that the bot will perform
 var botAction = {
 
+	//this function gets the current time
 	getTime: function(){ 
 		return new Date().toLocaleTimeString();
 	},
 
+	//this function gets the current date
 	getDate: function(){ 
 		return new Date().toLocaleDateString();
 	},
 
+	//this function picks up a random joke from the array given below
+	//add more jokes if u have and it isn't here
 	getJokes: function(teamName){
 
 		var jokes = [
@@ -459,8 +366,10 @@ var botAction = {
 
 	},
 	
+	//this function creates a new table for the userEnteredProjectName project.
 	defineANewProject: function(projectName, teamName){
 
+		//to get current time and date in format which is accepted by the db.
 		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
 
 		//console.log(teamName + " " + projectName);
@@ -486,6 +395,7 @@ var botAction = {
         });
 	},
 
+	//this function is used to check whehther a table exists for a userEnteredProjectName project.
 	preCommitAnIssue: function(projectName, teamName, message){
 		$.ajax({
             type: "POST",
@@ -512,6 +422,7 @@ var botAction = {
         });
 	},
 
+	//this function is used to commit issue to the userEnteredProjectName project.
 	commitAnIssue: function(issueData, teamName, currrentUsername, projectName){
 
 		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
@@ -542,8 +453,9 @@ var botAction = {
         });
 	},
 
+	//this function is used to show the topmost tuple from userEnteredProjectName project table.
 	showLatestIssue: function(teamName, projectName){
-		console.log(projectName);
+		//console.log(projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
@@ -578,8 +490,9 @@ var botAction = {
         });
 	},
 
+	//this function is used to show issue of a userEnteredProjectName project but here id of the tuple should be given
 	showIssue: function(teamName, projectName, issueId){
-		console.log(projectName);
+		//console.log(projectName);
 		$.ajax({
             type: "POST",
             url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
@@ -614,6 +527,58 @@ var botAction = {
         });
 	},
 
+	//this function is used to delete issues from a userEnteredProjectName project
+	deleteIssue: function(username, projectName, issueId, teamName){
+		//console.log(projectName + " " + issueId);
+		$.ajax({
+            type: "POST",
+            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            data: "teamname=" + teamName + "&projectname=" + projectName,
+            success: function(result){
+            	if(result == "1"){
+               		//console.log("Moving Ahead");
+               		$.ajax({
+			            type: "POST",
+			            url: "http://localhost/SlackClone/actions.php?actions=deleteIssue",
+			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId + "&username=" + username,
+			            success: function(result){
+			 				//console.log(result);
+			 				if(result == 1){
+			 					returnMessage = "Success: Deleted Issue #" + issueId + " by " + username;
+               					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 2){
+			 					returnMessage = "The issue with IssueId #" + issueId + " does not exist.";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 3){
+			 					returnMessage = "Sorry you're not authorized to delete this issue";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else if(result == 4){
+			 					returnMessage = "Sorry, couldn't delete the issue. Servers might be down for maintenance. Please try again later.";
+			 					//console.log(returnMessage);
+               					botAction.saveMessage(teamName, returnMessage, bot);
+			 				}else{
+			 					console.log(result);
+			 				}
+			            }
+			        });               
+                }else if(result == "2"){
+                	returnMessage = "This Project doesn't exist. Want to create a new project with this name: '" + projectName + "' ? Then just type 'OK Bot create a new project'";
+                	//console.log(returnMessage);
+                	botAction.saveMessage(teamName, returnMessage, bot);
+                }else{
+                	returnMessage = "Failure: There's some problem with our servers please try again later."; 
+                	console.log(returnMessage);
+                	botAction.saveMessage(teamName, returnMessage, bot);
+              	}
+            }
+        });
+	},
+
+	//below given functions do what their name suggests
+
 	initializeIssueShowStepsVariable: function(){
 		issueShowSteps = 0;
 	},
@@ -642,16 +607,20 @@ var botAction = {
 		issueShowLatestSteps = 0;
 	},
 
+	//this function is used to save the message to the db
+	//it mostly used to save messages for the bot
 	saveMessage: function(teamName, returnMessage, username){
 
 		if(returnMessage == ""){
 			returnMessage = "Not able to perform this request.";
 		}
 
+		var currentDateTimeInISOFormat = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, 19).replace('T', ' ');
+
 		$.ajax({
 		    type: "POST",
 		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
-		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage,
+		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage + "&datetime=" + currentDateTimeInISOFormat,
 		    success: function(result){
 			    if(result == "1"){
 			    	//console.log("Success");
@@ -667,136 +636,141 @@ var botAction = {
 
 };
 
+//this is doctor bot
+//Work In Progress - will update when bot is ready
 var botDoctor = {
 
 	assignSymptomsID: function(symptom){
 
+		//var which will be used in our api for our doctorBot
+		var doctorId;
+
 		if(symptom.toLowerCase().indexOf("abdominal pain")){
 			doctorId = 10;
 		}else if(symptom.toLowerCase().indexOf("anxiety")){
-			doctorId = 238;
+			doctorId = 20;
 		}else if(symptom.toLowerCase().indexOf("back pain")){
-			doctorId = 104;
-		}else if(symptom.toLowerCase().indexOf("burning eyes")){
-			doctorId = 75;
-		}else if(symptom.toLowerCase().indexOf("burning in the throat")){
-			doctorId = 46;
-		}else if(symptom.toLowerCase().indexOf("cheek swelling")){
-			doctorId = 170;
-		}else if(symptom.toLowerCase().indexOf("chest pain")){
-			doctorId = 17;
-		}else if(symptom.toLowerCase().indexOf("chest tightness")){
-			doctorId = 31;
-		}else if(symptom.toLowerCase().indexOf("chills")){
-			doctorId = 175;
-		}else if(symptom.toLowerCase().indexOf("cold sweats")){
-			doctorId = 139;
-		}else if(symptom.toLowerCase().indexOf("cough")){
-			doctorId = 15;
-		}else if(symptom.toLowerCase().indexOf("dizziness")){
-			doctorId = 207;
-		}else if(symptom.toLowerCase().indexOf("drooping eyelid")){
-			doctorId = 244;
-		}else if(symptom.toLowerCase().indexOf("dry eyes")){
-			doctorId = 273;
-		}else if(symptom.toLowerCase().indexOf("earache")){
-			doctorId = 87;
-		}else if(symptom.toLowerCase().indexOf("early satiety")){
-			doctorId = 92;
-		}else if(symptom.toLowerCase().indexOf("eye pain")){
-			doctorId = 287;
-		}else if(symptom.toLowerCase().indexOf("eye redness")){
-			doctorId = 33;
-		}else if(symptom.toLowerCase().indexOf("fast, deepened breathing")){
-			doctorId = 153;
-		}else if(symptom.toLowerCase().indexOf("feeling of foreign body in the eye")){
-			doctorId = 76;
-		}else if(symptom.toLowerCase().indexOf("fever")){
-			doctorId = 11;
-		}else if(symptom.toLowerCase().indexOf("going black before the eyes")){
-			doctorId = 57;
-		}else if(symptom.toLowerCase().indexOf("headache")){
-			doctorId = 9;
-		}else if(symptom.toLowerCase().indexOf("heartburn")){
-			doctorId = 45;
-		}else if(symptom.toLowerCase().indexOf("hiccups")){
-			doctorId = 122;
-		}else if(symptom.toLowerCase().indexOf("hot flushes")){
-			doctorId = 149;
-		}else if(symptom.toLowerCase().indexOf("increased thirst")){
-			doctorId = 40;
-		}else if(symptom.toLowerCase().indexOf("itching eyes")){
-			doctorId = 73;
-		}else if(symptom.toLowerCase().indexOf("itching in the nose")){
-			doctorId = 96;
-		}else if(symptom.toLowerCase().indexOf("lip swelling")){
-			doctorId = 35;
-		}else if(symptom.toLowerCase().indexOf("memory gap")){
-			doctorId = 235;
-		}else if(symptom.toLowerCase().indexOf("menstruation disorder")){
-			doctorId = 112;
-		}else if(symptom.toLowerCase().indexOf("missed period")){
-			doctorId = 123;
-		}else if(symptom.toLowerCase().indexOf("nausea")){
-			doctorId = 44;
-		}else if(symptom.toLowerCase().indexOf("neck pain")){
-			doctorId = 136;
-		}else if(symptom.toLowerCase().indexOf("nervousness")){
-			doctorId = 114;
-		}else if(symptom.toLowerCase().indexOf("night cough")){
-			doctorId = 133;
-		}else if(symptom.toLowerCase().indexOf("pain in the limbs")){
-			doctorId = 12;
-		}else if(symptom.toLowerCase().indexOf("pain on swallowing")){
-			doctorId = 203;
-		}else if(symptom.toLowerCase().indexOf("palpitations")){
-			doctorId = 37;
-		}else if(symptom.toLowerCase().indexOf("paralysis")){
-			doctorId = 140;
-		}else if(symptom.toLowerCase().indexOf("reduced appetite")){
-			doctorId = 54;
-		}else if(symptom.toLowerCase().indexOf("runny nose")){
-			doctorId = 14;
-		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
-			doctorId = 29;
-		}else if(symptom.toLowerCase().indexOf("skin rash")){
-			doctorId = 124;
-		}else if(symptom.toLowerCase().indexOf("sleeplessness")){
-			doctorId = 52;
-		}else if(symptom.toLowerCase().indexOf("sneezing")){
-			doctorId = 95;
-		}else if(symptom.toLowerCase().indexOf("sore throeat")){
-			doctorId = 13;
-		}else if(symptom.toLowerCase().indexOf("sputum")){
-			doctorId = 64;
-		}else if(symptom.toLowerCase().indexOf("stomach burning")){
-			doctorId = 179;
-		}else if(symptom.toLowerCase().indexOf("stuffy nose")){
-			doctorId = 28;
-		}else if(symptom.toLowerCase().indexOf("sweating")){
-			doctorId = 138;
-		}else if(symptom.toLowerCase().indexOf("swollen glands in the armpits")){
-			doctorId = 248;
-		}else if(symptom.toLowerCase().indexOf("swollen glands on the neck")){
-			doctorId = 169;
-		}else if(symptom.toLowerCase().indexOf("tears")){
-			doctorId = 211;
-		}else if(symptom.toLowerCase().indexOf("tiredness")){
-			doctorId = 16;
-		}else if(symptom.toLowerCase().indexOf("tremor at rest")){
-			doctorId = 115;
-		}else if(symptom.toLowerCase().indexOf("unconsciousness, short")){
-			doctorId = 144;
-		}else if(symptom.toLowerCase().indexOf("vomiting")){
-			doctorId = 101;
-		}else if(symptom.toLowerCase().indexOf("vomiting blood")){
-			doctorId = 181;
-		}else if(symptom.toLowerCase().indexOf("weakness")){
-			doctorId = 56;
-		}else if(symptom.toLowerCase().indexOf("weight gain")){
-			doctorId = 23;
-		}else if(symptom.toLowerCase().indexOf("wheezing")){
 			doctorId = 30;
+		}else if(symptom.toLowerCase().indexOf("burning eyes")){
+			doctorId = 40;
+		}else if(symptom.toLowerCase().indexOf("burning in the throat")){
+			doctorId = 50;
+		}else if(symptom.toLowerCase().indexOf("cheek swelling")){
+			doctorId = 60;
+		}else if(symptom.toLowerCase().indexOf("chest pain")){
+			doctorId = 70;
+		}else if(symptom.toLowerCase().indexOf("chest tightness")){
+			doctorId = 80;
+		}else if(symptom.toLowerCase().indexOf("chills")){
+			doctorId = 90;
+		}else if(symptom.toLowerCase().indexOf("cold sweats")){
+			doctorId = 100;
+		}else if(symptom.toLowerCase().indexOf("cough")){
+			doctorId = 110;
+		}else if(symptom.toLowerCase().indexOf("dizziness")){
+			doctorId = 120;
+		}else if(symptom.toLowerCase().indexOf("drooping eyelid")){
+			doctorId = 130;
+		}else if(symptom.toLowerCase().indexOf("dry eyes")){
+			doctorId = 140;
+		}else if(symptom.toLowerCase().indexOf("earache")){
+			doctorId = 150;
+		}else if(symptom.toLowerCase().indexOf("early satiety")){
+			doctorId = 160;
+		}else if(symptom.toLowerCase().indexOf("eye pain")){
+			doctorId = 170;
+		}else if(symptom.toLowerCase().indexOf("eye redness")){
+			doctorId = 180;
+		}else if(symptom.toLowerCase().indexOf("fast, deepened breathing")){
+			doctorId = 190;
+		}else if(symptom.toLowerCase().indexOf("feeling of foreign body in the eye")){
+			doctorId = 200;
+		}else if(symptom.toLowerCase().indexOf("fever")){
+			doctorId = 210;
+		}else if(symptom.toLowerCase().indexOf("going black before the eyes")){
+			doctorId = 220;
+		}else if(symptom.toLowerCase().indexOf("headache")){
+			doctorId = 230;
+		}else if(symptom.toLowerCase().indexOf("heartburn")){
+			doctorId = 240;
+		}else if(symptom.toLowerCase().indexOf("hiccups")){
+			doctorId = 250;
+		}else if(symptom.toLowerCase().indexOf("hot flushes")){
+			doctorId = 260;
+		}else if(symptom.toLowerCase().indexOf("increased thirst")){
+			doctorId = 270;
+		}else if(symptom.toLowerCase().indexOf("itching eyes")){
+			doctorId = 280;
+		}else if(symptom.toLowerCase().indexOf("itching in the nose")){
+			doctorId = 290;
+		}else if(symptom.toLowerCase().indexOf("lip swelling")){
+			doctorId = 300;
+		}else if(symptom.toLowerCase().indexOf("memory gap")){
+			doctorId = 310;
+		}else if(symptom.toLowerCase().indexOf("menstruation disorder")){
+			doctorId = 320;
+		}else if(symptom.toLowerCase().indexOf("missed period")){
+			doctorId = 330;
+		}else if(symptom.toLowerCase().indexOf("nausea")){
+			doctorId = 340;
+		}else if(symptom.toLowerCase().indexOf("neck pain")){
+			doctorId = 350;
+		}else if(symptom.toLowerCase().indexOf("nervousness")){
+			doctorId = 360;
+		}else if(symptom.toLowerCase().indexOf("night cough")){
+			doctorId = 370;
+		}else if(symptom.toLowerCase().indexOf("pain in the limbs")){
+			doctorId = 380;
+		}else if(symptom.toLowerCase().indexOf("pain on swallowing")){
+			doctorId = 390;
+		}else if(symptom.toLowerCase().indexOf("palpitations")){
+			doctorId = 400;
+		}else if(symptom.toLowerCase().indexOf("paralysis")){
+			doctorId = 410;
+		}else if(symptom.toLowerCase().indexOf("reduced appetite")){
+			doctorId = 420;
+		}else if(symptom.toLowerCase().indexOf("runny nose")){
+			doctorId = 430;
+		}else if(symptom.toLowerCase().indexOf("shortness of breath")){
+			doctorId = 440;
+		}else if(symptom.toLowerCase().indexOf("skin rash")){
+			doctorId = 450;
+		}else if(symptom.toLowerCase().indexOf("sleeplessness")){
+			doctorId = 460;
+		}else if(symptom.toLowerCase().indexOf("sneezing")){
+			doctorId = 470;
+		}else if(symptom.toLowerCase().indexOf("sore throeat")){
+			doctorId = 480;
+		}else if(symptom.toLowerCase().indexOf("sputum")){
+			doctorId = 490;
+		}else if(symptom.toLowerCase().indexOf("stomach burning")){
+			doctorId = 500;
+		}else if(symptom.toLowerCase().indexOf("stuffy nose")){
+			doctorId = 510;
+		}else if(symptom.toLowerCase().indexOf("sweating")){
+			doctorId = 520;
+		}else if(symptom.toLowerCase().indexOf("swollen glands in the armpits")){
+			doctorId = 530;
+		}else if(symptom.toLowerCase().indexOf("swollen glands on the neck")){
+			doctorId = 540;
+		}else if(symptom.toLowerCase().indexOf("tears")){
+			doctorId = 550;
+		}else if(symptom.toLowerCase().indexOf("tiredness")){
+			doctorId = 560;
+		}else if(symptom.toLowerCase().indexOf("tremor at rest")){
+			doctorId = 570;
+		}else if(symptom.toLowerCase().indexOf("unconsciousness, short")){
+			doctorId = 580;
+		}else if(symptom.toLowerCase().indexOf("vomiting")){
+			doctorId = 590;
+		}else if(symptom.toLowerCase().indexOf("vomiting blood")){
+			doctorId = 600;
+		}else if(symptom.toLowerCase().indexOf("weakness")){
+			doctorId = 610;
+		}else if(symptom.toLowerCase().indexOf("weight gain")){
+			doctorId = 620;
+		}else if(symptom.toLowerCase().indexOf("wheezing")){
+			doctorId = 630;
 		}else{
 			doctorId = 999;
 		}
@@ -807,50 +781,119 @@ var botDoctor = {
 
 };
 
-var botDoctorURL = {
-
-	loadSymptoms: function(){ 
-		return baseUrl + 'symptoms' + token + endUrl;
-	},
-	
-	loadIssues: function(){ 
-		return baseUrl + 'issues' + endUrl;
-	},
-	
-	loadIssueInfo: function(){ 
-		return baseUrl + 'issues/' + doctorId + '/info' + token + endUrl;
-	},
-
-	loadDiagnosis: function(){ 
-		return baseUrl + 'diagnosis' + token + endUrl; 
-	},
-
-	loadSpecialisations: function(){ 
-		return baseUrl + 'diagnosis/specialisations' + token + endUrl; 
-	},
-
-	loadBodyLocations: function(){ 
-		return baseUrl + 'body/locations' + token + endUrl;
-	},
-
-	loadBodySublocations: function() { 
-		return baseUrl + 'body/locations/' + doctorId + token + endUrl;
-	}	
-
-};
-
+//this is the obj literal for the MovieBot.
+//all movie and tv shows related queries are executed here.
 var botMovie = {
 
+	//this function checks the rule for movies and tv shows related queries
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to display popular movies (year given)
+		if(message.toLowerCase().indexOf("display popular movies from the year ") >= 0){
+
+			//console.log("Movie Bot (Year)");
+
+			var year = message.substr(52);
+			year.trim();
+			//console.log(year);
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 1, year);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular movies (year given)
+		}else if(message.toLowerCase().indexOf("display the popular movies from the year ") >= 0){
+
+			//console.log("Movie Bot (Year)");
+
+			var year = message.substr(56);
+			year.trim();
+			//console.log(year);
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 1, year);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular movies (year not given, current year assumed automatically)
+		}else if((message.toLowerCase().indexOf("display current popular movies") >= 0) || (message.toLowerCase().indexOf("display the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me the current popular movies") >= 0) || (message.toLowerCase().indexOf("show me current popular movies") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 0, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display upcoming movies
+		}else if((message.toLowerCase().indexOf("display upcoming movies") >= 0) || (message.toLowerCase().indexOf("display the upcoming movies") >= 0) || (message.toLowerCase().indexOf("show me the upcoming movies") >= 0) || (message.toLowerCase().indexOf("show me upcoming movies") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching movie details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 4, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display popular tv shows (current year assumed)
+		}else if((message.toLowerCase().indexOf("display current popular tv shows") >= 0) || (message.toLowerCase().indexOf("display the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current popular tv shows") >= 0) || (message.toLowerCase().indexOf("show me current popular tv shows") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching TV Shows details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 2, 0000);
+
+			botAction.initializeAllVariables();
+
+		//rule to display top rated tv shows (current year assumed)
+		}else if((message.toLowerCase().indexOf("display current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("display the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me the current top rated tv shows") >= 0) || (message.toLowerCase().indexOf("show me current top rated tv shows") >= 0)){
+
+			//console.log("Movie Bot");
+			
+			botMessage = "Ohok, fetching TV Shows details......";
+
+			botMovie.fetchDetailsFromTMDb(teamName, 3, 0000);
+
+			botAction.initializeAllVariables();
+
+		
+		}
+
+	},
+
+	//this function is used to contact TMDb and fetch details from their API.
 	fetchDetailsFromTMDb: function(teamName, choice, year){
 
+		//used TMDb api to info about popular movies and tv shows.
+		//awesome API, should try it out.
+		var movieBaseURL = "https://api.themoviedb.org/3/";
+		var apiKeyTMDb = ""; //Type your api key (TMDb) here
+
+		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1";
+
+		//if the user wants to view popular movies (year is given by the user)
 		}else if(choice == 1){
 			var urlToCall = movieBaseURL + "discover/movie?api_key=" + apiKeyTMDb + "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=" + year;
+
+		//if the user wants to view popular tv shows
 		}else if(choice == 2){
 			var urlToCall = movieBaseURL + "tv/popular?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
+
+		//if the user wants to view top rated tv shows
 		}else if(choice == 3){
 			var urlToCall = movieBaseURL + "tv/top_rated?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
+		
+		//if the user wants to view upcoming movies
+		}else if(choice == 4){
+			var urlToCall = movieBaseURL + "movie/upcoming?api_key=" + apiKeyTMDb + "&language=en-US&page=1";
 		}
 
 		$.ajax({
@@ -861,7 +904,7 @@ var botMovie = {
 				//console.log(result.results);
 				var item;
 				returnMessage = "Here you go";
-				if((choice != 2) && (choice != 3)){
+				if((choice == 0) || (choice == 1) || (choice == 4)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
 					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n";
@@ -881,8 +924,44 @@ var botMovie = {
 
 };
 
+//this is the obj literal for the stocksBot.
+//all company info and stocks related queries are executed here
 var botStocks = {
 
+	//this function checks the rule and find info about the company.
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to display information about a company (companyName not given)
+		if((message.toLowerCase().indexOf("show me stock related info about a company") >= 0) && (stockCompanyPause == 0) ){
+
+			//console.log("Stock Bot (Company Name Not Mentioned)");
+
+			botMessage = "About which company?";
+
+			botAction.initializeAllVariables();
+
+			stockCompanyPause = 1;
+
+		//rule to display information about a company (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
+		}else if(message.toLowerCase().indexOf("show me stock related info about ") >= 0){
+
+			//console.log("Stock Bot (Company Name Mentioned)");
+
+			botMessage = "Ohok, Working on it......";
+
+			stockCompanyName = message.substr(40);
+			stockCompanyName.trim();
+			console.log(stockCompanyName);
+
+			botStocks.getCompanyInfo(stockCompanyName, teamName);
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
+
+	//this function checks whether the commpany exists or not and if it exists then it gathers data about it.
 	getCompanyInfo: function(stockCompanyName, teamName){
 
 		var USERNAME = "";
@@ -910,6 +989,7 @@ var botStocks = {
 		});
 	},
 
+	//this function gets stock info about the company, forms the message and has the ability to save the message. 
 	getStockPrice: function(stockCompanyName, returnMessage, teamName){
 
 		var USERNAME = "";
@@ -931,6 +1011,643 @@ var botStocks = {
 				botAction.saveMessage(teamName, returnMessage, bot);
 			}
 		});
+
+	}
+
+};
+
+//this is the object literal for the news bot.
+//all news related queries are executed here.
+var newsBot = {
+
+	//this function checks the rule and decides the newsType
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to catch news related queries, type of news is not entered by the user
+		if((message.toLowerCase().indexOf("show me some news") >= 0) || (message.toLowerCase().indexOf("show me global news") >= 0) || (message.toLowerCase().indexOf("show me news") >= 0) || (message.toLowerCase().indexOf("show me some global news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("global", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is entertainment
+		}else if((message.toLowerCase().indexOf("show me some entertainment news") >= 0) || (message.toLowerCase().indexOf("show me entertainment news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("entertainment", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is gaming
+		}else if((message.toLowerCase().indexOf("show me some gaming news") >= 0) || (message.toLowerCase().indexOf("show me gaming news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("gaming", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is business
+		}else if((message.toLowerCase().indexOf("show me some business news") >= 0) || (message.toLowerCase().indexOf("show me business news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("business", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is technology
+		}else if((message.toLowerCase().indexOf("show me some technology news") >= 0) || (message.toLowerCase().indexOf("show me technology news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("technology", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is sports
+		}else if((message.toLowerCase().indexOf("show me some sports news") >= 0) || (message.toLowerCase().indexOf("show me sports news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("sports", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is cricket
+		}else if((message.toLowerCase().indexOf("show me some cricket news") >= 0) || (message.toLowerCase().indexOf("show me cricket news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("cricket", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is music
+		}else if((message.toLowerCase().indexOf("show me some music news") >= 0) || (message.toLowerCase().indexOf("show me music news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("music", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is indian
+		}else if((message.toLowerCase().indexOf("show me some indian news") >= 0) || (message.toLowerCase().indexOf("show me indian news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("indian", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is science
+		}else if((message.toLowerCase().indexOf("show me some science news") >= 0) || (message.toLowerCase().indexOf("show me science news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("science", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is reddit
+		}else if((message.toLowerCase().indexOf("show me some reddit news") >= 0) || (message.toLowerCase().indexOf("show me reddit news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("reddit", teamName);
+
+			botAction.initializeAllVariables();
+
+		//rule to catch news related queries, type of news is football
+		}else if((message.toLowerCase().indexOf("show me some football news") >= 0) || (message.toLowerCase().indexOf("show me football news") >= 0)){
+
+			//console.log("News Bot (Type not entered)");
+
+			botMessage = "Ohok, Working on it......";
+
+			newsBot.getNews("football", teamName);
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
+
+	//this function gets the news that the users want.
+	getNews: function(newsType, teamName){
+
+		//used NewsAPI to get news.
+		//awesome API, should try it out.
+		var newsAPIKey = "";
+
+		var urlToCall = "https://newsapi.org/v1/articles?source="
+
+		//if the newsType is global. Source -> BBC News
+		if(newsType == "global"){
+			urlToCall += "bbc-news&sortBy=top&apiKey=";
+
+		//if the newsType is business. Source -> Business Insider
+		}else if(newsType == "business"){
+			urlToCall += "business-insider&sortBy=top&apiKey=";
+
+		//if the newsType is technology. Source -> Engadget
+		}else if(newsType == "technology"){
+			urlToCall += "engadget&sortBy=top&apiKey=";
+
+		//if the newsType is gaming. Source -> IGN
+		}else if(newsType == "gaming"){
+			urlToCall += "ign&sortBy=top&apiKey=";
+
+		//if the newsType is sports. Source -> ESPN
+		}else if(newsType == "sports"){
+			urlToCall += "espn&sortBy=top&apiKey=";
+
+		//if the newsType is cricket. Source -> ESPN Cricket
+		}else if(newsType == "cricket"){
+			urlToCall += "espn-cric-info&sortBy=top&apiKey=";
+
+		//if the newsType is science. Source -> National Geographic
+		}else if(newsType == "science"){
+			urlToCall += "national-geographic&sortBy=top&apiKey=";
+
+		//if the newsType is indian. Source -> Times Of India
+		}else if(newsType == "indian"){
+			urlToCall += "the-times-of-india&sortBy=top&apiKey=";
+
+		//if the newsType is music. Source -> MTV News
+		}else if(newsType == "music"){
+			urlToCall += "mtv-news&sortBy=top&apiKey=";
+
+		//if the newsType is reddit. Source -> Reddit
+		}else if(newsType == "reddit"){
+			urlToCall += "reddit-r-all&sortBy=top&apiKey=";
+
+		//if the newsType is football. Source -> Football Italia
+		}else if(newsType == "football"){
+			urlToCall += "football-italia&sortBy=top&apiKey=";
+
+		}
+
+		urlToCall += newsAPIKey;
+
+		$.ajax({
+			type: "GET",
+			url: urlToCall,
+			dataType: "json",
+			success: function(result){
+				//console.log(result.articles);
+				var item;
+				returnMessage = "Here you go";
+				for(var i = 0; i < 5; i++){
+					item = result.articles[i];
+					//console.log(item);
+					if(item.title == null){
+						item.title = "NA";
+					}
+					if(item.description == null){
+						item.description = "NA";
+					}
+					if(item.author == null){
+						item.author = "NA";
+					}
+					if(item.url == null){
+						item.url = "NA";
+					}
+					if(item.publishedAt == null){
+						item.publishedAt = "NA";
+					}
+					returnMessage += "\nTitle: '"+ item.title + "'\nDescription: " + item.description + "\nAuthor: " + item.author + "\nMore info: " + item.url + "\nPublished on: " + item.publishedAt.substr(0,10) + "\n";
+				}
+				//console.log(returnMessage);
+				botAction.saveMessage(teamName, returnMessage, bot);
+			}
+		});
+
+	}
+
+};
+
+//since versionControl is a big bot, therefore not all functions of the bot are in this obj literal
+//some of the functions are in 'botAction'
+//here only queries are checked
+//queries are segregated for optimization purposes
+var botVersionControl = {
+
+	checkDeleteIssueQueries: function(message, teamName, currrentUsername){
+
+		//rule to delete issue/commits from a project
+		if(message.toLowerCase().indexOf("delete an issue whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("delete an issue whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("delete an issue whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("delete a commit whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issue/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete issues/commits from a project
+		}else if(message.toLowerCase().indexOf("remove an issue whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id = ") >= 0){
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id is ") >= 0){
+
+			issueId = message.substr(35);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		//rule to delete commits/issues from a project
+		}else if(message.toLowerCase().indexOf("remove a commit whose id equals ") >= 0){
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			issueDeletion = 1;
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
+
+	checkDisplayIssueQueries: function(message, teamName, currrentUsername){
+		
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		if((message.toLowerCase().indexOf("display the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(36);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the commit whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(37);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(42);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("display the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(41);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the issue whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(33);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the commit whose id = ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(34);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the commit whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(39);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		//rule to display issue/commit (projectName not Entered but ID is given)
+		}else if((message.toLowerCase().indexOf("show the issue whose id equals ") >= 0) && (issueShowSteps == 0)){
+
+			//console.log("Display the issue (ID Entered)");
+
+			botMessage = "... of which project?";
+
+			issueId = message.substr(38);
+			issueId.trim();
+			//console.log(issueId);
+
+			botAction.initializeAllVariables();
+
+			issueShowSteps = 1;
+
+		}
+
+	},
+
+	checkDisplayLatestIssueQueries: function(message, teamName, currrentUsername){
+
+		//rule to display latest issue/commit (projectName Entered)
+		if(message.toLowerCase().indexOf("display the latest issue of") >= 0){
+
+			//console.log("Display the latest issue (ProjectName Entered)");
+			projectNameForIssue = message.substr(35);
+
+			botMessage = "Ohok, working on it....";
+
+			botAction.showLatestIssue(teamName, projectNameForIssue);
+
+			botAction.initializeAllVariables();
+
+		//rule to display latest issue/commit (projectName Entered)
+		}else if(message.toLowerCase().indexOf("display the latest commit of") >= 0){
+
+			//console.log("Display the latest issue (ProjectName Entered)");
+			projectNameForIssue = message.substr(36);
+			//console.log(projectNameForIssue);
+
+			botMessage = "Ohok, working on it....";
+
+			botAction.showLatestIssue(teamName, projectNameForIssue);
+
+			botAction.initializeAllVariables();
+
+		//rule to display latest issue (projectName not Entered)
+		}else if(((message.toLowerCase().indexOf("display the latest issue") >= 0) || (message.toLowerCase().indexOf("display the latest commit") >= 0) ) && (issueShowLatestSteps == 0)){
+
+			//console.log("Display the latest issue (ProjectName Not Entered)");
+
+			botMessage = "... of which project?";
+
+			botAction.initializeAllVariables();
+
+			issueShowLatestSteps = 1;
+
+		}
+
+	}
+
+};
+
+var calculator = {
+
+	checkQueries: function(message, teamName, currrentUsername){
+
+		var expression;
+		var operands;
+		var operator;
+		var operand1;
+		var operand2;
+
+		if(message.toLowerCase().indexOf("add") >= 0){
+
+			expression = message.substr(11);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "add";
+
+		}else if(message.toLowerCase().indexOf("subtract") >= 0){
+
+			expression = message.substr(16);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "subtract";
+
+		}else if(message.toLowerCase().indexOf("multiply") >= 0){
+
+			expression = message.substr(16);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "multiply";
+
+		}else if(message.toLowerCase().indexOf("divide") >= 0){
+
+			expression = message.substr(14);
+			operands = expression.split(' ');
+			operand1 = operands[0];
+			operand2 = operands[1];
+			operator = "divide";
+
+		}
+
+	},
+
+	calculate: function(operator, operand1, operand2){
+
+		if(operator == "add"){
+
+		}else if(operator == "subtract"){
+
+		}else if(operator == "multiply"){
+
+		}else if(operator == "divide"){
+			
+		}
 
 	}
 

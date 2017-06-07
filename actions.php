@@ -145,7 +145,7 @@
 
             if($_POST['message'] != ""){
 
-                $query = "INSERT INTO ".$_POST['teamname']." (`sender`, `message`) VALUES('".mysqli_real_escape_string($link, $_POST['sender'])."', '".mysqli_real_escape_string($link, $_POST['message'])."')";
+                $query = "INSERT INTO ".$_POST['teamname']." (`sender`, `message`, `datetime`) VALUES('".mysqli_real_escape_string($link, $_POST['sender'])."', '".mysqli_real_escape_string($link, $_POST['message'])."', '".mysqli_real_escape_string($link, $_POST['datetime'])."')";
 
                 if(mysqli_query($link, $query)){
                     echo 1;
@@ -343,6 +343,47 @@
             $result = mysqli_query($link, $query);
 
             echo $result;
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
+        if($_GET['actions'] == 'deleteIssue'){
+
+            $error = "";
+            $tableName = $_POST['teamname'].$_POST['projectname'];
+        
+            $query = "SELECT COUNT(*) FROM ".$tableName."";
+
+            $maxID = mysqli_query($link, $query);
+
+            if($_POST['issueId'] > $maxID){
+                echo 2;
+            }else{
+
+                $query = "SELECT * FROM ".$tableName." WHERE id = ".$_POST['issueId']." LIMIT 1";
+
+                $result = mysqli_query($link, $query);
+                $row = mysqli_fetch_array($result);
+
+                if($row['createdby'] != $_POST['username']){
+                    echo 3;
+                }else{
+                    $query = "DELETE FROM ".$tableName." WHERE ".$tableName.".id = ".$_POST['issueId']." LIMIT 1";
+                    $result = mysqli_query($link, $query);
+
+                    if($result){
+                        echo 1;
+                    }else{
+                        echo 4;
+                    }
+
+                }
+
+            }
 
             if($error != ""){
                 echo $error;
