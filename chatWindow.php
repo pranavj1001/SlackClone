@@ -29,14 +29,17 @@
   .main{
     overflow-y: auto;
     height: 385px;
-    width: 88%;
-    border: 1px solid black;
+/*    width: 88%;
+*/    /*border: 1px solid black;*/
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
     margin-top: 20px;
     margin-right: auto;
     margin-left: auto;
     /*position: absolute;*/
 }
 .left{
+    position: relative;
     color:red;
     border:1px solid transparent;
     padding: 10px;
@@ -50,8 +53,9 @@
 }
 
 .right{
-/*  text-align: right;
-*/  border:1px solid transparent;
+/*  text-align: right;*/
+    position: relative;  
+    border:1px solid transparent;
     padding: 10px;
     margin: 10px;
     float: right;
@@ -61,6 +65,17 @@
     color: white;
     border-top-right-radius:0px;
 }
+.timePos{
+      position: absolute;
+      bottom: 3px;
+      right: 10px;
+      color: rgba(0,0,0,0.45);
+      font-size: 15px;
+}
+.chat{
+  margin-bottom: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -97,10 +112,10 @@
         <!-- <div class="container chatsContainer">
         	<textarea class="form-control" id="messageBox" readonly="on"></textarea>
         </div> -->
-        
+        <div class="container">
         <div class="main">
         </div>
-        
+        </div>
 
         <div class="container newMessageContainer">
         	<input class="form-control" type="text" id="newMessage" name="newMessage">
@@ -244,6 +259,8 @@
 	    //     });
 	    // };
 
+      var previousDate;
+
       function updateMessage(){
 
             var teamName = "<?php echo $TeamName; ?>";
@@ -267,12 +284,36 @@
                   // lastMessageId=item.id;
                   var temp=item.sender;
                    
+                  //var addMessage=item.sender+":"+item.message;
+
+                  //console.log(item);
+
                   var addMessage=item.sender+":"+item.message;
+                  var dt=new Date(item.datetime);
+                  var m=dt.getMinutes();
+                  var h=dt.getHours();
+                  var s=dt.getSeconds();
+                  var ampn="";
+                  ampn=(h>=12)?"pm":"am";
+                  h=(h>12)?h-12:h;
+                  h=(h=='00')?12:h;
+                  var time=h+":"+m+":"+s+" "+ampn;
+
+                  
+                  console.log(time);
+                  
+
+
+
                   if (temp==currentUsername){
-                        $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("right").appendTo(".main"));
+                        // $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("right").appendTo(".main"));
+                        var t="<div class='right'><div class='chat'>"+addMessage+"</div><div class='timePos'>"+time+"</div></div><br>";
+                        $(t).appendTo(".main");
                   }
                   else{
-                        $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("left").appendTo(".main"));
+                        // $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("left").appendTo(".main"));
+                        var t1="<div class='left'><div class='chat'>"+addMessage+"</div><div class='timePos'>"+time+"</div></div><br>";
+                        $(t1).appendTo(".main");
                   }
                  
                   });
