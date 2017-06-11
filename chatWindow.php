@@ -224,42 +224,7 @@
 
     	});
 
-	    // function updateMessage(){
-
-	    //     var teamName = "<?php /*echo*/ $TeamName; ?>";
-          
-	       
-	    //     $.ajax({
-	    //     	type : "POST",
-	    //       url : "actions.php?actions=updateMessage",
-	    //       data : "teamname="+teamName,
-	    //       dataType : "json",
-	    //       success : function(response,status,http){
-
-	    //         $("#messageBox").val("");
-	    //         $.each(response,function(index,item){
-
-	    //         	$("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
-	    //          // lastMessageId=$item.id;
-     //           // var temp=item.sender;
-     //           // var message=item.message;
-     //           // if (temp==replierName){
-     //           //  $("<br>").insertAfter($("<div>"+temp+message+"</div>").addClass("left").appendTo(".main"));
-     //           // }
-     //           // else{
-     //           //  $("<br>").insertAfter($("<div>"+temp+message+"</div>").addClass("right").appendTo(".main"));
-     //           // }
-               
-     //         });
-     //        },
-	    //       error : function (http,status,error) {
-	    //           alert ("Some Error Ocurred : "+error);
-	    //       }
-
-	    //     });
-	    // };
-
-      var previousDate;
+      //var previousDate;
 
       function updateMessage(){
 
@@ -278,9 +243,7 @@
                   // $("#messageBox").val("");
                   $( ".main" ).empty();
                   $.each(response,function(index,item){
-
-                      // $("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
-                   
+                  // $("#messageBox").val($("#messageBox").val() + item.sender+" : "+item.message+"\n");
                   // lastMessageId=item.id;
                   var temp=item.sender;
                    
@@ -297,14 +260,10 @@
                   ampn=(h>=12)?"pm":"am";
                   h=(h>12)?h-12:h;
                   h=(h=='00')?12:h;
-                  var time=h+":"+m+":"+s+" "+ampn;
-
-                  
+                  //var time=h+":"+m+":"+s+" "+ampn;
+                  var time=dt.getDay()+"-"+dt.getMonth()+"-"+dt.getFullYear()+"  "+h+":"+m+":"+s+" "+ampn;
                   //console.log(time);
                   
-
-
-
                   if (temp==currentUsername){
                         // $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("right").appendTo(".main"));
                         var t="<div class='right'><div class='chat'>"+addMessage+"</div><div class='timePos'>"+time+"</div></div><br>";
