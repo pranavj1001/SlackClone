@@ -288,6 +288,17 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		botAction.initializeAllVariables();
 
+	//call the history bot
+	}else if(message.toLowerCase().indexOf("day") >= 0){
+
+		//console.log("let the history bot handle this message");
+
+		dontAllowBotToSendMessage = 1;
+
+		botHistory.checkQueries(message, teamName, currrentUsername);
+
+		botAction.initializeAllVariables();
+
 	//show the bot is alive
 	}else if(message.trim() == "OK Bot"){
 
@@ -1682,6 +1693,73 @@ var calculator = {
 		}
 
 		//console.log(answer);
+
+	}
+
+};
+
+var botHistory = {
+
+	checkQueries: function(message, teamName, currrentUsername){
+
+		//rule to show what happened on this day (mixture of events, births and deaths)
+		if(message.toLowerCase().indexOf("what happened on this day") >= 0){
+
+			botHistory.getEvents(1);
+
+			botAction.initializeAllVariables();
+
+		//rule to show what happened on this day (events)
+		}else if(message.toLowerCase().indexOf("what events happened on this day") >= 0){
+
+			botAction.initializeAllVariables();
+
+		//rule to show what happened on this day (births)
+		}else if(message.toLowerCase().indexOf("who were born on this day") >= 0){
+
+			botAction.initializeAllVariables();
+
+		//rule to show what happened on this day (deaths)
+		}else if(message.toLowerCase().indexOf("who died on this day") >= 0){
+
+			botAction.initializeAllVariables();
+
+		}
+
+	},
+
+	getEvents: function(choice){
+
+		var urlToCall = "http://history.muffinlabs.com/date";
+
+		if(choice == 1){
+
+		}else if(choice == 2){
+
+		}else if(choice == 3){
+
+		}else if(choice == 4){
+
+		}
+
+		$.ajax({
+			type: "GET",
+			url: urlToCall,
+			dataType: "json",
+			success: function(result){
+				//console.log(result.articles);
+				var item;
+				console.log(result);
+				returnMessage = "Here you go";
+				// for(var i = 0; i < 5; i++){
+					
+				// 	returnMessage = 
+
+				// }
+				console.log(returnMessage);
+				//botAction.saveMessage(teamName, returnMessage, bot);
+			}
+		});
 
 	}
 

@@ -300,7 +300,7 @@
                   var time=h+":"+m+":"+s+" "+ampn;
 
                   
-                  console.log(time);
+                  //console.log(time);
                   
 
 
