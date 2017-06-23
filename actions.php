@@ -392,6 +392,26 @@
 
         }
 
+        if($_GET['actions']=='dissolveTeamstep1'){
+            $error="";
+           
+            $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."'
+                AND teamadmin='".$_POST['currentUsername']."' ";
+            $result=mysqli_query($link,$query);
+            $row_count = mysqli_num_rows($result);
+            if($row_count>0){
+                echo 1;
+            }
+            else{
+                $error="you don't have authority to dissolve this team";
+            }
+
+            if($error!=""){
+                echo $error;
+                exit();
+            }
+        }
+
         if($error != ""){
             echo $error;
             exit();

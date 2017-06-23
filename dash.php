@@ -71,7 +71,7 @@
               <a class="nav-link" href="teamSignUp.php">Create a new team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Dissolve one of your teams</a>
+              <a class="nav-link" id="dissolveTeam" href="dissolveTeamStep1.php">Dissolve one of your teams</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="teamSignIn.php">Join an existing team</a>
@@ -278,6 +278,7 @@
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
     <script type="text/javascript">
+
 
     </script>
 
