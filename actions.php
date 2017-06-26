@@ -401,7 +401,9 @@
                 if($row_count>0){
                     $query="DELETE FROM teamdetails WHERE teamname='".mysqli_real_escape_string($link, $_POST['teamname'])."'";
                     $result=mysqli_query($link,$query);
-                    if(! $result ){
+                    $query1="DROP TABLE ".mysqli_real_escape_string($link, $_POST['teamname']);
+                    $result1=mysqli_query($link,$query1);
+                    if(! $result && ! $result1 ){
                         $error="unable to dissolve team try again";
                     }
                     else{
