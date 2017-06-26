@@ -61,7 +61,7 @@
               <input type="checkbox" value="remember-me"> Remember me
             </label> -->
           </div>
-          <button class="btn btn-lg btn-primary btn-block" id="next">Next</button>
+          <button class="btn btn-lg btn-primary btn-block" id="next">Done</button>
         </div>
 
       </div> <!-- /container -->
