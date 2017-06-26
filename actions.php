@@ -392,19 +392,25 @@
 
         }
 
-        if($_GET['actions']=='dissolveTeamstep1'){
+        if($_GET['actions']=='dissolveTeam'){
             $error="";
-           
-            $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."'
-                AND teamadmin='".$_POST['currentUsername']."' ";
-            $result=mysqli_query($link,$query);
-            $row_count = mysqli_num_rows($result);
-            if($row_count>0){
-                echo 1;
-            }
-            else{
-                $error="you don't have authority to dissolve this team";
-            }
+                $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."'
+                        AND teamadmin='".$_POST['currentUsername']."' " ;
+                $result=mysqli_query($link,$query);
+                $row_count = mysqli_num_rows($result);
+                if($row_count>0){
+                    $query="DELETE FROM teamdetails WHERE teamname='".mysqli_real_escape_string($link, $_POST['teamname'])."'";
+                    $result=mysqli_query($link,$query);
+                    if(! $result ){
+                        $error="unable to dissolve team try again";
+                    }
+                    else{
+                        echo 1;
+                    }
+                }
+                else{
+                     $error="you don't have authority to dissolve this team";
+                }
 
             if($error!=""){
                 echo $error;

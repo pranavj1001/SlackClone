@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Create a new team</title>
+    <title>Dissolve team</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -54,7 +54,8 @@
           <input type="hidden" id="loginActive" name="loginActive" value="1">
           <label class="sr-only">Team Name</label>
           <input type="text" id="teamname" class="form-control" placeholder="Team Name">
-          
+          <!-- <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="teampassword" class="form-control" placeholder="Password"> -->
           <div class="checkbox">
             <!-- <label>
               <input type="checkbox" value="remember-me"> Remember me
@@ -90,18 +91,19 @@
 
         $('#alert').hide();
 
-        console.log(currentUsername);
+        //console.log(currentUsername);
         
           $.ajax({
             type: "POST",
-            url: "actions.php?actions=dissolveTeamstep1",
-            data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername ,
+            url: "actions.php?actions=dissolveTeam",
+            // data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername +"&teampassword="+$("#teampassword").val,
+            data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername,
             success: function(result){
               if(result == "1"){
                 console.log("Success");
-                // window.location.assign("http://localhost/SlackClone/chatWindow.php");
+                window.location.assign("http://localhost/SlackClone/dash.php");
               }else{
-                console.log("Failure");
+                //console.log("Failure");
                 $('#alert').html(result).show();
               }
             }
