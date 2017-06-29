@@ -76,9 +76,9 @@
             <li class="nav-item">
               <a class="nav-link" href="teamSignIn.php">Join an existing team</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">Team Members</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#">Save Chat Data</a>
             </li>
