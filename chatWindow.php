@@ -33,7 +33,7 @@
 */    /*border: 1px solid black;*/
     border: 1px solid rgba(0,0,0,.15);
     border-radius: .25rem;
-    margin-top: 20px;
+    margin-top: 12px;
     margin-right: auto;
     margin-left: auto;
     /*position: absolute;*/
@@ -113,14 +113,28 @@
         	<textarea class="form-control" id="messageBox" readonly="on"></textarea>
         </div> -->
         <div class="container">
-        <div class="main">
-        </div>
+          <div class="row">
+          <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+          </nav>
+          <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <div class="main">
+            </div>
+          </main>
+          </div>
+          <!-- <div class="row">
+            <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <input class="form-control" type="text" id="newMessage" name="newMessage">
+            <button class="btn btn-primary" id="sendMessageButton">Send</button>
+            </div>
+          </div> -->
         </div>
 
         <div class="container newMessageContainer">
-        	<input class="form-control" type="text" id="newMessage" name="newMessage">
-			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
-		    </div>
+          <!-- <div class="row"> -->
+          	<input class="form-control" type="text" id="newMessage" name="newMessage">
+  			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
+  		    <!-- </div> -->
+        </div>
 
 		<div class="container alert alert-danger" id="alert"></div>	
 
