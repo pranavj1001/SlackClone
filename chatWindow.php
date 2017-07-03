@@ -76,6 +76,10 @@
   margin-bottom: 20px;
 }
 
+#alert{
+  margin-top: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -129,14 +133,22 @@
           </div> -->
         </div>
 
-        <div class="container newMessageContainer">
-          <!-- <div class="row"> -->
-          	<input class="form-control" type="text" id="newMessage" name="newMessage">
+        <div class="container">
+          <div class="row newMessageContainer">
+          <div class="col-md-8 offset-md-2">
+          	<input class="form-control " type="text" id="newMessage" name="newMessage">
+          </div>
+          <div class="col-md-2 offset-md-10" style="display: contents;">
   			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
-  		    <!-- </div> -->
+          </div>
+  		    </div>
         </div>
 
-		<div class="container alert alert-danger" id="alert"></div>	
+		<div class="container " >
+      <div class="row">
+        <div class="alert alert-danger col-sm-9 offset-sm-3 col-md-10 offset-md-2 " id="alert"></div>
+      </div>  
+    </div>	
 
 	<?php 
 		}else{
