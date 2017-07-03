@@ -399,11 +399,19 @@
                 $result=mysqli_query($link,$query);
                 $row_count = mysqli_num_rows($result);
                 if($row_count>0){
+                    //removing teamname from teamdetails table
                     $query="DELETE FROM teamdetails WHERE teamname='".mysqli_real_escape_string($link, $_POST['teamname'])."'";
                     $result=mysqli_query($link,$query);
+
+                    //droping table containing chat details
                     $query1="DROP TABLE ".mysqli_real_escape_string($link, $_POST['teamname']);
                     $result1=mysqli_query($link,$query1);
-                    if(! $result && ! $result1 ){
+
+                    //droping table containing team members details
+                    $query2="DROP TABLE ".mysqli_real_escape_string($link, $_POST['teamname'])."_members";
+                    $result2=mysqli_query($link,$query2);                   
+
+                    if(! $result && ! $result1 && ! $result2){
                         $error="unable to dissolve team try again";
                     }
                     else{
