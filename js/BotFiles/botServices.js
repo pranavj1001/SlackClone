@@ -220,7 +220,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the versionBot (Display Issues)
-	}else if((message.toLowerCase().indexOf("display") >= 0) || (message.toLowerCase().indexOf("show") >= 0)){
+	}else if((message.toLowerCase().indexOf("show the commit") >= 0) || (message.toLowerCase().indexOf("show the issue") >= 0) || (message.toLowerCase().indexOf("display the commit") >= 0) || (message.toLowerCase().indexOf("display the issue") >= 0)){
 
 		//console.log("let the news Bot handle this message");
 
@@ -229,7 +229,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//take the current feelings of user and display corresponding problem/disease
-	}else if((message.toLowerCase().indexOf("Im feeling ") >= 0) || (message.toLowerCase().indexOf("I'm feeling ") >= 0) || (message.toLowerCase().indexOf("I am feeling ") >= 0) || (message.toLowerCase().indexOf("Im having ") >= 0) || (message.toLowerCase().indexOf("I am having ") >= 0) || (message.toLowerCase().indexOf("I'm having ") >= 0) || (message.toLowerCase().indexOf("I have ") >= 0)){
+	}else if((message.toLowerCase().indexOf("im feeling") >= 0) || (message.toLowerCase().indexOf("i'm feeling") >= 0) || (message.toLowerCase().indexOf("i am feeling") >= 0) || (message.toLowerCase().indexOf("im having") >= 0) || (message.toLowerCase().indexOf("i am having") >= 0) || (message.toLowerCase().indexOf("i'm having") >= 0) || (message.toLowerCase().indexOf("i have") >= 0)){
 
 		//console.log("Doctor Bot (Symptoms)");
 
@@ -884,7 +884,7 @@ var botMovie = {
 		//used TMDb api to info about popular movies and tv shows.
 		//awesome API, should try it out.
 		var movieBaseURL = "https://api.themoviedb.org/3/";
-		var apiKeyTMDb = ""; //Type your api key (TMDb) here
+		var apiKeyTMDb = "867611d6b3f8882764c7aec28bc288ed"; //Type your api key (TMDb) here
 
 		//if the user wants to view popular movies (current year is assumed as year is not given by the user)
 		if(choice == 0){
@@ -975,8 +975,8 @@ var botStocks = {
 	//this function checks whether the commpany exists or not and if it exists then it gathers data about it.
 	getCompanyInfo: function(stockCompanyName, teamName){
 
-		var USERNAME = "";
-		var PASSWORD = "";
+		var USERNAME = "8a304ec3a55a2ca523be45ad37f94797";
+		var PASSWORD = "32fab8030b2d0be7946aacb40984a1e2";
 
 		var urlToCall = "https://api.intrinio.com/companies?ticker=" + stockCompanyName;
 		var returnMessage = "Oops! Not able to find this company"; 
@@ -1003,8 +1003,8 @@ var botStocks = {
 	//this function gets stock info about the company, forms the message and has the ability to save the message. 
 	getStockPrice: function(stockCompanyName, returnMessage, teamName){
 
-		var USERNAME = "";
-		var PASSWORD = "";
+		var USERNAME = "8a304ec3a55a2ca523be45ad37f94797";
+		var PASSWORD = "32fab8030b2d0be7946aacb40984a1e2";
 
 		var urlToCall = "https://api.intrinio.com/data_point?identifier=" + stockCompanyName + "&item=close_price";
 
@@ -1175,7 +1175,7 @@ var newsBot = {
 
 		//used NewsAPI to get news.
 		//awesome API, should try it out.
-		var newsAPIKey = "";
+		var newsAPIKey = "bdbcae478d174e04ba1504b2914cc143";
 
 		var urlToCall = "https://newsapi.org/v1/articles?source="
 
