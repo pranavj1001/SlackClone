@@ -1,4 +1,4 @@
-{
+var medications = {
 
   "array": [
   
@@ -47,7 +47,7 @@
    {
     "id":80,
     "remedy":"control your breathing and try to distract yourself",
-    "additional_info":"Chest tightness is arguably one of the most frightening anxiety symptoms. While anxiety causes a number of different physical sensations, chest tightness is the one that is associated with the most "scary" health conditions, including heart attack and stroke."
+    "additional_info":"Chest tightness is arguably one of the most frightening anxiety symptoms. While anxiety causes a number of different physical sensations, chest tightness is the one that is associated with the most scary health conditions, including heart attack and stroke."
    },
 
    {
@@ -361,9 +361,9 @@
     "id":999,
     "remedy":"...",
     "additional_info":"..."
-   },
+   }
 
   ]
   
- }
+ };
  

@@ -35,7 +35,6 @@ var bot = "bot";
 var stockCompanyPause;
 var stockCompanyName = "";
 
-
 //This function is called from the main chatWindow.php page
 //It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -789,6 +788,11 @@ var botDoctor = {
 
 		console.log(doctorId);
 
+		medications.array.forEach(function(element) {
+			if(element.id == doctorId)
+		    	console.log(element);
+		});
+		
 	}
 
 };
