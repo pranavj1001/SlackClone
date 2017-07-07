@@ -105,6 +105,12 @@ var medications = {
    },
 
    {
+    "id":180,
+    "remedy":"relax your eyes for some time or take a short nap. Avoid viewing at screens.",
+    "additional_info":"it can happen due to fatigue, lack of sleep, computer vision syndrome, smoking, environment and workplace hazards, etc."
+   },
+
+   {
     "id":190,
     "remedy":"relax your muscles , breath in deeply , hold for a  few seconds , let go slowly , repeat.",
     "additional_info":"also known as hyperventilation or shortness of breath."

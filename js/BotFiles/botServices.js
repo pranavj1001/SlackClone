@@ -178,14 +178,14 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the versionControlBot (Delete Issues)
-	}else if((message.toLowerCase().indexOf("delete") >= 0) || (message.toLowerCase().indexOf("remove") >= 0)){
+	}else if((message.toLowerCase().indexOf(" delete") >= 0) || (message.toLowerCase().indexOf(" remove") >= 0)){
 
 		botVersionControl.checkDeleteIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
 	//if the user explicitly says to revert revealing of issues or commits
-	}else if(message.toLowerCase().indexOf("revert issue revealing") >= 0){
+	}else if(message.toLowerCase().indexOf(" revert issue revealing") >= 0){
 
 		dontAllowBotToSendMessage = 0;
 
@@ -203,7 +203,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the versionControlBot (Display Latest Issues)
-	}else if(message.toLowerCase().indexOf("latest") >= 0){
+	}else if(message.toLowerCase().indexOf(" latest") >= 0){
 
 		//console.log("let the news Bot handle this message");
 
@@ -221,22 +221,42 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the versionBot (Display Issues)
-	}else if((message.toLowerCase().indexOf("show the commit") >= 0) || (message.toLowerCase().indexOf("show the issue") >= 0) || (message.toLowerCase().indexOf("display the commit") >= 0) || (message.toLowerCase().indexOf("display the issue") >= 0)){
+	}else if((message.toLowerCase().indexOf(" show the commit") >= 0) || (message.toLowerCase().indexOf(" show the issue") >= 0) || (message.toLowerCase().indexOf("display the commit") >= 0) || (message.toLowerCase().indexOf("display the issue") >= 0)){
 
-		//console.log("let the news Bot handle this message");
+		//console.log("let the version Control Bot handle this message");
 
 		botVersionControl.checkDisplayIssueQueries(message, teamName, currrentUsername);
 
 		botAction.initializeAllVariables();
 
+	//if the problem is very severe (doctorBot)
+	}else if(doctorBotSevere && (message.toLowerCase().indexOf("yes") >= 0)){
+
+		//console.log("let the doctor Bot handle this message");
+
+		botMessage = "Then you should really visit to a doctor.";
+
+		botAction.initializeAllVariables();
+
+	//if the problem is not very severe (doctorBot)
+	}else if(doctorBotSevere && (message.toLowerCase().indexOf("no") >= 0)){
+
+		//console.log("let the doctor Bot handle this message");
+
+		botMessage = "Alright, then too take care of yourself, follow the medications and visit a doctor if in doubt.";
+
+		botAction.initializeAllVariables();
+
 	//take the current feelings of user and display corresponding problem/disease
-	}else if((message.toLowerCase().indexOf("im feeling") >= 0) || (message.toLowerCase().indexOf("i'm feeling") >= 0) || (message.toLowerCase().indexOf("i am feeling") >= 0) || (message.toLowerCase().indexOf("im having") >= 0) || (message.toLowerCase().indexOf("i am having") >= 0) || (message.toLowerCase().indexOf("i'm having") >= 0) || (message.toLowerCase().indexOf("i have") >= 0)){
+	}else if((message.toLowerCase().indexOf(" im feeling") >= 0) || (message.toLowerCase().indexOf(" i'm feeling") >= 0) || (message.toLowerCase().indexOf(" i am feeling") >= 0) || (message.toLowerCase().indexOf(" im having") >= 0) || (message.toLowerCase().indexOf(" i am having") >= 0) || (message.toLowerCase().indexOf(" i'm having") >= 0) || (message.toLowerCase().indexOf(" i have") >= 0)){
 
 		//console.log("Doctor Bot (Symptoms)");
 
 		botDoctor.assignSymptomsID(teamName, message);
 
 		botAction.initializeAllVariables();
+
+		doctorBotSevere = 1;
 
 	//take companyName from user (companyName should not be the original name instead its stock name eg. Apple --> AAPL)
 	}else if(stockCompanyPause){
@@ -250,7 +270,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the stockBot
-	}else if((message.toLowerCase().indexOf("stock") >= 0) || (message.toLowerCase().indexOf("company") >= 0)){
+	}else if((message.toLowerCase().indexOf(" stock") >= 0) || (message.toLowerCase().indexOf(" company") >= 0)){
 
 		//console.log("Stock Bot (Company Name Not Mentioned)");
 
@@ -261,7 +281,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botStocks.checkQueries(message, teamName, currrentUsername);
 
 	//call the movieBot
-	}else if((message.toLowerCase().indexOf("tv shows") >= 0) || (message.toLowerCase().indexOf("movies") >= 0)){
+	}else if((message.toLowerCase().indexOf(" tv shows") >= 0) || (message.toLowerCase().indexOf(" movies") >= 0)){
 
 		//console.log("let the news Bot handle this message");
 
@@ -270,7 +290,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the newsBot
-	}else if(message.toLowerCase().indexOf("news") >= 0){
+	}else if(message.toLowerCase().indexOf(" news") >= 0){
 
 		//console.log("let the news Bot handle this message");
 
@@ -279,7 +299,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//use the calculator
-	}else if((message.toLowerCase().indexOf("add") >= 0) || (message.toLowerCase().indexOf("subtract") >= 0) || (message.toLowerCase().indexOf("multiply") >= 0) || (message.toLowerCase().indexOf("divide") >= 0)){
+	}else if((message.toLowerCase().indexOf(" add") >= 0) || (message.toLowerCase().indexOf(" subtract") >= 0) || (message.toLowerCase().indexOf(" multiply") >= 0) || (message.toLowerCase().indexOf(" divide") >= 0)){
 
 		//console.log("Calculator");
 
@@ -288,7 +308,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 		botAction.initializeAllVariables();
 
 	//call the history bot
-	}else if(message.toLowerCase().indexOf("day") >= 0){
+	}else if(message.toLowerCase().indexOf(" day") >= 0){
 
 		//console.log("let the history bot handle this message");
 
@@ -611,6 +631,7 @@ var botAction = {
 
 	initializeAllVariables: function(){
 		issueShowSteps = 0;
+		doctorBotSevere = 0;
 		issueDefineSteps = 0;
 		stockCompanyPause = 0;
 		projectDefineSteps = 0;
@@ -795,10 +816,12 @@ var botDoctor = {
 		    	if(element.additional_info != ""){
 		    		returnMessage += " Also, some additional info: " + element.additional_info;
 		    	}
-		    	console.log(returnMessage);
+		    	returnMessage += " \nIs the problem very severe?"
+		    	//console.log(returnMessage);
 		    }
 		});
 
+		doctorBotSevere = 1;
 		botMessage = returnMessage;
 		
 	}
