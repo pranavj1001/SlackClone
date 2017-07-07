@@ -186,7 +186,7 @@
 
     		if(message != ""){
 
-          if ((~message.indexOf("OK Bot")) || (projectDefineSteps) || (issueDefineSteps == 1) || (issueDefineSteps == 2) || (issueShowLatestSteps) || (issueShowSteps) || (stockCompanyPause) || (issueDeletion)){
+          if ((~message.indexOf("OK Bot")) || (projectDefineSteps) || (issueDefineSteps == 1) || (issueDefineSteps == 2) || (issueShowLatestSteps) || (issueShowSteps) || (stockCompanyPause) || (issueDeletion) || (doctorBotSevere)){
             messageCallsBot = true;
             findTheServiceRequired(message, teamName, currentUsername);
             //console.log(messageCallsBot);

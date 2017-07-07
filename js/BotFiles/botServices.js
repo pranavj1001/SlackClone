@@ -35,6 +35,8 @@ var bot = "bot";
 var stockCompanyPause;
 var stockCompanyName = "";
 
+var doctorBotSevere = 0;
+
 //This function is called from the main chatWindow.php page
 //It is run whenever the message contains "OK Bot" or the bot is performing a function (creating a new project, commiting an issue, etc.) and requires more data from user
 function findTheServiceRequired(message, teamName, currrentUsername){
@@ -232,9 +234,7 @@ function findTheServiceRequired(message, teamName, currrentUsername){
 
 		//console.log("Doctor Bot (Symptoms)");
 
-		dontAllowBotToSendMessage = 1;
-
-		botDoctor.assignSymptomsID(message);
+		botDoctor.assignSymptomsID(teamName, message);
 
 		botAction.initializeAllVariables();
 
@@ -650,7 +650,7 @@ var botAction = {
 //Work In Progress - will update when bot is ready
 var botDoctor = {
 
-	assignSymptomsID: function(symptom){
+	assignSymptomsID: function(teamName, symptom){
 
 		//var which will be used in our api for our doctorBot
 		var doctorId = 0;
@@ -786,12 +786,20 @@ var botDoctor = {
 			doctorId = 999;
 		}
 
-		console.log(doctorId);
+		//console.log(doctorId);
 
 		medications.array.forEach(function(element) {
-			if(element.id == doctorId)
-		    	console.log(element);
+			if(element.id == doctorId){
+		    	//console.log(element);
+		    	returnMessage = "You should " + element.remedy;
+		    	if(element.additional_info != ""){
+		    		returnMessage += " Also, some additional info: " + element.additional_info;
+		    	}
+		    	console.log(returnMessage);
+		    }
 		});
+
+		botMessage = returnMessage;
 		
 	}
 
