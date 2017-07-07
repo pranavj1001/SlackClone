@@ -25,6 +25,6 @@ Repo is under constant development.
 
 ## Contributors
 
-* Pranav Jain (Supreme Leader)
-* Kedae Kale
-* GM(Ganesh)
+* Pranav Jain (~Supreme Leader~)
+* Kedar Kale
+* GM(Ganesh)(Lord)(Always ON!)
