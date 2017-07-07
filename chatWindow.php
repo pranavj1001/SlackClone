@@ -70,7 +70,7 @@
       bottom: 3px;
       right: 10px;
       color: rgba(0,0,0,0.45);
-      font-size: 15px;
+      font-size: 0.75em;
 }
 .chat{
   margin-bottom: 20px;
