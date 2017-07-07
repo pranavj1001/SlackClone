@@ -76,8 +76,15 @@
   margin-bottom: 20px;
 }
 
-#alert{
-  margin-top: 10px;
+.mg-t-20{
+        margin-top:20px;
+}
+.mg-t-16{
+  margin-top: 16px;
+}
+.width-100{
+  width: 100%;
+  border:1px solid rgba(0,0,0,.15);
 }
 
 </style>
@@ -116,39 +123,106 @@
         <!-- <div class="container chatsContainer">
         	<textarea class="form-control" id="messageBox" readonly="on"></textarea>
         </div> -->
-        <div class="container">
-          <div class="row">
-          <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-          </nav>
-          <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            <div class="main">
-            </div>
-          </main>
-          </div>
+                <!-- <div class="container">
+                  <div class="row">
+                  <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+                  </nav>
+                  <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                    <div class="main">
+                    </div>
+                  </main>
+                  </div> -->
           <!-- <div class="row">
             <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <input class="form-control" type="text" id="newMessage" name="newMessage">
             <button class="btn btn-primary" id="sendMessageButton">Send</button>
             </div>
           </div> -->
-        </div>
+                  <!-- </div>
 
-        <div class="container">
-          <div class="row newMessageContainer">
-          <div class="col-md-8 offset-md-2">
-          	<input class="form-control " type="text" id="newMessage" name="newMessage">
-          </div>
-          <div class="col-md-2 offset-md-10" style="display: contents;">
-  			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
-          </div>
-  		    </div>
-        </div>
+                  <div class="container">
+                    <div class="row newMessageContainer">
+                    <div class="col-md-8 offset-md-2">
+                    	<input class="form-control " type="text" id="newMessage" name="newMessage">
+                    </div>
+                    <div class="col-md-2 offset-md-10" style="display: contents;">
+            			    <button class="btn btn-primary" id="sendMessageButton">Send</button>
+                    </div>
+            		    </div>
+                  </div>
 
-		<div class="container " >
+          		<div class="container " >
+                <div class="row">
+                  <div class="alert alert-danger col-sm-9 offset-sm-3 col-md-10 offset-md-2 " id="alert"></div>
+                </div>  
+              </div>	 -->
+  <div class="container-fluid">
       <div class="row">
-        <div class="alert alert-danger col-sm-9 offset-sm-3 col-md-10 offset-md-2 " id="alert"></div>
-      </div>  
-    </div>	
+        <div class="col-md-3 sidebar" style="padding-left: 0px">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Team Members <span class="sr-only">(current)</span> </a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="nav-item width-100">
+              <a class="nav-link" href="#" >Members</a>
+            </li>
+          </ul>
+          
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="main" id="chatarea">
+                
+              </div>
+            </div>
+          </div>
+          <div class="row mg-t-16">
+            <div class="col-md-10">
+              <input class="form-control " type="text" id="newMessage" name="newMessage">
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary" id="sendMessageButton" style="width: 100%">Send</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-danger mg-t-20" id="alert" role="alert"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 	<?php 
 		}else{
@@ -275,6 +349,7 @@
                       var temp=item.sender; 
                       //console.log(item);
                       var addMessage=item.sender+":"+item.message;
+                      //console.log(item.datetime);
                       var dt=new Date(item.datetime);
                       var m=dt.getMinutes();
                       var h=dt.getHours();
@@ -284,7 +359,7 @@
                       h=(h>12)?h-12:h;
                       h=(h=='00')?12:h;
                       //var time=h+":"+m+":"+s+" "+ampn;
-                      var time=dt.getDay()+"-"+dt.getMonth()+"-"+dt.getFullYear()+"  "+h+":"+m+":"+s+" "+ampn;
+                      var time=dt.getDay()+"-"+dt.getMonth()+"-"+dt.getFullYear()+"    "+h+":"+m+":"+s+" "+ampn;
                       //console.log(time);
                       if (temp==currentUsername){
                             // $("<br>").insertAfter($("<div>"+addMessage+"</div>").addClass("right").appendTo(".main"));
@@ -323,7 +398,7 @@
 
       updateMessage();
 
-	    setInterval(checkDataBase,1000);
+      setInterval(checkDataBase,1000);
 
    	</script>
 
