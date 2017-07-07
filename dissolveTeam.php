@@ -54,8 +54,8 @@
           <input type="hidden" id="loginActive" name="loginActive" value="1">
           <label class="sr-only">Team Name</label>
           <input type="text" id="teamname" class="form-control" placeholder="Team Name">
-          <!-- <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="teampassword" class="form-control" placeholder="Password"> -->
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="teampassword" class="form-control" placeholder="Password">
           <div class="checkbox">
             <!-- <label>
               <input type="checkbox" value="remember-me"> Remember me
@@ -96,8 +96,8 @@
           $.ajax({
             type: "POST",
             url: "actions.php?actions=dissolveTeam",
-            // data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername +"&teampassword="+$("#teampassword").val,
-            data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername,
+            data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername +"&teampassword="+$("#teampassword").val(),
+            // data:"teamname=" + $("#teamname").val() + "&currentUsername=" + currentUsername,
             success: function(result){
               if(result == "1"){
                 console.log("Success");

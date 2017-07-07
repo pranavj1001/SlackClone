@@ -397,8 +397,8 @@
                 $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."'
                         AND teamadmin='".$_POST['currentUsername']."' " ;
                 $result=mysqli_query($link,$query);
-                $row_count = mysqli_num_rows($result);
-                if($row_count>0){
+                $row = mysqli_fetch_assoc($result);
+                if($row['teampassword'] == md5(md5($row['id']).$_POST['teampassword'])){
                     //removing teamname from teamdetails table
                     $query="DELETE FROM teamdetails WHERE teamname='".mysqli_real_escape_string($link, $_POST['teamname'])."'";
                     $result=mysqli_query($link,$query);
