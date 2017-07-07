@@ -821,6 +821,10 @@ var botDoctor = {
 		    }
 		});
 
+		if(doctorId == 999){
+			returnMessage = "Sorry, but can you please elaborate your problem a bit more? or read the documentation to know more about how to interact with the doctorBot."
+		}
+
 		doctorBotSevere = 1;
 		botMessage = returnMessage;
 		
