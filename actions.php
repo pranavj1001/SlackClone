@@ -92,6 +92,13 @@
 
             $error = "";
 
+            //this store team members details
+            $query = "CREATE TABLE `".mysqli_real_escape_string($link, $_POST['teamname'])."_members"."` ( `id` INT NOT NULL AUTO_INCREMENT , `username` TEXT NOT NULL , `datetime` DATETIME NOT NULL ,`lastseen` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB";
+
+            //To run the above query
+            mysqli_query($link, $query);
+
+
             $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."' LIMIT 1";
                 $result = mysqli_query($link, $query);
                 if(mysqli_num_rows($result) > 0){
@@ -124,7 +131,19 @@
             $query = "SELECT * FROM teamdetails WHERE teamname = '".mysqli_real_escape_string($link, $_POST['teamname'])."' LIMIT 1";
                 $result = mysqli_query($link, $query);
                 $row = mysqli_fetch_assoc($result);
+
                 if($row['teampassword'] == md5(md5($row['id']).$_POST['teampassword'])){
+                    $members=$row['teamname']."_members";
+                    $query ="SELECT * FROM ".$members." WHERE username ='".mysqli_real_escape_string($link, $_POST['currentUsername'])."' LIMIT 1";
+                    $result = mysqli_query($link,$query);
+                    $row_count = mysqli_num_rows($result);
+                    if($row_count != 1){
+
+                        $query = "INSERT INTO ".$row['teamname']."_members"."(`username`,`datetime`) VALUES ('".mysqli_real_escape_string($link,$_POST['currentUsername'])."',NOW())";
+                        mysqli_query($link,$query);
+
+                    }
+
                     echo 1;
                     $_SESSION['teamid'] = $row['id'];
                     //echo $_SESSION['teamid'];
@@ -174,7 +193,7 @@
             $row_count = mysqli_num_rows($result);
             
             if($row_count > 0){
-                while ($row=mysqli_fetch_array($result)) {
+                while ($row=mysqli_fetch_assoc($result)) {
                     array_push($arr, $row);
                 }
             }
@@ -185,6 +204,27 @@
                 exit();
             }
 
+        }
+
+        if ($_GET['actions'] == 'updateTeamMembers') {
+            
+            $error = "";
+            $query = "SELECT * FROM ".$_POST['teamname']."_members";
+            $result = mysqli_query($link,$query);
+            $arr = array();
+            $row_count = mysqli_num_rows($result);
+            
+            if($row_count > 0){
+                while ($row=mysqli_fetch_assoc($result)) {
+                    array_push($arr, $row);
+                }
+            }
+            echo json_encode($arr);
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
         }
 
         if($_GET['actions'] == 'createANewProject'){
@@ -241,6 +281,24 @@
 
                 echo 2;
             }
+
+            if($error != ""){
+                echo $error;
+                exit();
+            }
+
+        }
+
+        if($_GET['actions'] == 'checkDBForTeamMember'){
+
+            $error = "";
+            $result = 0;
+
+            $query = "SELECT COUNT(*) FROM ".$_POST['teamname']."_members";
+
+            $result = mysqli_query($link, $query);
+
+            echo $result;
 
             if($error != ""){
                 echo $error;

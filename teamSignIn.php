@@ -89,16 +89,17 @@
       
       $('#joinTeam').click(function(){
         
-        var teamadmin = "<?php echo $currentUsername?>";
+         var teamadmin = "<?php echo $currentUsername?>";
+
+        var currentUsername ="<?php echo $currentUsername?>";
 
         $('#alert').hide();
 
         //console.log(teamadmin);
-        
           $.ajax({
             type: "POST",
             url: "actions.php?actions=joinTeam",
-            data:"teamname=" + $("#teamname").val() + "&teampassword=" + $("#teampassword").val(),
+            data:"teamname=" + $("#teamname").val() + "&teampassword=" + $("#teampassword").val() + "&currentUsername=" + currentUsername,
             success: function(result){
               if(result == "1"){
                 console.log("Success");

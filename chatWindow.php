@@ -86,6 +86,12 @@
   width: 100%;
   border:1px solid rgba(0,0,0,.15);
 }
+.bg-color{
+  background-color:#0275d8;
+}
+.bg-color a{
+  color:#fff;
+}
 
 </style>
 </head>
@@ -158,46 +164,15 @@
               </div>	 -->
   <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3 sidebar" style="padding-left: 0px">
+        <div class="col-md-3 sidebar " style="padding-left: 0px">
           <ul class="nav nav-pills flex-column">
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Team Members <span class="sr-only">(current)</span> </a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#">Members</a>
-            </li>
-            <li class="nav-item width-100">
-              <a class="nav-link" href="#" >Members</a>
+            <li class='nav-item width-100 bg-color'>
+            <a class='nav-link' href='#'>Team Members <span class='sr-only'>(current)</span> 
+            </a>
             </li>
           </ul>
-          
+          <ul class="nav nav-pills flex-column member">  
+          </ul>
         </div>
         <div class="col-md-9">
           <div class="row">
@@ -246,6 +221,7 @@
     <script type="text/javascript">
 
       var oldNumberOfRows;
+      var oldNumberOfRowsTM;
 
     	$('#alert').hide();
 
@@ -379,7 +355,6 @@
 
             });
         };
-
       function checkDataBase(){
         var teamName = "<?php echo $TeamName; ?>";
          
@@ -399,6 +374,49 @@
       updateMessage();
 
       setInterval(checkDataBase,1000);
+
+      function updateTeamMembers(){
+
+        var teamName = "<?php echo $TeamName; ?>";
+        var t="<li class='nav-item width-100 bg-color'><a class='nav-link' href='#'>Team Members <span class='sr-only'>(current)</span> </a></li>";
+
+        $.ajax({
+          type : "POST",
+          url : "actions.php?actions=updateTeamMembers",
+          data : "teamname="+teamName,
+          dataType : "json",
+          success : function(response,status,http){
+            $( ".member" ).empty();
+            $.each(response,function(index,item){
+              //console.log(item.username);
+              var t="<li class='nav-item width-100'><a class='nav-link' href='#' >"+item.username+"</a></li>";
+              $(t).appendTo(".member");
+            });
+          },
+          error : function (http,status,error) {
+                    alert ("Some Error Ocurred : "+error);
+          }
+        });
+
+      }
+
+      function checkDBForTeamMember(){
+        var teamName = "<?php echo $TeamName; ?>";
+         
+          $.ajax({
+            type : "POST",
+            url : "actions.php?actions=checkDBForTeamMember",
+            data : "teamname="+teamName,
+            success : function(result){
+              //console.log(result);
+              if(oldNumberOfRowsTM != result){
+                updateTeamMembers();
+              }
+            }
+          });
+      };
+      updateTeamMembers();
+      setInterval(checkDBForTeamMember,1000);
 
    	</script>
 
