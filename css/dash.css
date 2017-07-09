@@ -68,3 +68,16 @@ h1 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
+.heading{
+  font-size: 3rem;
+}
+
+#sub-heading{
+  display: none;
+}
+
+.noDecoration{
+  text-decoration: none !important;
+}
+

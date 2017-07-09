@@ -4,7 +4,6 @@
   	include("services/loadProfile.php");
   	include("services/getTeamName.php");
   	include("services/createTableForTeam.php");
-  	include("services/loadPreviousMessagesForTeam.php");
 
 ?>
 
