@@ -111,7 +111,12 @@
 
           <section>
             <h2 class="heading" id="teamAdminInfo"></h2>
-            <h5 id="sub-heading">Want to create one? <a class="noDecoration" href="teamSignUp.php">Click here.</h5>
+            <h5 id="sub-heading">Want to create one? <a class="noDecoration" href="teamSignUp.php">Click here.</a></h5>
+          </section>
+
+          <section class="activities">
+            <h2 class="activitiesHeading">Activities of your team</h2>
+            <h5 class="activitiesDetails"></h5>
           </section>
 
         </main>
@@ -134,6 +139,7 @@
     <script type="text/javascript">
 
       var currentUsername = "<?php echo $currentUsername?>";
+      var teamNames = [];
 
       $(document).ready(function(){
 
@@ -143,12 +149,14 @@
           data:"username=" + currentUsername,
           dataType: "json",
           success: function(result){
-            console.log(result);
+            //console.log(result);
 
             if(result === 0){
               $('#teamAdminInfo').html("You have not created any teams yet.");
               $('#sub-heading').show();
             }else{
+
+              showTeamMessagesOnDashBoard();
 
               var names = "";
 
@@ -156,6 +164,9 @@
                 $('#teamAdminInfo').html("Your team is " + result.teamname);
               }else{
                 $.each(result, function(index, item){
+
+                  teamNames.push(item.teamname);
+
                   if(index == (result.length - 1)){
                     names += item.teamname + ".";
                   }else{
@@ -164,11 +175,34 @@
                 });
                 $('#teamAdminInfo').html("Your teams are " + names);
               }
+
+              $(".activities").show();
+
             }
           }
         });
       });
 
+      function showTeamMessagesOnDashBoard(){
+        $.ajax({
+          type: "POST",
+          url: "services/showTeamMessagesOnDashBoard.php",
+          data:"username=" + currentUsername,
+          dataType: "json",
+          success: function(result){
+            //console.log(result);
+            var stringToShow = "";
+            $.each(result, function(index, item){
+
+              stringToShow += "Number of Messages in " + teamNames[index] + " : " + item.numbers + "<br>";
+
+            });
+
+            $(".activitiesDetails").html(stringToShow);
+
+          }
+        });
+      }
 
     </script>
 

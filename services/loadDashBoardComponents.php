@@ -8,7 +8,6 @@
 	if(mysqli_num_rows($result) > 0){
 
 		$arr = array();
-        $row_count = mysqli_num_rows($result);
 
         while ($row = mysqli_fetch_assoc($result)) {
             array_push($arr, $row);
