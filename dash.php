@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dash.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/chartist.min.css">
   </head>
 
   <body>
@@ -119,6 +120,17 @@
             <h5 class="activitiesDetails"></h5>
           </section>
 
+          <section class="charts">
+            <div class="row">
+              <div class="col">
+                <div class="ct-chart ct-series-a ct-slice-donut"></div>
+              </div>
+              <div class="col">
+                Hey
+              </div>
+            </div>
+          </section>
+
         </main>
       </div>
     </div>
@@ -133,6 +145,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/jQuery320.min.js"></script>
+    <script src="js/chartist.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
@@ -140,6 +153,7 @@
 
       var currentUsername = "<?php echo $currentUsername?>";
       var teamNames = [];
+      var numbersOfMessages = [];
 
       $(document).ready(function(){
 
@@ -161,7 +175,8 @@
               var names = "";
 
               if(result.length == 1){
-                $('#teamAdminInfo').html("Your team is " + result.teamname);
+                teamNames.push(result[0].teamname);
+                $('#teamAdminInfo').html("Your team is " + result[0].teamname);
               }else{
                 $.each(result, function(index, item){
 
@@ -194,13 +209,75 @@
             var stringToShow = "";
             $.each(result, function(index, item){
 
+              numbersOfMessages.push(item.numbers);
               stringToShow += "Number of Messages in " + teamNames[index] + " : " + item.numbers + "<br>";
 
             });
 
             $(".activitiesDetails").html(stringToShow);
 
+            showThePieChart();
+
           }
+        });
+      }
+
+      function showThePieChart(){
+
+        var chart = new Chartist.Pie('.ct-chart', {
+          series: numbersOfMessages,
+          labels: teamNames
+        }, {
+          donut: true,
+          showLabel: true
+        });
+
+        chart.on('draw', function(data) {
+          if(data.type === 'slice') {
+            // Get the total path length in order to use for dash array animation
+            var pathLength = data.element._node.getTotalLength();
+
+            // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+            data.element.attr({
+              'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+            });
+
+            // Create animation definition while also assigning an ID to the animation for later sync usage
+            var animationDefinition = {
+              'stroke-dashoffset': {
+                id: 'anim' + data.index,
+                dur: 1000,
+                from: -pathLength + 'px',
+                to:  '0px',
+                easing: Chartist.Svg.Easing.easeOutQuint,
+                // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                fill: 'freeze'
+              }
+            };
+
+            // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+            if(data.index !== 0) {
+              animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+            }
+
+            // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+            data.element.attr({
+              'stroke-dashoffset': -pathLength + 'px'
+            });
+
+            // We can't use guided mode as the animations need to rely on setting begin manually
+            // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+            data.element.animate(animationDefinition, false);
+          }
+        });
+
+        // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+        chart.on('created', function() {
+          if(window.__anim21278907124) {
+            clearTimeout(window.__anim21278907124);
+            window.__anim21278907124 = null;
+          }
+          window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
         });
       }
 
