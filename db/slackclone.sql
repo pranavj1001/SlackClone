@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2017 at 10:49 AM
+-- Generation Time: Jul 09, 2017 at 10:57 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -21,49 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `slackclone`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gm`
---
-
-CREATE TABLE `gm` (
-  `id` int(11) NOT NULL,
-  `sender` text NOT NULL,
-  `message` text NOT NULL,
-  `datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gm`
---
-
-INSERT INTO `gm` (`id`, `sender`, `message`, `datetime`) VALUES
-(1, 'ganesh', 'gm', '2017-07-09 00:33:05');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gm_members`
---
-
-CREATE TABLE `gm_members` (
-  `id` int(11) NOT NULL,
-  `username` text NOT NULL,
-  `datetime` datetime NOT NULL,
-  `lastseen` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gm_members`
---
-
-INSERT INTO `gm_members` (`id`, `username`, `datetime`, `lastseen`) VALUES
-(1, 'ganesh', '2017-07-09 00:37:23', '0000-00-00 00:00:00'),
-(2, 'user1', '2017-07-09 01:20:04', '0000-00-00 00:00:00'),
-(3, 'user2', '2017-07-09 01:29:52', '0000-00-00 00:00:00'),
-(4, 'muku', '2017-07-09 01:33:28', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1440,8 +1397,7 @@ INSERT INTO `teamdetails` (`id`, `teamadmin`, `teamname`, `teampassword`) VALUES
 (9, 'user2', 'team4', '1de9a70660fb54b17535e830c8614358'),
 (10, 'user6', 'team6', '271170ec2bed4c154a45b775c8f25c23'),
 (11, 'user7', 'team7', '7456d7c7b4aa2fb72474d7786489fba1'),
-(12, 'user1', 'team8', '32de5be683a5f413ee47f4868cdd40ac'),
-(15, 'ganesh', 'gm', '66d8448c314803adf0351c225ee1a9dc');
+(12, 'user1', 'team8', '32de5be683a5f413ee47f4868cdd40ac');
 
 -- --------------------------------------------------------
 
@@ -1475,18 +1431,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `gm`
---
-ALTER TABLE `gm`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `gm_members`
---
-ALTER TABLE `gm_members`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `team1`
@@ -1642,16 +1586,6 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `gm`
---
-ALTER TABLE `gm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `gm_members`
---
-ALTER TABLE `gm_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `team1`
 --
