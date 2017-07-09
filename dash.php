@@ -120,15 +120,20 @@
             <h5 class="activitiesDetails"></h5>
           </section>
 
-          <section class="charts">
+          <section class="dc-chart">
             <div class="row">
               <div class="col">
-                <div class="ct-chart ct-series-a ct-slice-donut"></div>
+                <div class="ct-chart-dc ct-series-a ct-slice-donut"></div>
               </div>
-              <div class="col">
-                Hey
+              <div class="col dc-info">
+                <h5>Besides Information is shown about each of your team's total chat share. </h5>
               </div>
             </div>
+          </section>
+
+          <section class="lg-chart">
+            <h5>Below shown Information is about each of your team's chat history.</h5>
+            <div class="ct-chart-lg"></div>
           </section>
 
         </main>
@@ -154,6 +159,7 @@
       var currentUsername = "<?php echo $currentUsername?>";
       var teamNames = [];
       var numbersOfMessages = [];
+      var chatHistory = [];
 
       $(document).ready(function(){
 
@@ -176,7 +182,7 @@
 
               if(result.length == 1){
                 teamNames.push(result[0].teamname);
-                $('#teamAdminInfo').html("Your team is " + result[0].teamname);
+                $('#teamAdminInfo').html("Your team is " + result[0].teamname + ".");
               }else{
                 $.each(result, function(index, item){
 
@@ -216,15 +222,19 @@
 
             $(".activitiesDetails").html(stringToShow);
 
-            showThePieChart();
+            showTheDonutChart();
+
+            getDistinctTimeValuesForMessages();
+
+            showTheLineGraph();
 
           }
         });
       }
 
-      function showThePieChart(){
+      function showTheDonutChart(){
 
-        var chart = new Chartist.Pie('.ct-chart', {
+        var chart = new Chartist.Pie('.ct-chart-dc', {
           series: numbersOfMessages,
           labels: teamNames
         }, {
@@ -279,6 +289,57 @@
           }
           window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
         });
+      }
+
+      function showTheLineGraph(){
+
+        var chart = new Chartist.Line('.ct-chart-lg', {
+          labels: [1, 2, 3, 4, 5],
+          series: [
+            [1, 5, 10, 0, 1],
+            [10, 15, 0, 1, 2]
+          ]
+        }, {
+          // Remove this configuration to see that chart rendered with cardinal spline interpolation
+          // Sometimes, on large jumps in data values, it's better to use simple smoothing.
+          lineSmooth: Chartist.Interpolation.simple({
+            divisor: 2
+          }),
+          fullWidth: true,
+          chartPadding: {
+            right: 20
+          },
+          low: 0
+        });
+
+      }
+
+      function getDistinctTimeValuesForMessages(){
+
+        $.each(teamNames, function(index, item){
+
+          console.log(item, index);
+
+          $.ajax({
+            type: "POST",
+            url: "services/getDistinctTimeValuesForMessages.php",
+            data:"tableName=" + item,
+            dataType: "json",
+            async: false,
+            success: function(result){
+              console.log(result);
+
+              $.each(result, function(index1, item1){
+                //chatHistory[index][index1] = item1.count;
+                chatHistory.push([index, item1.count])
+              });
+
+            }
+          });
+        });
+
+        console.log(chatHistory);
+
       }
 
     </script>

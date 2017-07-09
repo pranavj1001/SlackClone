@@ -95,6 +95,10 @@ h1 {
   margin-top: 2.5rem;
 }
 
+.dc-chart, .lg-chart{
+  margin-top: 3rem;
+}
+
 .ct-series-a .ct-slice-donut {
   /* give the donut slice a custom colour */
   stroke: blue;
@@ -102,9 +106,16 @@ h1 {
   stroke-width: 23px !important;
 }
 
-.ct-chart{
+.dc-info{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.ct-chart-dc{
 
   height: 300px;
   width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 
 }
