@@ -93,10 +93,16 @@ h1 {
 .activitiesDetails{
   font-size: 1.5rem;
   margin-top: 2.5rem;
+  line-height: 1.5;
 }
 
 .dc-chart, .lg-chart{
   margin-top: 3rem;
+  display: none;
+}
+
+.lg-chart{
+  padding-right: 2px;
 }
 
 .ct-series-a .ct-slice-donut {
@@ -118,4 +124,8 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 
+}
+
+#ownMessages{
+  line-height: 2;
 }

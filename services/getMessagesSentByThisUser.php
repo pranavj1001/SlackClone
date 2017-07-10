@@ -14,7 +14,7 @@
 	while($row = mysqli_fetch_assoc($result)){ // loop to store the data in an associative array.
 	    $tableNames[$index] = $row;
 
-	    $query = "SELECT COUNT(message) as numbers FROM ".$tableNames[$index]['teamname']."";
+	    $query = "SELECT COUNT(message) as numbers FROM ".$tableNames[$index]['teamname']." WHERE sender = '".$_POST['username']."'";
 	    $newresult = mysqli_query($link, $query);
 
 	    while ($newrow = mysqli_fetch_assoc($newresult)) {

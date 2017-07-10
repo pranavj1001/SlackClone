@@ -123,10 +123,11 @@
           <section class="dc-chart">
             <div class="row">
               <div class="col">
+                <h5>Below shown Information is about each of your team's total chat share. </h5>
                 <div class="ct-chart-dc ct-series-a ct-slice-donut"></div>
               </div>
               <div class="col dc-info">
-                <h5>Besides Information is shown about each of your team's total chat share. </h5>
+                <h5 id="ownMessages"></h5>
               </div>
             </div>
           </section>
@@ -159,7 +160,6 @@
       var currentUsername = "<?php echo $currentUsername?>";
       var teamNames = [];
       var numbersOfMessages = [];
-      var chatHistory = [];
 
       $(document).ready(function(){
 
@@ -198,6 +198,8 @@
               }
 
               $(".activities").show();
+              $(".dc-chart").show();
+              $(".lg-chart").show();
 
             }
           }
@@ -211,7 +213,7 @@
           data:"username=" + currentUsername,
           dataType: "json",
           success: function(result){
-            //console.log(result);
+            console.log(result);
             var stringToShow = "";
             $.each(result, function(index, item){
 
@@ -223,12 +225,15 @@
             $(".activitiesDetails").html(stringToShow);
 
             showTheDonutChart();
+            showPerTeamMessagesByCurrentUser();
 
             getDistinctTimeValuesForMessages();
 
           }
         });
       }
+
+      console.log(numbersOfMessages);
 
       function showTheDonutChart(){
 
@@ -289,6 +294,33 @@
         });
       }
 
+      function showPerTeamMessagesByCurrentUser(){
+
+        $.ajax({
+          type: "POST",
+          url: "services/getMessagesSentByThisUser.php",
+          data:"username=" + currentUsername,
+          dataType: "json",
+          success: function(result){
+            console.log(result);
+
+            var stringToShow = "";
+            $.each(result, function(index, item){
+              stringToShow += "Number of Messages that you have sent in " + teamNames[index] + " : " + item.numbers + "<br>";
+            });
+
+            $("#ownMessages").html(stringToShow);
+
+          }
+        });
+
+
+      }
+
+      function onlyUnique(value, index, self) { 
+          return self.indexOf(value) === index;
+      }
+
       function getDistinctTimeValuesForMessages(){
 
         var dates = [];
@@ -314,19 +346,53 @@
                 chats.push(item1.count);
               });
 
-              eval("custom." + item + "=chats;");
+              $.each(result.values, function(index1, item1){
+                var year = item1.datetime.substr(2, 2);
+                var month = item1.datetime.substr(5, 2);
+                
+                if(month == "01"){
+                  month = "Jan";
+                }else if(month == "02"){
+                  month = "Feb";
+                }else if(month == "03"){
+                  month = "Mar";
+                }else if(month == "04"){
+                  month = "Apr";
+                }else if(month == "05"){
+                  month = "May";
+                }else if(month == "06"){
+                  month = "Jun";
+                }else if(month == "07"){
+                  month = "Jul";
+                }else if(month == "08"){
+                  month = "Aug";
+                }else if(month == "09"){
+                  month = "Sept";
+                }else if(month == "10"){
+                  month = "Oct";
+                }else if(month == "11"){
+                  month = "Nov";
+                }else if(month == "12"){
+                  month = "Dec";
+                }
+
+                dates.push(month + " " + year);
+              });
+
+              eval("custom." + item + "= chats;");
               chats = [];
 
             }
           });
         });
 
-        $.each(teamNames, function(index, item){
-          eval("console.log(custom." + item + ");");
-        });
+        var uniqueDates = dates.filter(onlyUnique);
+        //uniqueDates.push("Future");
+        uniqueDates.push(" ");
+        //console.log(uniqueDates);
 
         var chart = new Chartist.Line('.ct-chart-lg', {
-          labels: ["May 17", "July 17", "Aug 17", "Sept 17", "Oct 17"],
+          labels: [],
           series: []
         }, {
           // Remove this configuration to see that chart rendered with cardinal spline interpolation
@@ -341,12 +407,14 @@
           low: 0
         });
 
-        console.log(chart);
+        //console.log(chart);
         var temp;
         $.each(teamNames, function(index, item){
           eval("temp = chart.data.series;");
           eval("temp.push(custom." + item + ");");
         });
+
+        chart.data.labels = uniqueDates;
 
       }
 
