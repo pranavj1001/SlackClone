@@ -86,9 +86,11 @@
 		        array_push($distinctTimeValuesCount, $row2);
 		    }
 
+		    $index1++;
+
 		}
 
-		echo json_encode($distinctTimeValuesCount);
+		echo json_encode(array('numbers'=>$distinctTimeValuesCount, 'values'=>$distinctTimeValues));
 
 	}else{
 

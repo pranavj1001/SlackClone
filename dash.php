@@ -226,8 +226,6 @@
 
             getDistinctTimeValuesForMessages();
 
-            showTheLineGraph();
-
           }
         });
       }
@@ -291,14 +289,45 @@
         });
       }
 
-      function showTheLineGraph(){
+      function getDistinctTimeValuesForMessages(){
+
+        var dates = [];
+        var chats = [];
+
+        var custom = {};
+
+        $.each(teamNames, function(index, item){
+
+          //console.log(item, index);
+
+          $.ajax({
+            type: "POST",
+            url: "services/getDistinctTimeValuesForMessages.php",
+            data:"tableName=" + item,
+            dataType: "json",
+            async: false,
+            success: function(result){
+              //console.log("R",result.numbers);
+              //console.log(result.values);
+
+              $.each(result.numbers, function(index1, item1){                
+                chats.push(item1.count);
+              });
+
+              eval("custom." + item + "=chats;");
+              chats = [];
+
+            }
+          });
+        });
+
+        $.each(teamNames, function(index, item){
+          eval("console.log(custom." + item + ");");
+        });
 
         var chart = new Chartist.Line('.ct-chart-lg', {
-          labels: [1, 2, 3, 4, 5],
-          series: [
-            [1, 5, 10, 0, 1],
-            [10, 15, 0, 1, 2]
-          ]
+          labels: ["May 17", "July 17", "Aug 17", "Sept 17", "Oct 17"],
+          series: []
         }, {
           // Remove this configuration to see that chart rendered with cardinal spline interpolation
           // Sometimes, on large jumps in data values, it's better to use simple smoothing.
@@ -312,33 +341,12 @@
           low: 0
         });
 
-      }
-
-      function getDistinctTimeValuesForMessages(){
-
+        console.log(chart);
+        var temp;
         $.each(teamNames, function(index, item){
-
-          console.log(item, index);
-
-          $.ajax({
-            type: "POST",
-            url: "services/getDistinctTimeValuesForMessages.php",
-            data:"tableName=" + item,
-            dataType: "json",
-            async: false,
-            success: function(result){
-              console.log(result);
-
-              $.each(result, function(index1, item1){
-                //chatHistory[index][index1] = item1.count;
-                chatHistory.push([index, item1.count])
-              });
-
-            }
-          });
+          eval("temp = chart.data.series;");
+          eval("temp.push(custom." + item + ");");
         });
-
-        console.log(chatHistory);
 
       }
 
