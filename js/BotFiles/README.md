@@ -32,10 +32,9 @@
   - [X] Can show upcoming movies.
   - [X] Can show popular TV Shows with description.
   
-### DoctorBot - (66.67% Complete)
+### DoctorBot - (100% Complete)
   - [X] Can tell medication based on symptoms.
   - [X] Can tell whether the current disease is severe or not.
-  - [ ] Can suggest nearby hospitals.
   
 ### NewsBot - (100% Complete)
   - [X] Can show popular news (global)
