@@ -25,6 +25,6 @@ Repo is under constant development.
 
 ## Contributors
 
-* Pranav Jain (~Supreme Leader~)(NOOL)
+* Pranav Jain (~Supreme Leader~)
 * KeDaE KaLe(kesar)
 * GM(Ganesh)
