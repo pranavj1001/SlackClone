@@ -9,7 +9,7 @@ Repo is under constant development.
 - [X] Set up Team LogIn and Creation Process
 - [X] Set up basic Chat UI
 - [X] Set up basic Bot
-- [ ] Set up the features of Bot
+- [X] Set up the features of Bot
 - [ ] Beautify the web app and add content wherever necessary
 - [ ] Publish Research Papers
 - [ ] **Project Complete**
@@ -26,5 +26,5 @@ Repo is under constant development.
 ## Contributors
 
 * Pranav Jain (~Supreme Leader~)
-* Kedar Kale
+* KeDaE KaLe
 * GM(Ganesh)(Lord)(Always ON!)
