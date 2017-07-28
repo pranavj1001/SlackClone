@@ -12,25 +12,26 @@
             $error = "";
 
             if($_POST['loginActive'] == "0"){
-                if(!$_POST['email']){
-                    $error = "An email is required";    
-                }
-                //if not a valid email is used
-                if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
-                    $error = "Please enter a valid email address";
+                if(!$_POST['username']){
+                    $error = "An username is required";
                 }
             }
             
             //if email field is empty
-            if(!$_POST['username']){
+            if(!$_POST['email']){
                 
-                $error = "An username address is required";
+                $error = "An email address is required";
             
             //if password field is empty
             }else if(!$_POST['password']){
                 
                 $error = "A password is required";
             
+            //if not a valid email is used
+            }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+                
+                $error = "Please enter a valid email address";
+                
             }
             
             //discontinue if error is there
@@ -69,7 +70,7 @@
                 }
             //if user wants to log in  
             }else{
-                $query = "SELECT * FROM users WHERE username = '".mysqli_real_escape_string($link, $_POST['username'])."' LIMIT 1";
+                $query = "SELECT * FROM users WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
                 $result = mysqli_query($link, $query);
                 $row = mysqli_fetch_assoc($result);
                 if($row['password'] == md5(md5($row['id']).$_POST['password'])){

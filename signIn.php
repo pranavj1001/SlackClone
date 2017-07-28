@@ -105,10 +105,10 @@
         
         $('#alert').hide();
 
-        // if($('#loginActive').val() === "1"){
-        //   $('#username').val("1001");
-        //   console.log($('#username').val());
-        // }
+        if($('#loginActive').val() === "1"){
+          $('#username').val("1001");
+          console.log($('#username').val());
+        }
         
           $.ajax({
             type: "POST",
