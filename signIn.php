@@ -80,7 +80,7 @@
       
       $('#alert').hide();/*initially to hide alert*/
 
-      $('#email').hide();
+      $('#username').hide();
       
       $('#toggleLogin').click(function(){
         
@@ -90,11 +90,11 @@
                 $('#loginActive').val("0");
                 $('.form-signin-heading').html("Please Sign Up");
                 $('#loginOrSignup').html("Sign Up");
-                $('#email').show();
+                $('#username').show();
                 $('#toggleLogin').html("Sign In");
             }else{
                 $('#loginActive').val("1");
-                $('#email').hide();
+                $('#username').hide();
                 $('.form-signin-heading').html("Please Sign In");
                 $('#loginOrSignup').html("Sign In");
                 $('#toggleLogin').html("Sign Up");     
