@@ -80,7 +80,8 @@
       
       $('#alert').hide();/*initially to hide alert*/
 
-      $('#username').hide();
+      // $('#username').hide();
+      $('#email').hide();
       
       $('#toggleLogin').click(function(){
         
@@ -90,11 +91,13 @@
                 $('#loginActive').val("0");
                 $('.form-signin-heading').html("Please Sign Up");
                 $('#loginOrSignup').html("Sign Up");
-                $('#username').show();
+                // $('#username').show();
+                $('#email').show();
                 $('#toggleLogin').html("Sign In");
             }else{
                 $('#loginActive').val("1");
-                $('#username').hide();
+                // $('#username').hide();
+                $('#email').hide();
                 $('.form-signin-heading').html("Please Sign In");
                 $('#loginOrSignup').html("Sign In");
                 $('#toggleLogin').html("Sign Up");     
@@ -105,10 +108,10 @@
         
         $('#alert').hide();
 
-        if($('#loginActive').val() === "1"){
-          $('#username').val("1001");
-          console.log($('#username').val());
-        }
+        // if($('#loginActive').val() === "1"){
+        //   $('#username').val("1001");
+        //   console.log($('#username').val());
+        // }
         
           $.ajax({
             type: "POST",
