@@ -501,7 +501,7 @@ var botAction = {
 			            success: function(result){
 			 				//console.log(result);
 			 				$.each(result,function(index,item){
-				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
+				            	returnMessage = "Issue #"+ item.id + "<br>Description: " + item.issuedescription + "<br>Issued by: " + item.createdby + "<br>Date and Time: " + item.datetime + "<br>";
 				            });
 				            //console.log(returnMessage);
 				            botAction.saveMessage(teamName, returnMessage, bot);
@@ -538,7 +538,7 @@ var botAction = {
 			            success: function(result){
 			 				//console.log(result);
 			 				$.each(result,function(index,item){
-				            	returnMessage = "Issue #"+ item.id + "\nDescription: " + item.issuedescription + "\nIssued by: " + item.createdby + "\nDate and Time: " + item.datetime + "\n";
+				            	returnMessage = "Issue #"+ item.id + "<br>Description: " + item.issuedescription + "<br>Issued by: " + item.createdby + "<br>Date and Time: " + item.datetime + "<br>";
 				            });
 				            //console.log(returnMessage);
 				            botAction.saveMessage(teamName, returnMessage, bot);
@@ -816,7 +816,7 @@ var botDoctor = {
 		    	if(element.additional_info != ""){
 		    		returnMessage += " Also, some additional info: " + element.additional_info;
 		    	}
-		    	returnMessage += " \nIs the problem very severe?"
+		    	returnMessage += " <br>Is the problem very severe?"
 		    	//console.log(returnMessage);
 		    }
 		});
@@ -958,12 +958,12 @@ var botMovie = {
 				if((choice == 0) || (choice == 1) || (choice == 4)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "\nName: '"+ item.title + "'\nOverview: " + item.overview + "\nReleased Date: " + item.release_date + "\n";
+					   	returnMessage += "<br>Name: '"+ item.title + "'<br>Overview: " + item.overview + "<br>Released Date: " + item.release_date + "<br>";
 					}
 				}else{ //else if((choice == 2) || (choice == 3)){
 					for(var i = 0; i < 5; i++){
 						item = result.results[i];
-					   	returnMessage += "\nName: '"+ item.name + "'\nOverview: " + item.overview + "\nReleased Date: " + item.first_air_date + "\n";
+					   	returnMessage += "<br>Name: '"+ item.name + "'<br>Overview: " + item.overview + "<br>Released Date: " + item.first_air_date + "<br>";
 					}
 				}
 				//console.log(returnMessage);
@@ -1030,7 +1030,7 @@ var botStocks = {
 			},
 			success: function (response){
 				//console.log(response);
-				returnMessage = "\nShowing Info about: " + stockCompanyName + "\nLegal Name: " + response.legal_name + "\nSector: " + response.sector + "\nIndustry Group: " + response.industry_group + "\nAddress: " + response.business_address + "\nPhone Number: " + response.business_phone_no + "\nCompany URL: " + response.company_url;
+				returnMessage = "<br>Showing Info about: " + stockCompanyName + "<br>Legal Name: " + response.legal_name + "\nSector: " + response.sector + "<br>Industry Group: " + response.industry_group + "<br>Address: " + response.business_address + "<br>Phone Number: " + response.business_phone_no + "<br>Company URL: " + response.company_url;
 				//console.log(returnMessage);
 				botStocks.getStockPrice(stockCompanyName, returnMessage, teamName);
 			},
@@ -1057,7 +1057,7 @@ var botStocks = {
 			},
 			success: function(response) {
 				//console.log(response);
-				returnMessage += "\nStock Price: " + response.value;
+				returnMessage += "<br>Stock Price: " + response.value;
 				//console.log(returnMessage);
 				botAction.saveMessage(teamName, returnMessage, bot);
 			}
@@ -1293,7 +1293,7 @@ var newsBot = {
 					if(item.publishedAt == null){
 						item.publishedAt = "NA";
 					}
-					returnMessage += "\nTitle: '"+ item.title + "'\nDescription: " + item.description + "\nAuthor: " + item.author + "\nMore info: " + item.url + "\nPublished on: " + item.publishedAt.substr(0,10) + "\n";
+					returnMessage += "<br>Title: '"+ item.title + "'<br>Description: " + item.description + "<br>Author: " + item.author + "<br>More info: " + item.url + "<br>Published on: " + item.publishedAt.substr(0,10) + "<br>";
 				}
 				//console.log(returnMessage);
 				botAction.saveMessage(teamName, returnMessage, bot);
