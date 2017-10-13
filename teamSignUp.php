@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/SlackClone/dash.php">DashBoard</a>
+              <a class="nav-link" href="dash.php">DashBoard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Help</a>
@@ -102,7 +102,8 @@
             success: function(result){
               if(result == "1"){
                 console.log("Success");
-                window.location.assign("http://localhost/SlackClone/chatWindow.php");
+                //window.location.assign("http://localhost/SlackClone/chatWindow.php");
+                window.location="chatWindow.php";
               }else{
                 console.log("Failure");
                 $('#alert').html(result).show();

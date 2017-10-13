@@ -120,7 +120,8 @@
             success: function(result){
               if(result == "1"){
                 console.log("Success");
-                window.location.assign("http://localhost/SlackClone/dash.php");
+                //window.location.assign("http://localhost/SlackClone/dash.php");
+                window.location="dash.php";
               }else{
                 console.log("Failure");
                 $('#alert').html(result).show();
