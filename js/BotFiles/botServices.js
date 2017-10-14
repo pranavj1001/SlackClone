@@ -405,7 +405,7 @@ var botAction = {
 		//console.log(teamName + " " + projectName);
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=createANewProject",
+            url: "actions.php?actions=createANewProject",
             data: "teamname=" + teamName + "&projectname=" + projectName + "&datetime=" + currentDateTimeInISOFormat,
             success: function(result){
             	if(result == "1"){
@@ -429,7 +429,7 @@ var botAction = {
 	preCommitAnIssue: function(projectName, teamName, message){
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            url: "actions.php?actions=checkForThisTable",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
@@ -459,7 +459,7 @@ var botAction = {
 
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=commitAnIssue",
+            url: "actions.php?actions=commitAnIssue",
             data: "teamname=" + teamName + "&projectname=" + projectName + "&issueData=" + issueData + "&username=" + currrentUsername + "&datetime=" + currentDateTimeInISOFormat,
             success: function(result){
             	if(result == "1"){
@@ -488,14 +488,14 @@ var botAction = {
 		//console.log(projectName);
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            url: "actions.php?actions=checkForThisTable",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
                		//console.log("Moving Ahead");
                		$.ajax({
 			            type: "POST",
-			            url: "http://localhost/SlackClone/actions.php?actions=showLatestIssue",
+			            url: "actions.php?actions=showLatestIssue",
 			            data: "teamname=" + teamName + "&projectname=" + projectName,
 			            dataType: "json",
 			            success: function(result){
@@ -525,14 +525,14 @@ var botAction = {
 		//console.log(projectName);
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            url: "actions.php?actions=checkForThisTable",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
                		//console.log("Moving Ahead");
                		$.ajax({
 			            type: "POST",
-			            url: "http://localhost/SlackClone/actions.php?actions=showIssue",
+			            url: "actions.php?actions=showIssue",
 			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId,
 			            dataType: "json",
 			            success: function(result){
@@ -562,14 +562,14 @@ var botAction = {
 		//console.log(projectName + " " + issueId);
 		$.ajax({
             type: "POST",
-            url: "http://localhost/SlackClone/actions.php?actions=checkForThisTable",
+            url: "actions.php?actions=checkForThisTable",
             data: "teamname=" + teamName + "&projectname=" + projectName,
             success: function(result){
             	if(result == "1"){
                		//console.log("Moving Ahead");
                		$.ajax({
 			            type: "POST",
-			            url: "http://localhost/SlackClone/actions.php?actions=deleteIssue",
+			            url: "actions.php?actions=deleteIssue",
 			            data: "teamname=" + teamName + "&projectname=" + projectName + "&issueId=" + issueId + "&username=" + username,
 			            success: function(result){
 			 				//console.log(result);
@@ -650,7 +650,7 @@ var botAction = {
 
 		$.ajax({
 		    type: "POST",
-		    url: "http://localhost/SlackClone/actions.php?actions=saveMessage",
+		    url: "actions.php?actions=saveMessage",
 		    data:"teamname=" + teamName + "&sender=" + username + "&message=" + returnMessage + "&datetime=" + currentDateTimeInISOFormat,
 		    success: function(result){
 			    if(result == "1"){
