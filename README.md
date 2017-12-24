@@ -1,7 +1,9 @@
 # SlackClone
 This repo is a clone of Slack
 
-Repo is under constant development.
+Repo is under development.
+
+**Note:** Readme will be updated soon.
 
 ## To-Do List
 
@@ -10,7 +12,7 @@ Repo is under constant development.
 - [X] Set up basic Chat UI
 - [X] Set up basic Bot
 - [X] Set up the features of Bot
-- [ ] Beautify the web app and add content wherever necessary
+- [X] Beautify the web app and add content wherever necessary
 - [ ] Publish Research Papers
 - [ ] **Project Complete**
 
@@ -25,6 +27,6 @@ Repo is under constant development.
 
 ## Contributors
 
-* Pranav Jain (~Supreme Leader~)
-* KeDaE KaLe(kesar)
-* GM(Ganesh)
+* Pranav Jain
+* Kedar Kale
+* Ganesh Choudhary
