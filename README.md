@@ -70,6 +70,10 @@ Message used to call Assistant is
 
 ```Ok Bot```
 
+## ScreenShot
+
+![Alt text](dashboard.png?raw=true "DashBoard Page")
+
 ## Import the database
 
 1. Install Xampp
