@@ -44,6 +44,10 @@ Message used to call Assistant is
 
 ```Ok Bot```
 
+Beside from about there is Dashboard for each user.Dashboard consist of number of message send by user and details of group in which user is present.This statistics is also represented in form of charts and graphs.
+
+
+User is also able to create groups to have group conversation.This group can also be deleted in secure way.
 
 
 ## Technologies used
