@@ -9,7 +9,7 @@ We have primarily used JS as the programming language. You are free to use/impro
 
 * **ChatBot**: We have implemented five different types of bots. Each performs something different but all cater the same application and can be accessed by any logged-in user. For more info click on the links.
 
-  - [Verison Control Bot](#verison-control-system)
+  - [Verison Control Bot](#verison-control-bot)
   
   - [Stock Bot](#stockbot)
  
